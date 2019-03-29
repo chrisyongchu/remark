@@ -1,6 +1,6 @@
 /**
  * ----------------------------------------------------------------------------
- * Oreo Theme (v1.1): Oreo.js 
+ * Oreo Theme (v1.2): Oreo.js 
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
  * Last Update: 28/03/2019
  */
