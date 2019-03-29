@@ -5,26 +5,34 @@
  * Last Update: 28/03/2019
  */
 
-(function ($js) {
-  $js.fn.oreo = function(options) {
+(function (global, factory, $js) {
+  // no dependencies.
+})(this, function ($js, Oreo) { 'use strict';
 
-    var defaults = {
-
-    };
-
-    var settings = $js.extend({}, defaults, options);
-
-    return $js('input[type="checkbox"]').each(function () {
-      var _checkbox = $js(this);
-      _checkbox.parent().addClass('checkbox-custom');
-    });
-
-  };
-
-})(jQuery);
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperties(target, descriptor.key, descriptor);
+    }
+  }
+  
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    return Constructor;
+  }
+});
 
 $js(function () {
-  $js('input[type="checkbox"]').oreo();
+
+  $js.ajax({
+    context: document.body
+  }).done(function (){
+    // the start of Oreo plugin.
+  });
+  
 });
 
 
