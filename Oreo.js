@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------
  * Name: Oreo Theme
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 1.5
+ * Theme Version: 1.6
  * Last Update: 29/03/2019
  */
 
@@ -25,65 +25,70 @@ window.theme.fn = {
   }
 };
 
-(function (theme, $js) {
+// the semi-colon before the function invocation is a safety net against concatenated scripts and/or 
+// other plugins that may not be closed properly.
+;(function (theme, $js) {
   theme = theme || {};
-  var themeName = 'oreo';
-  var themeKey  = 'data-theme';
+  var themeKey  = 'data-oreo-theme';
   
-  var Oreo = function (wrapper) {
-    this.wrapper = wrapper;
-    this
-      .init(wrapper)
-      .checkboxes();
-    return this;
+  var Oreo = function (wrapper, options) {
+    return this.init(wrapper, options)
+  };
+
+  Oreo.defaults = {
+    Theme: 'highq',
+    checkBoxes: false
   };
 
   Oreo.prototype = {
-    init: function (wrapper) {
-      wrapper.attr(themeKey, themeName);
+    init: function (wrapper, options) {
+      this
+        .setOptions(options)
+        .build(wrapper);
       return this;
     },
-    checkboxes: function() {
-      var _checkbox = $js('[type="checkbox"]').attr('data-oreo-theme', 'checkbox');
-      $js(document).ajaxComplete(function () {
-        var inputs = $js('[type="checkbox"]');
-        inputs.attr('data-oreo-theme', 'checkbox');
-        inputs.closest('td, th').addClass('checkbox-custom').append('<span></span>');
-      });
+    setOptions: function (options) {
+      this.options = $js.extend(true, {}, Oreo.defaults, options);
+      return this;
+    },
+    build: function (wrapper, options) {
+      var checkboxes = $js('[input="checkbox"]');
+
+      if (this.options.Theme) {
+        wrapper.attr(themeKey, this.options.Theme);
+      }
+
+      if (this.options.checkBoxes) {
+        $js('[type="checkbox"]').attr('data-oreo', 'checkbox');
+
+        // $js(document).ajaxComplete(function () {
+        //   $js('td.checkbox-custom span, th.checkbox-custom span').on(Event.CLICK, function () {
+        //     _checkbox = $js(this).prev();
+        //     _checkbox.is(':checked') ? _checkbox.prop('checked', false) : _checkbox.prop('checked', true);
+        //   });      
+        // });
+      }
+      return this;
     }
   };
 
-  // expose to scope
-  $js.extend(theme, { Oreo: Oreo });
-
   // theme plugin
   $js.fn.themeOreo = function (options) {
-    var wrapper = this[0].className;
-    return new Oreo(this, wrapper);
+    var wrapper = this;
+    console.log(options);
+    return new Oreo(wrapper, options);
   };
 
 }).apply(this, [window.theme, jQuery]);
 
 $js(function () {
-/**
- * Constants
- */
 
   var Event = {
     CLICK: 'click'
   }
 
-  $js('body').themeOreo();
-
-  $js('.templateheader .checkbox label').on(Event.CLICK, function () {
+  $js('[data-oreo="checkbox"] + label').on(Event.CLICK, function () {
     ($js(this).siblings().is(':checked')) ? $js(this).siblings().prop('checked', false) : $js(this).siblings().prop('checked', true);  
-  });
-
-  $js(document).ajaxComplete(function () {
-    $js('td.checkbox-custom span, th.checkbox-custom span').on(Event.CLICK, function () {
-      _checkbox = $js(this).prev();
-      _checkbox.is(':checked') ? _checkbox.prop('checked', false) : _checkbox.prop('checked', true);
-    });      
   });
 
 });
