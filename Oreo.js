@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------
  * Name: Oreo Theme
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 1.6
+ * Theme Version: 1.7
  * Last Update: 29/03/2019
  */
 
@@ -29,7 +29,7 @@ window.theme.fn = {
 // other plugins that may not be closed properly.
 ;(function (theme, $js) {
   theme = theme || {};
-  var themeKey  = 'data-oreo-theme';
+  var themeKey = 'data-oreo-theme';
   
   var Oreo = function (wrapper, options) {
     return this.init(wrapper, options)
@@ -37,7 +37,8 @@ window.theme.fn = {
 
   Oreo.defaults = {
     Theme: 'highq',
-    checkBoxes: false
+    Boxed: false,
+    PrettyPanels: false
   };
 
   Oreo.prototype = {
@@ -52,22 +53,19 @@ window.theme.fn = {
       return this;
     },
     build: function (wrapper, options) {
-      var checkboxes = $js('[input="checkbox"]');
 
       if (this.options.Theme) {
         wrapper.attr(themeKey, this.options.Theme);
       }
 
-      if (this.options.checkBoxes) {
-        $js('[type="checkbox"]').attr('data-oreo', 'checkbox');
-
-        // $js(document).ajaxComplete(function () {
-        //   $js('td.checkbox-custom span, th.checkbox-custom span').on(Event.CLICK, function () {
-        //     _checkbox = $js(this).prev();
-        //     _checkbox.is(':checked') ? _checkbox.prop('checked', false) : _checkbox.prop('checked', true);
-        //   });      
-        // });
+      if (this.options.PrettyPanels) {
+        wrapper.addClass('oreo-pretty-panels');
       }
+
+      if (this.options.Boxed) {
+        wrapper.addClass('oreo-layout-boxed');
+      }
+
       return this;
     }
   };
@@ -75,20 +73,7 @@ window.theme.fn = {
   // theme plugin
   $js.fn.themeOreo = function (options) {
     var wrapper = this;
-    console.log(options);
     return new Oreo(wrapper, options);
   };
 
 }).apply(this, [window.theme, jQuery]);
-
-$js(function () {
-
-  var Event = {
-    CLICK: 'click'
-  }
-
-  $js('[data-oreo="checkbox"] + label').on(Event.CLICK, function () {
-    ($js(this).siblings().is(':checked')) ? $js(this).siblings().prop('checked', false) : $js(this).siblings().prop('checked', true);  
-  });
-
-});
