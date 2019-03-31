@@ -1,5 +1,5 @@
 /*!
- * Oreo Theme v1.7
+ * Oreo Theme v1.8
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
  * Last Update: 31/03/2019
@@ -119,6 +119,177 @@
   background-color: #fff;
 }
 
+/* Oreo Cyan Theme */
+[data-oreo-theme="cyan"] .btn-default:hover, 
+[data-oreo-theme="cyan"] .btn-default:focus, 
+[data-oreo-theme="cyan"] .btn-default:active {
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.17);
+}
+
+[data-oreo-theme="cyan"] .dropdown-menu {
+  border: 0 !important;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 50px 0px rgba(82,63,105,0.15);
+  box-shadow: 0px 0px 50px 0px rgba(82,63,105,0.15);
+  margin: 0;
+  min-width: 14rem;
+  padding: 0;
+  padding: 1rem 0;
+}
+
+[data-oreo-theme="cyan"] .dropdown-menu li a {
+  outline: none !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 0.7rem 1.2rem;
+}
+
+[data-oreo-theme="cyan"] .navbar-nav .open .dropdown-menu > li > a, 
+[data-oreo-theme="cyan"] .navbar-nav .open .dropdown-menu .dropdown-header {
+  padding: 0.7rem 1.2rem;
+}
+
+[data-oreo-theme="cyan"] .breadcrumbLink .breadcrumb a.editIcon:hover,
+[data-oreo-theme="cyan"] .linkColor, 
+[data-oreo-theme="cyan"] .adminLeftBar .LeftInnerData > ul > li > a.linkColor, 
+[data-oreo-theme="cyan"] .adminLeftBar .LeftInnerData > ul > li > a.linkColor:hover, 
+[data-oreo-theme="cyan"] .adminLeftBar .LeftInnerData > ul > li.active > a.linkColor, 
+[data-oreo-theme="cyan"] .adminLeftBar .LeftInnerData > ul > li.active > a.linkColor:hover, 
+[data-oreo-theme="cyan"] .adminLeftBar .LeftInnerData ul li a.selected.linkColor, 
+[data-oreo-theme="cyan"] .adminLeftBar .LeftInnerData ul li a.selected.linkColor:hover,
+[data-oreo-theme="cyan"] .icon-highq-publication:before, 
+[data-oreo-theme="cyan"] .icon-highq-publication-small:before, 
+[data-oreo-theme="cyan"] .icon-highq-publication-module:before,
+[data-oreo-theme="cyan"] .sidebar ul li.active > a, 
+[data-oreo-theme="cyan"] .sidebar ul li.active > label,
+[data-oreo-theme="cyan"] .hq-form-control:focus ~ label, 
+[data-oreo-theme="cyan"] .has-content.hq-form-control ~ label,
+[data-oreo-theme="cyan"] .adminLeftBar .LeftInnerData ul li a,
+[data-oreo-theme="cyan"] .navbar-nav .open .dropdown-menu > li > a,
+[data-oreo-theme="cyan"] .hq-btn, 
+[data-oreo-theme="cyan"] .btn,
+[data-oreo-theme="cyan"] .btn-default, 
+[data-oreo-theme="cyan"] .btn-default:focus, 
+[data-oreo-theme="cyan"] .btn-default:active,
+[data-oreo-theme="cyan"] .pagination > li > a:hover, 
+[data-oreo-theme="cyan"] .pagination > li > span:hover, 
+[data-oreo-theme="cyan"] .pagination > li > a:focus, 
+[data-oreo-theme="cyan"] .pagination > li > span:focus, 
+[data-oreo-theme="cyan"] .pagination > li > a, 
+[data-oreo-theme="cyan"] .pagination > li > span,
+[data-oreo-theme="cyan"] a, 
+[data-oreo-theme="cyan"] a.linkColor, 
+[data-oreo-theme="cyan"] .dropdown-menu > li > a.linkColor,
+[data-oreo-theme="cyan"] .navbar-nav li.active > a, 
+[data-oreo-theme="cyan"] .navigation-panel .navbar-nav li.active > a, 
+[data-oreo-theme="cyan"] .navigation-panel .navbar-nav li a:hover,
+[data-oreo-theme="cyan"] .navigation .nav > li > a:hover, 
+[data-oreo-theme="cyan"] .navigation .nav > li > a:focus,
+[data-oreo-theme="cyan"] .BrowsePanel .icon-settings,
+[data-oreo-theme="cyan"] .comptitle,
+[data-oreo-theme="cyan"] .rowControls > li .colorpickico.active, 
+[data-oreo-theme="cyan"] .rowControls > li .uploadimage.active, 
+[data-oreo-theme="cyan"] .rowControls > li .rowColClassico.active  {
+  color: #0bb2d4;
+}
+
+[data-oreo-theme="cyan"] .hq-btn, 
+[data-oreo-theme="cyan"] .btn,
+[data-oreo-theme="cyan"] .btn-default, 
+[data-oreo-theme="cyan"] .btn-default:focus, 
+[data-oreo-theme="cyan"] .btn-default:active,
+[data-oreo-theme="cyan"] .MainTitle .Titletxt,
+[data-oreo-theme="cyan"] .ppldir-alphabetFilter,
+[data-oreo-theme="cyan"] .header .HeadSearch .form-control, 
+[data-oreo-theme="cyan"] .header .HeadSearch .input-group .input-group-btn .btn, 
+[data-oreo-theme="cyan"] .navigation-panel .searchPanel .form-control, 
+[data-oreo-theme="cyan"] .navigation-panel .searchPanel .input-group-btn .btn,
+[data-oreo-theme="cyan"] .header .headRight .btn,
+[data-oreo-theme="cyan"] .placeholder,
+[data-oreo-theme="cyan"] .column .placeholder {
+  border-color: #0bb2d4;
+}
+
+[data-oreo-theme="cyan"] .ppldir-alphabetFilter a:hover, 
+[data-oreo-theme="cyan"] .ppldir-alphabetFilter a.active,
+[data-oreo-theme="cyan"] .ui-datepicker .ui-widget-header,
+[data-oreo-theme="cyan"] .pagination > .active > a, 
+[data-oreo-theme="cyan"] .pagination > .active > span, 
+[data-oreo-theme="cyan"] .pagination > .active > a:hover, 
+[data-oreo-theme="cyan"] .pagination > .active > span:hover, 
+[data-oreo-theme="cyan"] .pagination > .active > a:focus, 
+[data-oreo-theme="cyan"] .pagination > .active > span:focus,
+[data-oreo-theme="cyan"] .btn-default:hover, 
+[data-oreo-theme="cyan"] .btn-default:focus, 
+[data-oreo-theme="cyan"] .btn-default:active, 
+[data-oreo-theme="cyan"] .btn-default.active, 
+[data-oreo-theme="cyan"] .open .dropdown-toggle.btn-default, 
+[data-oreo-theme="cyan"] .btn-default:active:hover, 
+[data-oreo-theme="cyan"] .btn-default.active:hover, 
+[data-oreo-theme="cyan"] .open > .dropdown-toggle.btn-default:hover, 
+[data-oreo-theme="cyan"] .btn-default:active:focus, 
+[data-oreo-theme="cyan"] .btn-default.active:focus, 
+[data-oreo-theme="cyan"] .open > .dropdown-toggle.btn-default:focus, 
+[data-oreo-theme="cyan"] .btn-default:active.focus, 
+[data-oreo-theme="cyan"] .btn-default.active.focus, 
+[data-oreo-theme="cyan"] .open > .dropdown-toggle.btn-default.focus {
+  background-color: #0bb2d4;
+  border-color: #0bb2d4;
+  color: #fff;
+}
+
+[data-oreo-theme="cyan"] .header .nav > li > a, 
+[data-oreo-theme="cyan"] .header .nav > li > a:hover, 
+[data-oreo-theme="cyan"] .header .nav > li > a:focus {
+  background-color: #0bb2d4;
+  border-color: #0bb2d4;
+}
+
+[data-oreo-theme="cyan"] .navigation,
+[data-oreo-theme="cyan"] .dropdown-menu.collist > li > a:hover, 
+[data-oreo-theme="cyan"] .dropdown-menu.collist > li > a.active,
+[data-oreo-theme="cyan"] .columns .thumbnail .titleOverlap .titleTransbg {
+  background-color: #0bb2d4;
+}
+
+[data-oreo-theme="cyan"].oreo-pretty-panels .MainTitle .Titletxt,
+[data-oreo-theme="cyan"] .MainTitle [class^="icon-"]:before, 
+[data-oreo-theme="cyan"] .MainTitle [class*=" icon-"]:before,
+[data-oreo-theme="cyan"] .videoOverlap .icon-play,
+[data-oreo-theme="cyan"] .navigation a {
+  color: #fff;
+}
+
+[data-oreo-theme="cyan"] .token:hover {
+  background-color: #0bb2d4;
+  border-color: #0bb2d4;
+}
+
+[data-oreo-theme="cyan"] .header .HeadSearch .input-group .input-group-btn.open .caret {
+  border-top-color: #fff;
+} 
+
+[data-oreo-theme="cyan"] .header .HeadSearch .input-group .input-group-btn:hover .caret {
+  border-top-color: #0bb2d4;
+}
+
+[data-oreo-theme="cyan"] .form-control:focus {
+  border-color: rgba(52, 58, 64, 0.8);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(52, 58, 64, 0.8);
+}
+
+[data-oreo-theme="cyan"].oreo-pretty-panels .MainTitle {
+  background-color: #0bb2d4;
+  border: 1px solid rgba(0,0,0,.125);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin: 0;
+}
+
 /* Oreo Brown Theme */
 [data-oreo-theme="brown"] .btn-default:hover, 
 [data-oreo-theme="brown"] .btn-default:focus, 
@@ -190,8 +361,12 @@
 [data-oreo-theme="brown"] .navigation-panel .navbar-nav li a:hover,
 [data-oreo-theme="brown"] .navigation .nav > li > a:hover, 
 [data-oreo-theme="brown"] .navigation .nav > li > a:focus,
-[data-oreo-theme="brown"] .BrowsePanel .icon-settings {
-  color: #5d4037;
+[data-oreo-theme="brown"] .BrowsePanel .icon-settings,
+[data-oreo-theme="brown"] .comptitle,
+[data-oreo-theme="brown"] .rowControls > li .colorpickico.active, 
+[data-oreo-theme="brown"] .rowControls > li .uploadimage.active, 
+[data-oreo-theme="brown"] .rowControls > li .rowColClassico.active  {
+  color: #82675f;
 }
 
 [data-oreo-theme="brown"] .hq-btn, 
@@ -205,8 +380,10 @@
 [data-oreo-theme="brown"] .header .HeadSearch .input-group .input-group-btn .btn, 
 [data-oreo-theme="brown"] .navigation-panel .searchPanel .form-control, 
 [data-oreo-theme="brown"] .navigation-panel .searchPanel .input-group-btn .btn,
-[data-oreo-theme="brown"] .header .headRight .btn {
-  border-color: #5d4037;
+[data-oreo-theme="brown"] .header .headRight .btn,
+[data-oreo-theme="brown"] .placeholder,
+[data-oreo-theme="brown"] .column .placeholder {
+  border-color: #82675f;
 }
 
 [data-oreo-theme="brown"] .ppldir-alphabetFilter a:hover, 
@@ -232,21 +409,23 @@
 [data-oreo-theme="brown"] .btn-default:active.focus, 
 [data-oreo-theme="brown"] .btn-default.active.focus, 
 [data-oreo-theme="brown"] .open > .dropdown-toggle.btn-default.focus {
-  background-color: #5d4037;
-  border-color: #5d4037;
+  background-color: #82675f;
+  border-color: #82675f;
   color: #fff;
 }
 
 [data-oreo-theme="brown"] .header .nav > li > a, 
 [data-oreo-theme="brown"] .header .nav > li > a:hover, 
 [data-oreo-theme="brown"] .header .nav > li > a:focus {
-  background-color: #5d4037;
-  border-color: #5d4037;
+  background-color: #82675f;
+  border-color: #82675f;
 }
 
+[data-oreo-theme="brown"] .dropdown-menu.collist > li > a:hover, 
+[data-oreo-theme="brown"] .dropdown-menu.collist > li > a.active,
 [data-oreo-theme="brown"] .columns .thumbnail .titleOverlap .titleTransbg,
 [data-oreo-theme="brown"] .navigation  {
-  background: #5d4037;
+  background-color: #82675f;
 }
 
 [data-oreo-theme="brown"].oreo-pretty-panels .MainTitle .Titletxt,
@@ -258,7 +437,7 @@
 }
 
 [data-oreo-theme="brown"] .token:hover {
-  background-color: #5d4037;
+  background-color: #82675f;
   border-color: #c6a89f;
 }
 
@@ -267,7 +446,7 @@
 } 
 
 [data-oreo-theme="brown"] .header .HeadSearch .input-group .input-group-btn:hover .caret {
-  border-top-color: #5d4037;
+  border-top-color: #82675f;
 }
 
 [data-oreo-theme="brown"] .form-control:focus {
@@ -276,7 +455,7 @@
 }
 
 [data-oreo-theme="brown"].oreo-pretty-panels .MainTitle {
-  background-color: #5d4037;
+  background-color: #82675f;
   border: 1px solid rgba(0,0,0,.125);
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -353,7 +532,11 @@
 [data-oreo-theme="dark"] .navigation-panel .navbar-nav li a:hover,
 [data-oreo-theme="dark"] .navigation .nav > li > a:hover, 
 [data-oreo-theme="dark"] .navigation .nav > li > a:focus,
-[data-oreo-theme="dark"] .BrowsePanel .icon-settings  {
+[data-oreo-theme="dark"] .BrowsePanel .icon-settings,
+[data-oreo-theme="dark"] .comptitle,
+[data-oreo-theme="dark"] .rowControls > li .colorpickico.active, 
+[data-oreo-theme="dark"] .rowControls > li .uploadimage.active, 
+[data-oreo-theme="dark"] .rowControls > li .rowColClassico.active {
   color: #343a40;
 }
 
@@ -368,7 +551,9 @@
 [data-oreo-theme="dark"] .header .HeadSearch .input-group .input-group-btn .btn, 
 [data-oreo-theme="dark"] .navigation-panel .searchPanel .form-control, 
 [data-oreo-theme="dark"] .navigation-panel .searchPanel .input-group-btn .btn,
-[data-oreo-theme="dark"] .header .headRight .btn {
+[data-oreo-theme="dark"] .header .headRight .btn,
+[data-oreo-theme="dark"] .placeholder,
+[data-oreo-theme="dark"] .column .placeholder {
   border-color: #343a40;
 }
 
@@ -407,9 +592,11 @@
   border-color: #343a40;
 }
 
+[data-oreo-theme="dark"] .dropdown-menu.collist > li > a:hover, 
+[data-oreo-theme="dark"] .dropdown-menu.collist > li > a.active,
 [data-oreo-theme="dark"] .columns .thumbnail .titleOverlap .titleTransbg,
 [data-oreo-theme="dark"] .navigation {
-  background: #343a40;
+  background-color: #343a40;
 }
 
 [data-oreo-theme="dark"].oreo-pretty-panels .MainTitle .Titletxt,
@@ -452,181 +639,6 @@
 
 [data-oreo-theme] .ppldir-thumbContainer .ppldir-thumbOuter > .ppldir-avtar img {
   border-radius: 50%;
-}
-
-/* Oreo Magenta Theme */
-[data-oreo-theme="magenta"] .header {
-  background: #d500f9;
-  background: -webkit-linear-gradient(45deg, #d500f9, #ffa000) !important;
-  background: -moz- oldlinear-gradient(45deg, #d500f9, #ffa000) !important;
-  background: -o-linear-gradient(45deg, #d500f9, #ffa000) !important;
-  background: linear-gradient(45deg, #d500f9, #ffa000) !important;
-  border-bottom: 0;
-}
-
-[data-oreo-theme="magenta"] .btn-default:hover, 
-[data-oreo-theme="magenta"] .btn-default:focus, 
-[data-oreo-theme="magenta"] .btn-default:active {
-  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.17);
-}
-
-[data-oreo-theme="magenta"] .dropdown-menu {
-  border: 0 !important;
-  border-radius: 4px;
-  -webkit-box-shadow: 0px 0px 50px 0px rgba(82,63,105,0.15);
-  box-shadow: 0px 0px 50px 0px rgba(82,63,105,0.15);
-  margin: 0;
-  min-width: 14rem;
-  padding: 0;
-  padding: 1rem 0;
-}
-
-[data-oreo-theme="magenta"] .dropdown-menu li a {
-  outline: none !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 0.7rem 1.2rem;
-}
-
-[data-oreo-theme="magenta"] .navbar-nav .open .dropdown-menu > li > a, 
-[data-oreo-theme="magenta"] .navbar-nav .open .dropdown-menu .dropdown-header {
-  padding: 0.7rem 1.2rem;
-}
-
-[data-oreo-theme="magenta"] .breadcrumbLink .breadcrumb a.editIcon:hover,
-[data-oreo-theme="magenta"] .linkColor, 
-[data-oreo-theme="magenta"] .adminLeftBar .LeftInnerData > ul > li > a.linkColor, 
-[data-oreo-theme="magenta"] .adminLeftBar .LeftInnerData > ul > li > a.linkColor:hover, 
-[data-oreo-theme="magenta"] .adminLeftBar .LeftInnerData > ul > li.active > a.linkColor, 
-[data-oreo-theme="magenta"] .adminLeftBar .LeftInnerData > ul > li.active > a.linkColor:hover, 
-[data-oreo-theme="magenta"] .adminLeftBar .LeftInnerData ul li a.selected.linkColor, 
-[data-oreo-theme="magenta"] .adminLeftBar .LeftInnerData ul li a.selected.linkColor:hover,
-[data-oreo-theme="magenta"] .icon-highq-publication:before, 
-[data-oreo-theme="magenta"] .icon-highq-publication-small:before, 
-[data-oreo-theme="magenta"] .icon-highq-publication-module:before,
-[data-oreo-theme="magenta"] .sidebar ul li.active > a, 
-[data-oreo-theme="magenta"] .sidebar ul li.active > label,
-[data-oreo-theme="magenta"] .hq-form-control:focus ~ label, 
-[data-oreo-theme="magenta"] .has-content.hq-form-control ~ label,
-[data-oreo-theme="magenta"] .adminLeftBar .LeftInnerData ul li a,
-[data-oreo-theme="magenta"] .navbar-nav .open .dropdown-menu > li > a,
-[data-oreo-theme="magenta"] .hq-btn, 
-[data-oreo-theme="magenta"] .btn,
-[data-oreo-theme="magenta"] .btn-default, 
-[data-oreo-theme="magenta"] .btn-default:focus, 
-[data-oreo-theme="magenta"] .btn-default:active,
-[data-oreo-theme="magenta"] .navigation a,
-[data-oreo-theme="magenta"] .pagination > li > a:hover, 
-[data-oreo-theme="magenta"] .pagination > li > span:hover, 
-[data-oreo-theme="magenta"] .pagination > li > a:focus, 
-[data-oreo-theme="magenta"] .pagination > li > span:focus, 
-[data-oreo-theme="magenta"] .pagination > li > a, 
-[data-oreo-theme="magenta"] .pagination > li > span,
-[data-oreo-theme="magenta"] a, 
-[data-oreo-theme="magenta"] a.linkColor, 
-[data-oreo-theme="magenta"] .dropdown-menu > li > a.linkColor,
-[data-oreo-theme="magenta"] .navbar-nav li.active > a, 
-[data-oreo-theme="magenta"] .navigation-panel .navbar-nav li.active > a, 
-[data-oreo-theme="magenta"] .navigation-panel .navbar-nav li a:hover,
-[data-oreo-theme="magenta"] .navigation .nav > li > a:hover, 
-[data-oreo-theme="magenta"] .navigation .nav > li > a:focus,
-[data-oreo-theme="magenta"] .BrowsePanel .icon-settings {
-  color: #8e24aa;
-}
-
-[data-oreo-theme="magenta"] .hq-btn, 
-[data-oreo-theme="magenta"] .btn,
-[data-oreo-theme="magenta"] .btn-default, 
-[data-oreo-theme="magenta"] .btn-default:focus, 
-[data-oreo-theme="magenta"] .btn-default:active,
-[data-oreo-theme="magenta"] .MainTitle .Titletxt,
-[data-oreo-theme="magenta"] .ppldir-alphabetFilter,
-[data-oreo-theme="magenta"] .header .HeadSearch .form-control, 
-[data-oreo-theme="magenta"] .header .HeadSearch .input-group .input-group-btn .btn, 
-[data-oreo-theme="magenta"] .navigation-panel .searchPanel .form-control, 
-[data-oreo-theme="magenta"] .navigation-panel .searchPanel .input-group-btn .btn,
-[data-oreo-theme="magenta"] .header .headRight .btn {
-  border-color: #8e24aa;
-}
-
-[data-oreo-theme="magenta"] .ppldir-alphabetFilter a:hover, 
-[data-oreo-theme="magenta"] .ppldir-alphabetFilter a.active,
-[data-oreo-theme="magenta"] .ui-datepicker .ui-widget-header,
-[data-oreo-theme="magenta"] .pagination > .active > a, 
-[data-oreo-theme="magenta"] .pagination > .active > span, 
-[data-oreo-theme="magenta"] .pagination > .active > a:hover, 
-[data-oreo-theme="magenta"] .pagination > .active > span:hover, 
-[data-oreo-theme="magenta"] .pagination > .active > a:focus, 
-[data-oreo-theme="magenta"] .pagination > .active > span:focus,
-[data-oreo-theme="magenta"] .btn-default:hover, 
-[data-oreo-theme="magenta"] .btn-default:focus, 
-[data-oreo-theme="magenta"] .btn-default:active, 
-[data-oreo-theme="magenta"] .btn-default.active, 
-[data-oreo-theme="magenta"] .open .dropdown-toggle.btn-default, 
-[data-oreo-theme="magenta"] .btn-default:active:hover, 
-[data-oreo-theme="magenta"] .btn-default.active:hover, 
-[data-oreo-theme="magenta"] .open > .dropdown-toggle.btn-default:hover, 
-[data-oreo-theme="magenta"] .btn-default:active:focus, 
-[data-oreo-theme="magenta"] .btn-default.active:focus, 
-[data-oreo-theme="magenta"] .open > .dropdown-toggle.btn-default:focus, 
-[data-oreo-theme="magenta"] .btn-default:active.focus, 
-[data-oreo-theme="magenta"] .btn-default.active.focus, 
-[data-oreo-theme="magenta"] .open > .dropdown-toggle.btn-default.focus {
-  background-color: #8e24aa;
-  border-color: #8e24aa;
-  color: #fff;
-}
-
-[data-oreo-theme="magenta"] .header .nav > li > a, 
-[data-oreo-theme="magenta"] .header .nav > li > a:hover, 
-[data-oreo-theme="magenta"] .header .nav > li > a:focus {
-  background-color: #8e24aa;
-  border-color: #8e24aa;
-}
-
-[data-oreo-theme="magenta"] .columns .thumbnail .titleOverlap .titleTransbg {
-  background: #8e24aa;
-}
-
-[data-oreo-theme="magenta"] .navigation {
-  background: #fff;
-}
-
-[data-oreo-theme="magenta"].oreo-pretty-panels .MainTitle .Titletxt,
-[data-oreo-theme="magenta"] .MainTitle [class^="icon-"]:before, 
-[data-oreo-theme="magenta"] .MainTitle [class*=" icon-"]:before,
-[data-oreo-theme="magenta"] .videoOverlap .icon-play {
-  color: #fff;
-}
-
-[data-oreo-theme="magenta"] .token:hover {
-  background-color: #8e24aa;
-  border-color: #8e24aa;
-}
-
-[data-oreo-theme="magenta"] .header .HeadSearch .input-group .input-group-btn.open .caret {
-  border-top-color: #fff;
-} 
-
-[data-oreo-theme="magenta"] .header .HeadSearch .input-group .input-group-btn:hover .caret {
-  border-top-color: #8e24aa;
-}
-
-[data-oreo-theme="magenta"] .form-control:focus {
-  border-color: rgba(52, 58, 64, 0.8);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(52, 58, 64, 0.8);
-}
-
-[data-oreo-theme="magenta"].oreo-pretty-panels .MainTitle {
-  background-color: #8e24aa;
-  border: 1px solid rgba(0,0,0,.125);
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  margin: 0;
 }
 
 /* Oreo Purple Theme */
@@ -698,8 +710,12 @@
 [data-oreo-theme="purple"] .navigation-panel .navbar-nav li a:hover,
 [data-oreo-theme="purple"] .navigation .nav > li > a:hover, 
 [data-oreo-theme="purple"] .navigation .nav > li > a:focus,
-[data-oreo-theme="purple"] .BrowsePanel .icon-settings {
-  color: #9c27b0;
+[data-oreo-theme="purple"] .BrowsePanel .icon-settings,
+[data-oreo-theme="purple"] .comptitle,
+[data-oreo-theme="purple"] .rowControls > li .colorpickico.active, 
+[data-oreo-theme="purple"] .rowControls > li .uploadimage.active, 
+[data-oreo-theme="purple"] .rowControls > li .rowColClassico.active  {
+  color: #926dde;
 }
 
 [data-oreo-theme="purple"] .hq-btn, 
@@ -713,8 +729,10 @@
 [data-oreo-theme="purple"] .header .HeadSearch .input-group .input-group-btn .btn, 
 [data-oreo-theme="purple"] .navigation-panel .searchPanel .form-control, 
 [data-oreo-theme="purple"] .navigation-panel .searchPanel .input-group-btn .btn,
-[data-oreo-theme="purple"] .header .headRight .btn {
-  border-color: #9c27b0;
+[data-oreo-theme="purple"] .header .headRight .btn,
+[data-oreo-theme="purple"] .placeholder,
+[data-oreo-theme="purple"] .column .placeholder {
+  border-color: #926dde;
 }
 
 [data-oreo-theme="purple"] .ppldir-alphabetFilter a:hover, 
@@ -740,21 +758,23 @@
 [data-oreo-theme="purple"] .btn-default:active.focus, 
 [data-oreo-theme="purple"] .btn-default.active.focus, 
 [data-oreo-theme="purple"] .open > .dropdown-toggle.btn-default.focus {
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #926dde;
+  border-color: #926dde;
   color: #fff;
 }
 
 [data-oreo-theme="purple"] .header .nav > li > a, 
 [data-oreo-theme="purple"] .header .nav > li > a:hover, 
 [data-oreo-theme="purple"] .header .nav > li > a:focus {
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #926dde;
+  border-color: #926dde;
 }
 
+[data-oreo-theme="purple"] .dropdown-menu.collist > li > a:hover, 
+[data-oreo-theme="purple"] .dropdown-menu.collist > li > a.active,
 [data-oreo-theme="purple"] .columns .thumbnail .titleOverlap .titleTransbg,
 [data-oreo-theme="purple"] .navigation {
-  background: #9c27b0;
+  background-color: #926dde;
 }
 
 [data-oreo-theme="purple"].oreo-pretty-panels .MainTitle .Titletxt,
@@ -767,8 +787,8 @@
 }
 
 [data-oreo-theme="purple"] .token:hover {
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #926dde;
+  border-color: #926dde;
 }
 
 [data-oreo-theme="purple"] .header .HeadSearch .input-group .input-group-btn.open .caret {
@@ -776,7 +796,7 @@
 } 
 
 [data-oreo-theme="purple"] .header .HeadSearch .input-group .input-group-btn:hover .caret {
-  border-top-color: #9c27b0;
+  border-top-color: #926dde;
 }
 
 [data-oreo-theme="purple"] .form-control:focus {
@@ -785,7 +805,7 @@
 }
 
 [data-oreo-theme="purple"].oreo-pretty-panels .MainTitle {
-  background-color: #9c27b0;
+  background-color: #926dde;
   border: 1px solid rgba(0,0,0,.125);
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -862,7 +882,11 @@
 [data-oreo-theme="teal"] .navigation-panel .navbar-nav li a:hover,
 [data-oreo-theme="teal"] .navigation .nav > li > a:hover, 
 [data-oreo-theme="teal"] .navigation .nav > li > a:focus,
-[data-oreo-theme="teal"] .BrowsePanel .icon-settings {
+[data-oreo-theme="teal"] .BrowsePanel .icon-settings,
+[data-oreo-theme="teal"] .comptitle,
+[data-oreo-theme="teal"] .rowControls > li .colorpickico.active, 
+[data-oreo-theme="teal"] .rowControls > li .uploadimage.active, 
+[data-oreo-theme="teal"] .rowControls > li .rowColClassico.active  {
   color: #009688;
 }
 
@@ -877,7 +901,9 @@
 [data-oreo-theme="teal"] .header .HeadSearch .input-group .input-group-btn .btn, 
 [data-oreo-theme="teal"] .navigation-panel .searchPanel .form-control, 
 [data-oreo-theme="teal"] .navigation-panel .searchPanel .input-group-btn .btn,
-[data-oreo-theme="teal"] .header .headRight .btn {
+[data-oreo-theme="teal"] .header .headRight .btn,
+[data-oreo-theme="teal"] .placeholder,
+[data-oreo-theme="teal"] .column .placeholder {
   border-color: #009688;
 }
 
@@ -916,9 +942,11 @@
   border-color: #009688;
 }
 
+[data-oreo-theme="teal"] .dropdown-menu.collist > li > a:hover, 
+[data-oreo-theme="teal"] .dropdown-menu.collist > li > a.active,
 [data-oreo-theme="teal"] .columns .thumbnail .titleOverlap .titleTransbg,
 [data-oreo-theme="teal"] .navigation {
-  background: #009688;
+  background-color: #009688;
 }
 
 [data-oreo-theme="teal"].oreo-pretty-panels .MainTitle .Titletxt,
