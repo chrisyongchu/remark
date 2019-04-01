@@ -2,14 +2,14 @@
  * ----------------------------------------------------------------------------
  * Name: Oreo Theme
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 1.7
- * Last Update: 29/03/2019
+ * Theme Version: 1.9
+ * Last Update: 31/03/2019
  */
 
-window.theme = {};
+window.themes = {};
 
 // Oreo Theme Common Functions
-window.theme.fn = {
+window.themes.fn = {
   getOptions: function(options) {
     if (typeof(options) == 'object') {
       return options
@@ -27,8 +27,8 @@ window.theme.fn = {
 
 // the semi-colon before the function invocation is a safety net against concatenated scripts and/or 
 // other plugins that may not be closed properly.
-;(function (theme, $js) {
-  theme = theme || {};
+;(function (themes, $js) {
+  themes = themes || {};
   var themeKey = 'data-oreo-theme';
   
   var Oreo = function (wrapper, options) {
@@ -36,16 +36,19 @@ window.theme.fn = {
   };
 
   Oreo.defaults = {
-    Theme: 'highq',
-    Boxed: false,
-    PrettyPanels: false
+    theme: 'default',
+    boxed: false,
+    panels: false,
+    searchable: false,
+    tabbable: false
   };
 
   Oreo.prototype = {
     init: function (wrapper, options) {
       this
         .setOptions(options)
-        .build(wrapper);
+        .build(wrapper)
+        .searchable(wrapper);
       return this;
     },
     setOptions: function (options) {
@@ -53,21 +56,46 @@ window.theme.fn = {
       return this;
     },
     build: function (wrapper, options) {
-
-      if (this.options.Theme) {
-        wrapper.attr(themeKey, this.options.Theme);
+      if (this.options.theme) {
+        wrapper.attr(themeKey, this.options.theme);
       }
-
-      if (this.options.PrettyPanels) {
+      if (this.options.panels) {
         wrapper.addClass('oreo-pretty-panels');
       }
-
-      if (this.options.Boxed) {
+      if (this.options.boxed) {
         wrapper.addClass('oreo-layout-boxed');
+      }
+
+      if (this.options.tabbable) {
+        wrapper.find('.tabbable').each(function () {
+          $js(this).closest('[id^="row"]');
+        });
+      }
+
+      return this;
+    },
+    searchable: function (wrapper, options) {
+      if (this.options.searchable) {
+        // wait for ajax component to finish loading.
+        $js.ajax({
+          context: document.body
+        }).done(function () {
+          wrapper.find('.contact_comp').each(function () {
+            $js(this).closest('[id^="componentRender"]').addClass('searchable');
+            $js(this).children().first().after(
+              '<div class="row">' +
+                '<div class="col-xs-12">' +
+                  '<input type="text" class="filterPeopleList form-control margBott20">' +
+                '</div>' +
+              '</div>'
+            );
+          });
+        });
       }
 
       return this;
     }
+
   };
 
   // theme plugin
@@ -76,4 +104,4 @@ window.theme.fn = {
     return new Oreo(wrapper, options);
   };
 
-}).apply(this, [window.theme, jQuery]);
+}).apply(this, [window.themes, jQuery]);
