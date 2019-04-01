@@ -1,11 +1,15 @@
 <p align="center"><img width="90" src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/spaces%2F-LbGFF8_vMz6ZaY9dTdK%2Favatar.png?generation=1554012182062413&alt=media"></p>
 <p align="center">A beautifully-designed UI Framework extension for HighQ Publisher 5.x</p>
 
-# Oreo theme for Publisher
-Files that work together to create the design and functionality of a HighQ Publisher site. Why a Publisher Theme?
+# Speed up development
+This plugin does most of the heavy lifting for you to provide some default stylings that incorporates HighQ Publisher custom components. Additionally, refined animations and transitions also provide a smoother experience for developers.
 
-* To create a unique look
-* To generate different Publisher site looks
-* To provide alternative themes
-* To quickly switch between two site layouts, or to allow sys admins to change the look of the Publisher instance.
+# User Experience Focused
+By utilizing elements and principles of HighQ Publisher, Oreo is a framework plugin that enhances components and provides animations for a better user experience.
 
+# Easy to work with
+Detailed documentation as well as specific code examples are provided in [this simple guide](https://yongchuc.gitbook.io/oreo/).
+
+# Author
+* [https://twitter.com/chrisyongchu](https://twitter.com/chrisyongchu)
+* [https://instagram.com/chrisyongchu](https://instagram.com/chrisyongchu)
