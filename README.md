@@ -1,4 +1,4 @@
-<p align="center"><img width="90" src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/spaces%2F-Law99NJ6KvM5vLg_cAt%2Favatar.png?generation=1553647501879267&alt=media"></p>
+<p align="center"><img width="90" src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/spaces%2F-LbGFF8_vMz6ZaY9dTdK%2Favatar.png?generation=1554012182062413&alt=media"></p>
 <p align="center">A beautifully-designed UI Framework extension for HighQ Publisher 5.x</p>
 
 # Oreo theme for Publisher
