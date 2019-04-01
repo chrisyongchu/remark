@@ -1,5 +1,5 @@
 /*!
- * Oreo Theme v1.8
+ * Oreo Theme v1.9
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
  * Last Update: 31/03/2019
@@ -135,17 +135,6 @@
   min-width: 14rem;
   padding: 0;
   padding: 1rem 0;
-}
-
-[data-oreo-theme="cyan"] .dropdown-menu li a {
-  outline: none !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 0.7rem 1.2rem;
 }
 
 [data-oreo-theme="cyan"] .navbar-nav .open .dropdown-menu > li > a, 
@@ -308,17 +297,6 @@
   padding: 1rem 0;
 }
 
-[data-oreo-theme="brown"] .dropdown-menu li a {
-  outline: none !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 0.7rem 1.2rem;
-}
-
 [data-oreo-theme="brown"] .navbar-nav .open .dropdown-menu > li > a, 
 [data-oreo-theme="brown"] .navbar-nav .open .dropdown-menu .dropdown-header {
   padding: 0.7rem 1.2rem;
@@ -478,17 +456,6 @@
   min-width: 14rem;
   padding: 0;
   padding: 1rem 0;
-}
-
-[data-oreo-theme="dark"] .dropdown-menu li a {
-  outline: none !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 0.7rem 1.2rem;
 }
 
 [data-oreo-theme="dark"] .navbar-nav .open .dropdown-menu > li > a, 
@@ -659,17 +626,6 @@
   padding: 1rem 0;
 }
 
-[data-oreo-theme="purple"] .dropdown-menu li a {
-  outline: none !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 0.7rem 1.2rem;
-}
-
 [data-oreo-theme="purple"] .navbar-nav .open .dropdown-menu > li > a, 
 [data-oreo-theme="purple"] .navbar-nav .open .dropdown-menu .dropdown-header {
   padding: 0.7rem 1.2rem;
@@ -828,17 +784,6 @@
   min-width: 14rem;
   padding: 0;
   padding: 1rem 0;
-}
-
-[data-oreo-theme="teal"] .dropdown-menu li a {
-  outline: none !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 0.7rem 1.2rem;
 }
 
 [data-oreo-theme="teal"] .navbar-nav .open .dropdown-menu > li > a, 
