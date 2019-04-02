@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------
  * Name: Oreo Theme
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 1.11
+ * Theme Version: 1.12
  * Last Update: 01/04/2019
  */
 
@@ -152,23 +152,16 @@ $js(function () {
 
   $js(document).on(Event.CLICK, Element.ROWCLASSICON, function () {
     $js(this).closest('li').find('input[type="text"]').each(function () {
-      // if (this.val() === 'oreo-tabs') {
-      //   $js(this).closest('.form-group').find('.toggle-tabbable i').addClass('fa-toggle-on');
-      // } else {
-      //   $js(this).closest('.form-group').find('.toggle-tabbable i').removeClass('fa-toggle-on');
-      // }
+      var _icons = $js(this).parent().prev().find('.toggle-tabbable i');
+      ($js(this).val() === 'oreo-tabs') ? _icons.addClass('fa-toggle-on') : _icons.removeClass('fa-toggle-on');
     });
-    
   });
 
   $js(document).on(Event.CLICK, '.toggle-tabbable', function (e) {
     e.preventDefault();
-    var _icons = $js(this).children();
     var _input = $js(this).closest('.form-group').find('input[type="text"]');
-
-    _icons.toggleClass('fa-toggle-on');
+    $js(this).children().toggleClass('fa-toggle-on');
     (_input.val() === 'oreo-tabs') ? _input.val('') : _input.val('oreo-tabs');
-
   });
 
 });
