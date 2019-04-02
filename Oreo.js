@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Oreo Theme
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 1.9
- * Last Update: 31/03/2019
+ * Theme Version: 1.11
+ * Last Update: 01/04/2019
  */
 
 window.themes = {};
@@ -48,7 +48,8 @@ window.themes.fn = {
       this
         .setOptions(options)
         .build(wrapper)
-        .searchable(wrapper);
+        .searchable(wrapper)
+        .tabbable(wrapper);
       return this;
     },
     setOptions: function (options) {
@@ -64,12 +65,6 @@ window.themes.fn = {
       }
       if (this.options.boxed) {
         wrapper.addClass('oreo-layout-boxed');
-      }
-
-      if (this.options.tabbable) {
-        wrapper.find('.tabbable').each(function () {
-          $js(this).closest('[id^="row"]');
-        });
       }
 
       return this;
@@ -94,8 +89,25 @@ window.themes.fn = {
       }
 
       return this;
-    }
+    },
+    tabbable: function () {
+      if (this.options.tabbable) {
+        $js.ajax({
+          context: document.body
+        }).done(function () {
+          $js('.setRowColClass').find('.form-group:not(:first)').each(function () {
+            var _row = $js(this).closest('.row').attr('id');
+            $js(this).children().first().append(
+              '<div class="tabbable-container">Tabbable: ' +
+                '<button class="toggle-tabbable" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
+              '</div>'
+            );
+          });
+        });
+      }
 
+      return this;
+    }
   };
 
   // theme plugin
@@ -105,3 +117,58 @@ window.themes.fn = {
   };
 
 }).apply(this, [window.themes, jQuery]);
+
+$js(function () {
+
+  var Element = {
+    PEOPLE: '.thumbOuter',
+    PEOPLELIST: '.filterPeopleList',
+    ROWCLASSICON: '.rowColClassico',
+    SEARCHABLE: '.searchable'
+  };
+  var Event = {
+    CLICK: 'click',
+    KEYUP: 'keyup'
+  }
+
+  // Case insensitive contains selector
+  jQuery.expr[':'].icontains = function(a, i, m) {
+    return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0; 
+  };
+
+  // TrueType Search for People Module
+  $js(document).on(Event.KEYUP, Element.PEOPLELIST, function(e) {
+    var s = $js(this).val().trim(),
+    result = $js(this).parents(Element.SEARCHABLE).find(Element.PEOPLE);
+
+    if (s === '') {
+      result.show();
+      return true;
+    }
+
+    result.not(':icontains(' + s + ')').hide();
+    result.filter(':icontains(' + s + ')').show();
+  });
+
+  $js(document).on(Event.CLICK, Element.ROWCLASSICON, function () {
+    $js(this).closest('li').find('input[type="text"]').each(function () {
+      // if (this.val() === 'oreo-tabs') {
+      //   $js(this).closest('.form-group').find('.toggle-tabbable i').addClass('fa-toggle-on');
+      // } else {
+      //   $js(this).closest('.form-group').find('.toggle-tabbable i').removeClass('fa-toggle-on');
+      // }
+    });
+    
+  });
+
+  $js(document).on(Event.CLICK, '.toggle-tabbable', function (e) {
+    e.preventDefault();
+    var _icons = $js(this).children();
+    var _input = $js(this).closest('.form-group').find('input[type="text"]');
+
+    _icons.toggleClass('fa-toggle-on');
+    (_input.val() === 'oreo-tabs') ? _input.val('') : _input.val('oreo-tabs');
+
+  });
+
+});
