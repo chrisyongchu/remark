@@ -115,6 +115,23 @@
   margin: 0 10px;
 }
 
+[data-oreo-theme] .tabbable-container {
+  display: block;
+}
+
+[data-oreo-theme] .toggle-tabbable {
+  background: transparent;
+  border: 0;
+}
+
+[data-oreo-theme] .toggle-tabbable .fa-toggle-off {
+  color: #777;
+}
+
+[data-oreo-theme] .toggle-tabbable .fa-toggle-on {
+  color: #05a85c;
+}
+
 [data-oreo-theme] #refreshTemplates .btn {
   background-color: #fff;
 }
@@ -927,4 +944,3 @@
   border-top-right-radius: 4px;
   margin: 0;
 }
-
