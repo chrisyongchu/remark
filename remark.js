@@ -2,13 +2,13 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 1.13
+ * Theme Version: 1.14
  * Last Update: 02/04/2019
  */
 
 window.themes = {};
 
-// Oreo Theme Common Functions
+// Remark Theme Common Functions
 window.themes.fn = {
   getOptions: function(options) {
     if (typeof(options) == 'object') {
@@ -53,7 +53,7 @@ window.themes.fn = {
       return this;
     },
     setOptions: function (options) {
-      this.options = $js.extend(true, {}, Oreo.defaults, options);
+      this.options = $js.extend(true, {}, Remark.defaults, options);
       return this;
     },
     build: function (wrapper, options) {
@@ -111,7 +111,7 @@ window.themes.fn = {
   };
 
   // theme plugin
-  $js.fn.remark = function (options) {
+  $js.fn.remarkable = function (options) {
     var wrapper = this;
     return new Remark(wrapper, options);
   };
