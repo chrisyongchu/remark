@@ -111,9 +111,9 @@ window.themes.fn = {
   };
 
   // theme plugin
-  $js.fn.remarkui = function (options) {
+  $js.fn.remark = function (options) {
     var wrapper = this;
-    return new Oreo(wrapper, options);
+    return new Remark(wrapper, options);
   };
 
 }).apply(this, [window.themes, jQuery]);
