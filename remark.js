@@ -1,9 +1,9 @@
 /**
  * ----------------------------------------------------------------------------
- * Name: Oreo Theme
+ * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 1.12
- * Last Update: 01/04/2019
+ * Theme Version: 1.13
+ * Last Update: 02/04/2019
  */
 
 window.themes = {};
@@ -29,13 +29,13 @@ window.themes.fn = {
 // other plugins that may not be closed properly.
 ;(function (themes, $js) {
   themes = themes || {};
-  var themeKey = 'data-oreo-theme';
+  var themeKey = 'data-remark-theme';
   
-  var Oreo = function (wrapper, options) {
+  var Remark = function (wrapper, options) {
     return this.init(wrapper, options)
   };
 
-  Oreo.defaults = {
+  Remark.defaults = {
     theme: 'default',
     boxed: false,
     panels: false,
@@ -43,7 +43,7 @@ window.themes.fn = {
     tabbable: false
   };
 
-  Oreo.prototype = {
+  Remark.prototype = {
     init: function (wrapper, options) {
       this
         .setOptions(options)
@@ -61,10 +61,10 @@ window.themes.fn = {
         wrapper.attr(themeKey, this.options.theme);
       }
       if (this.options.panels) {
-        wrapper.addClass('oreo-pretty-panels');
+        wrapper.addClass('remark-pretty-panels');
       }
       if (this.options.boxed) {
-        wrapper.addClass('oreo-layout-boxed');
+        wrapper.addClass('remark-layout-boxed');
       }
 
       return this;
@@ -111,7 +111,7 @@ window.themes.fn = {
   };
 
   // theme plugin
-  $js.fn.themeOreo = function (options) {
+  $js.fn.remarkui = function (options) {
     var wrapper = this;
     return new Oreo(wrapper, options);
   };
@@ -153,7 +153,7 @@ $js(function () {
   $js(document).on(Event.CLICK, Element.ROWCLASSICON, function () {
     $js(this).closest('li').find('input[type="text"]').each(function () {
       var _icons = $js(this).parent().prev().find('.toggle-tabbable i');
-      ($js(this).val() === 'oreo-tabs') ? _icons.addClass('fa-toggle-on') : _icons.removeClass('fa-toggle-on');
+      ($js(this).val() === 'remark-tabs') ? _icons.addClass('fa-toggle-on') : _icons.removeClass('fa-toggle-on');
     });
   });
 
@@ -161,7 +161,7 @@ $js(function () {
     e.preventDefault();
     var _input = $js(this).closest('.form-group').find('input[type="text"]');
     $js(this).children().toggleClass('fa-toggle-on');
-    (_input.val() === 'oreo-tabs') ? _input.val('') : _input.val('oreo-tabs');
+    (_input.val() === 'remark-tabs') ? _input.val('') : _input.val('remark-tabs');
   });
 
 });
