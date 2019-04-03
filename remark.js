@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 1.17
- * Last Update: 02/04/2019
+ * Theme Version: 1.18
+ * Last Update: 03/04/2019
  */
 
 window.themes = {};
@@ -135,12 +135,19 @@ window.themes.fn = {
 
 $js(function () {
 
+  /**
+   * ------------------------------------------------------------------------
+   * Constants
+   * ------------------------------------------------------------------------
+   */
+
   var AUTHOR = "Christopher Yongchu";
   var COMPANY = "HighQ Solutions, Ltd.";
   var NAME = "Remark for HighQ Publisher 5.x";
-  var ESCAPE_KEYCODE = 27;
+  var ESCAPE_KEYCODE = 27; // keyboard value for esc key
   var Attribute = {
     DATA_REMARK_KEY: "data-remark",
+    DISABLED: 'disabled',
     ID: "id",
     PANEL: "panel_",
     NAV_TABS: "nav-tabs",
@@ -205,13 +212,8 @@ $js(function () {
           );
        });
      });
-    } else {
-     _tabs.append(
-      '<li class="nav-item">' +
-        '<a class="nav-link" id="tab_' + index + '" data-toggle="tab" role="tab" href="#panel_' + index + '">' + $js(Titletxt).html() + '</a>' +
-      '</li>'
-     );
     }
+
     _tabs.each(function () {
      $js(this).children().first().addClass(ClassName.ACTIVE);
     });
@@ -231,18 +233,7 @@ $js(function () {
        
        $js(Element.REMARK).each(function () {
          $js(this).find(Selector.CONTAINER).children().first().addClass(ClassName.SHOW);
-       })
-
-    } else {
-       obj.find(Selector.CONTAINER).children().each(function (index) {
-         var _this = $js(this);
-         _this.attr(Attribute.ID, Attribute.PANEL + index);
-         _this.attr(Attribute.ROLE, Attribute.TAB).addClass(ClassName.FADE);
        });
-
-      $js(Element.DATA_TAB_KEY).each(function () {
-        $js(this).next().children().first().addClass(ClassName.SHOW);
-      });
     }
   }
 
@@ -268,29 +259,36 @@ $js(function () {
   $js(document).on(Event.CLICK, Element.ROWCLASSICON, function () {
     $js(this).closest('li').find(Element.TEXTINPUT).each(function () {
       var _icons = $js(this).parent().prev().find(Element.TABBABLE_ICON);
+
       ($js(this).val().includes('remark-tabs')) ? 
-        (_icons.addClass(ClassName.TOGGLE_ON), $js(this).attr('disabled', true)) :
-        (_icons.removeClass(ClassName.TOGGLE_ON), $js(this).attr('disabled', false));
+        (_icons.addClass(ClassName.TOGGLE_ON), $js(this).attr(Attribute.DISABLED, true)) :
+        (_icons.removeClass(ClassName.TOGGLE_ON), $js(this).attr(Attribute.DISABLED, false));
     });
   });
 
-  $js(document).on(Event.CLICK, Element.TOGGLE_TABS, function (e) {
-    e.preventDefault();
+  $js(document).on(Event.CLICK, Element.TOGGLE_TABS, function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     var _input = $js(this).closest(Element.FORMGROUP).find(Element.TEXTINPUT);
+
     $js(this).children().toggleClass(ClassName.TOGGLE_ON);
     (_input.val().includes('remark-tabs')) ? 
-      (_input.val(function (index, value) { return _input.val().replace('remark-tabs', '') }), _input.attr('disabled', false)) : 
-      (_input.val(function (index, value) { return value + ' remark-tabs' }), _input.attr('disabled', true));   
+      (_input.val(function (index, value) { return _input.val().replace(' remark-tabs', '') }), _input.attr(Attribute.DISABLED, false)) : 
+      (_input.val(function (index, value) { return value + ' remark-tabs' }), _input.attr(Attribute.DISABLED, true));   
   });
 
   if ($js(Element.REMARK).length) {
+    // Check to make sure '.remark-tabs' is in DOM before building tabs and tab panes.
     $js(Element.REMARK_PANEL).addClass(ClassName.PANEL);
     $js(Element.REMARK_PANEL).before(Template.NAV_TABS);
-    // using $.ajax() to construct tabs and panels after ajax content is done loading.
+
+    // Using $.ajax() to construct tabs and panels after ajax content is done loading.
     $js.ajax({
       context: document.body
     }).done(function () {
       var _element = $js(Element.REMARK);
+
       $js(Element.REMARK_PANEL).find(Element.TITLE).each(function (index) {
         var _column = $js(this).closest(Element.REMARK);
         var _row = $js(this).closest(Element.ROW);
