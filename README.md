@@ -5,7 +5,7 @@
 By utilizing elements and principles of HighQ Publisher, Remark is a light-weight framework plugin that enhances components and provides animations for a better user experience.
 
 ## Detailed Documentation
-Documentation as well as specific code examples are provided in [this simple and easy-to-follow guide](https://yongchuc.gitbook.io/remark/).
+Documentation and code examples are provided in [this simple and easy-to-follow guide](https://yongchuc.gitbook.io/remark/).
 
 ## Author
 * [https://twitter.com/chrisyongchu](https://twitter.com/chrisyongchu)
