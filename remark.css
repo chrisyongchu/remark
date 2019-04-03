@@ -1,11 +1,11 @@
 /*!
- * Remark Theme v1.17
+ * Remark Theme v1.18
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 02/04/2019
+ * Last Update: 03/04/2019
  */
 
-:root {
+ :root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -45,9 +45,14 @@
   box-shadow: -4px 2px 4px rgba(0,0,0,.15), 4px 2px 4px rgba(0,0,0,.15);
 }
 
+.remark-layout-boxed .headFixed.show .headFixedInner .templateheader {
+  padding: 15px 15px 10px 0;
+}
+
 @media (min-width: 992px) {
   .remark-layout-boxed > .container, 
-  .remark-layout-boxed > .container .header {
+  .remark-layout-boxed > .container .header,
+  .remark-layout-boxed .headFixed.show {
     margin-left: auto;
     margin-right: auto;
     width: 992px !important;
@@ -56,7 +61,10 @@
 
 @media (min-width: 1200px) {
   .remark-layout-boxed > .container,
-  .remark-layout-boxed > .container .header {
+  .remark-layout-boxed > .container .header,
+  .remark-layout-boxed .headFixed.show {
+    margin-left: auto;
+    margin-right: auto;
     width: 1200px !important;
   }
 }
