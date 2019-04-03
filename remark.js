@@ -45,14 +45,6 @@ window.themes.fn = {
     ROW: '.row',
     ROW_COLUMN: '.setRowColClass'
   };
-  var Template$1 = {
-    PEOPLE_INPUT: '<div class="row">' +
-                    '<div class="col-xs-12">' +
-                      '<input type="text" class="filterPeopleList form-control margBott20">' +
-                    '</div>' +
-                  '</div>'
-  };
-
   
   var Remark = function (wrapper, options) {
     return this.init(wrapper, options)
@@ -100,7 +92,13 @@ window.themes.fn = {
         }).done(function () {
           wrapper.find(Element$1.CONTACT_COMP).each(function () {
             $js(this).closest(Element$1.COMPONENTS).addClass(ClassName$1.SEARCHABLE);
-            $js(this).children().first().after(Template$1.PEOPLE_INPUT);
+            $js(this).children().first().after(
+              '<div class="row">' +
+                '<div class="col-xs-12">' +
+                  '<input type="text" class="filterPeopleList form-control margBott20">' +
+                '</div>' +
+              '</div>'
+            );
           });
         });
       }
