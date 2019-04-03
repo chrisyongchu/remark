@@ -1,5 +1,5 @@
 /*!
- * Remark Theme v1.16
+ * Remark Theme v1.17
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
  * Last Update: 02/04/2019
@@ -86,6 +86,12 @@
   padding: 15px;
 }
 
+.remark-pretty-panels .remark-tabs .MainTitle ~ div {
+  background-color: transparent;
+  border: 0;
+  padding: 0 15px;
+}
+
 .remark-pretty-panels .MainTitle + .nav {
   background-color: #fff;
   border-left: 1px solid rgba(0,0,0,.125);
@@ -94,9 +100,21 @@
   padding: 15px 15px 0;
 }
 
+.remark-pretty-panels .remark-tabs .MainTitle + .nav {
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 15px 15px 0;
+}
+
 .remark-pretty-panels .MainTitle + .nav:last-child,
 .remark-pretty-panels .MainTitle ~ div:last-child {
   border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.remark-pretty-panels .remark-tabs .MainTitle + .nav:last-child,
+.remark-pretty-panels .remark-tabs .MainTitle ~ div:last-child {
+  border-bottom-color: transparent;
 }
 
 .remark-pretty-panels .MainTitle + .nav:last-child {
