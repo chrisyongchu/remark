@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 1.18
- * Last Update: 03/04/2019
+ * Theme Version: 1.19
+ * Last Update: 04/04/2019
  */
 
 window.themes = {};
@@ -260,9 +260,14 @@ $js(function () {
     $js(this).closest('li').find(Element.TEXTINPUT).each(function () {
       var _icons = $js(this).parent().prev().find(Element.TABBABLE_ICON);
 
-      ($js(this).val().includes('remark-tabs')) ? 
+      if (_icons.length) {
+        ($js(this).val().includes('remark-tabs')) ? 
         (_icons.addClass(ClassName.TOGGLE_ON), $js(this).attr(Attribute.DISABLED, true)) :
         (_icons.removeClass(ClassName.TOGGLE_ON), $js(this).attr(Attribute.DISABLED, false));
+      } else {
+        $js(this).attr(Attribute.DISABLED, false);
+      }
+
     });
   });
 
