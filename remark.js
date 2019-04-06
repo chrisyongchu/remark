@@ -231,6 +231,7 @@ $js(function () {
     ROWCLASSICON: '.rowColClassico',
     ROW_BUTTONS: '.rowControls .icon-highq-columns + .dropdown-menu a',
     SEARCHABLE: '.searchable',
+    SETROWCLASS: '.setRowColClass',
     TABBABLE_ICON: '.toggle-tabbable i',
     TABBABLE_CONTAINER: '.tabbable-container',
     TIMELINE_ICON: '.toggle-timeline i',
@@ -317,6 +318,7 @@ $js(function () {
       var _this = $js(this);
       var tabbable = _this.parent().prev().find(Selector.TABBABLE_ICON);
       var timeline = _this.parent().prev().find(Selector.TIMELINE_ICON);
+      var tabbableContainer = _this.closest(Selector.SETROWCLASS).find(Selector.TABBABLE_CONTAINER);
 
       // Check if 'remark-tabs' is in input[type="text"], if so:
       // 1. Set toggle icon to on
@@ -333,6 +335,7 @@ $js(function () {
         if (_this.val().includes(Value.TIMELINE)) {
           timeline.addClass(ClassName.TOGGLE_ON); // set toggle to on if 'remark-timeline' is 
           _this.attr(Attribute.DISABLED, true);   // on and disable input[type="text"] box.
+          tabbableContainer.hide();
         } else {
           timeline.removeClass(ClassName.TOGGLE_ON);
           _this.attr(Attribute.DISABLED, false);
