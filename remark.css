@@ -321,6 +321,11 @@
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
 }
 
+.remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div,
+.remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(even) > div {
+  width: 48%;
+}
+
 .remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div:before {
   border-top: 8px solid transparent;
   border-right: 0 solid #e9ecef;
@@ -371,6 +376,10 @@
 
 .remark-timeline .MainTitle {
   margin: 0 0 15px;
+}
+
+.remark-pretty-panels .remark-timeline .MainTitle {
+  margin: 0;
 }
 
 [data-remark-theme] #refreshTemplates .btn {
