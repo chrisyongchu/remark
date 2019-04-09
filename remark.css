@@ -315,7 +315,7 @@
   position: relative;
   width: 49%;
   padding: 20px;
-  border: 1px solid #e9ecef;
+  border: 1px solid #ddd;
   border-radius: 0.25rem;
   -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
@@ -328,9 +328,9 @@
 
 .remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div:before {
   border-top: 8px solid transparent;
-  border-right: 0 solid #e9ecef;
+  border-right: 0 solid #ddd;
   border-bottom: 8px solid transparent;
-  border-left: 8px solid #e9ecef;
+  border-left: 8px solid #ddd;
   content: " ";
   display: inline-block;
   position: absolute;
@@ -352,9 +352,9 @@
 
 .remark-timeline .sortable-list > .sortable-item:nth-child(even) > div:before {
   border-top: 8px solid transparent;
-  border-right: 8px solid #e9ecef;
+  border-right: 8px solid #ddd;
   border-bottom: 8px solid transparent;
-  border-left: 0 solid #e9ecef;
+  border-left: 0 solid #ddd;
   content: " ";
   display: inline-block;
   position: absolute;
