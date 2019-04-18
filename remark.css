@@ -1,459 +1,439 @@
-/**
- * ----------------------------------------------------------------------------
- * Name: Remark Theme for HighQ Publisher 5.x
+/*!
+ * Remark Theme v2.1
+ * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.1
  * Last Update: 18/04/2019
  */
 
-window.themes = {};
+ :root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
 
-// Remark Theme Common Functions
-window.themes.fn = {
-  getOptions: function(options) {
-    if (typeof(options) == 'object') {
-      return options
-    } else if (typeof(options) == 'string') {
-      try {
-        return JSON.parse(options.replace(/'/g,'"').replace(';',''));
-      } catch(e) {
-        return {};
-      }
-    } else {
-      return {};
-    }
+.remark-layout-boxed {
+  background: #f5f5f5;
+}
+
+.remark-layout-boxed > .container {
+  background: #fff;
+  box-shadow: -4px 2px 4px rgba(0,0,0,.15), 4px 2px 4px rgba(0,0,0,.15);
+}
+
+.remark-layout-boxed .headFixed.show .headFixedInner .templateheader {
+  padding: 15px 15px 10px 0;
+}
+
+.remark-layout-boxed .open > .globalDropdown {
+  left: 0 !important;
+}
+
+@media (min-width: 992px) {
+  .remark-layout-boxed > .container, 
+  .remark-layout-boxed > .container .header,
+  .remark-layout-boxed .headFixed.show {
+    margin-left: auto;
+    margin-right: auto;
+    width: 992px !important;
   }
-};
+}
 
-// the semi-colon before the function invocation is a safety net against concatenated scripts and/or 
-// other plugins that may not be closed properly.
-;(function (themes, $js) {
-  themes = themes || {};
-  var themeKey = 'data-remark-theme';
-  var Attribute$1 = {
-    ID: 'id',
-    REMARK_THEME: 'data-theme',
-    REMARKABLE: 'remarkable'
-  };
-  var ClassName$1 = {
-    ACTIVESECTION: 'activesection',
-    BOXED_LAYOUT: 'remark-layout-boxed',
-    PRETTYPANELS: 'remark-pretty-panels',
-    SEARCHABLE: 'searchable'
-  };
-  var Element$1 = {
-    COL1: '.icon-highq-columns + .dropdown-menu li:first',
-    COMPONENTS: '[id^="componentRender"]',
-    CONTACT_COMP: '.contact_comp',
-    FORM_GROUP: '.form-group',
-    FORM_GROUPS: '.form-group:not(:first)',
-    LABEL: 'label',
-    ROW: '.row',
-    ROW_CLASS_ICO: '.rowColClassico',
-    ROW_CLASS: '.form-group:first',
-    ROW_COLUMN: '.setRowColClass',
-    ROW_CONTROLS: '.rowControls',
-    TEXTBOXES: '.form-group:not(:first) input[type="text"]',
-    TAB_CONTAINER: '.tabbable-container',
-    TIMELINE_CONTAINER: '.setRowColClass .timeline-container'
-  };
-  var Event$1 = {
-    CLICK: 'click'
-  };
-  
-  var Remark = function (wrapper, options) {
-    return this.init(wrapper, options)
-  };
-
-  Remark.defaults = {
-    layout: 'default',
-    panels: false,
-    placeholder: 'Search',
-    searchable: false,
-    tabbable: false,
-    timeline: false
-  };
-
-  Remark.prototype = {
-    init: function (wrapper, options) {
-      this
-        .setOptions(options)
-        .build(wrapper)
-        .searchable(wrapper)
-        .tabbable(wrapper)
-        .timeline(wrapper);
-      return this;
-    },
-    setOptions: function (options) {
-      this.options = $js.extend(true, {}, Remark.defaults, options);
-      return this;
-    },
-    build: function (wrapper, options) {
-
-      if (this.options.panels) {
-        wrapper.addClass(ClassName$1.PRETTYPANELS);
-      }
-      
-      if (this.options.layout == 'boxed') {
-        console.log(this.options.layout);
-        wrapper.addClass(ClassName$1.BOXED_LAYOUT);
-      }
-
-      return this;
-    },
-    searchable: function (wrapper, options) {
-      var _placeholder = this.options.placeholder
-
-      if (this.options.searchable) {
-        // wait for ajax component to finish loading.
-        $js.ajax({
-          context: document.body
-        }).done(function () {
-          wrapper.find(Element$1.CONTACT_COMP).each(function () {
-            $js(this).closest(Element$1.COMPONENTS).addClass(ClassName$1.SEARCHABLE);
-            $js(this).children().first().after(
-              '<div class="row">' +
-                '<div class="col-xs-12">' +
-                  '<input type="text" class="filterPeopleList form-control margBott20" placeholder="' + _placeholder + '">' +
-                '</div>' +
-              '</div>'
-            );
-          });
-        });
-      }
-
-      return this;
-    },
-    tabbable: function () {
-
-      if (this.options.tabbable) {
-        $js.ajax({
-          context: document.body
-        }).done(function () {
-          $js(Element$1.ROW_COLUMN).find(Element$1.FORM_GROUPS).each(function () {
-            var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
-
-            $js(this).children().first().append(
-              '<div class="tabbable-container">Tabbable: ' +
-                '<button class="toggle-tabbable" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
-              '</div>'
-            );
-          });
-
-          // Add tabbable toggle switch on new columns that didn't already exist.
-          $js(document).on(Event$1.CLICK, Element$1.ROW_CLASS_ICO, function () {
-            $js(this).next().find(Element$1.TEXTBOXES).each(function () {
-              var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
-              var tabbable_container = $js(this).closest(Element$1.FORM_GROUP).find(Element$1.TAB_CONTAINER);
-              if (!tabbable_container.length) {
-                $js(this).closest(Element$1.FORM_GROUP).find(Element$1.LABEL).append(
-                  '<div class="tabbable-container">Tabbable: ' +
-                    '<button class="toggle-tabbable" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
-                  '</div>'
-                );
-              }
-            });
-          });
-
-        });
-      }
-
-      return this;
-    },
-    timeline: function () {
-      
-      if (this.options.timeline) {
-        $js.ajax({
-          context: document.body
-        }).done(function () {
-          $js(Element$1.ROW_COLUMN).find(Element$1.ROW_CLASS).each(function () {
-            var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
-            
-            $js(this).children().first().append(
-              '<div class="timeline-container">Timeline: ' +
-                '<button class="toggle-timeline" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
-              '</div>'
-            );
-
-            $js(this).closest(Element$1.ROW).find(Element$1.COL1).each(function () {
-              var _singleCol = $js(this).hasClass(ClassName$1.ACTIVESECTION);
-              var _timelines = $js(this).closest(Element$1.ROW_CONTROLS).find(Element$1.TIMELINE_CONTAINER);
-
-              (_singleCol) ? _timelines.show() : _timelines.hide();
-
-            }); // only if single column.
-          });
-        });
-      }
-
-      return this;
-    }
-  };
-
-  // theme plugin
-  $js.fn.remarkable = function (options) {
-    var wrapper = this;
-    return new Remark(wrapper, options);
-  };
-
-}).apply(this, [window.themes, jQuery]);
-
-$js(function () {
-
-  /**
-   * ------------------------------------------------------------------------
-   * Constants
-   * ------------------------------------------------------------------------
-   */
-
-  var AUTHOR = "Christopher Yongchu";
-  var COMPANY = "HighQ Solutions, Ltd.";
-  var NAME = "Remark for HighQ Publisher 5.x";
-  var ESCAPE_KEYCODE = 27; // keyboard value for esc key
-  var Attribute = {
-    DATA_REMARK_KEY: 'data-remark',
-    DISABLED: 'disabled',
-    ID: 'id',
-    PANEL: 'panel_',
-    NAME: 'name',
-    NAV_TABS: 'nav-tabs',
-    TAB: 'tabpanel',
-    TAB_LIST: 'tablist',
-    ROLE: 'role',
-    SINGLE_COL: 'col_xl'
-  };
-  var ClassName = {
-    ACTIVE: 'active',
-    FADE: 'tab-pane fade',
-    PANEL: 'tab-content',
-    SHOW: 'active in',
-    TABBABLE: 'toggle-tabbable',
-    TOGGLE_ON: 'fa-toggle-on'
-  };
-  var Element = {
-    DATA_TAB_KEY: '[data-remark="nav-tabs"]',
-    LI: 'li',
-    TEXTINPUT: 'input[type="text"]'
-  };
-  var Event = {
-    CLICK: 'click',
-    KEYUP: 'keyup'
-  };
-  var Selector = {
-    CONTAINER: '.tab-content',
-    DROPDOWN_MENU: '.dropdown-menu',
-    FORMGROUP: '.form-group',
-    NEXT_TEXTBOX: '.form-group:not(:first) input[type="text"]',
-    PANEL: '.tab-content div',
-    PEOPLE: '.thumbOuter',
-    PEOPLELIST: '.filterPeopleList',
-    REMARK: '.remark-tabs',
-    REMARK_PANEL: '.remark-tabs .sortable-list',
-    ROW: '.row',
-    ROWCLASSICON: '.rowColClassico',
-    ROW_BUTTONS: '.rowControls .icon-highq-columns + .dropdown-menu a',
-    SEARCHABLE: '.searchable',
-    SETROWCLASS: '.setRowColClass',
-    TABBABLE_ICON: '.toggle-tabbable i',
-    TABBABLE_CONTAINER: '.tabbable-container',
-    TIMELINE_ICON: '.toggle-timeline i',
-    TIMELINE_CONTAINER: '.timeline-container',
-    TITLE: '.Titletxt',
-    TOGGLER: '.toggle-tabbable, .toggle-timeline',
-  };
-  var Template = {
-    NAV_TABS: '<ul class="nav nav-tabs" data-remark="nav-tabs"></ul>'
-  };
-  var Value = {
-    REMARK_TABS: 'remark-tabs',
-    TIMELINE: 'remark-timeline'
-  };
-
-  function createTabs(Titletxt, index, column, row) {
-    var tabs = $js(Element.DATA_TAB_KEY);
-    var rowID = $js(row).attr(Attribute.ID);
-    var _title = $js(Titletxt).html();
-    var columnID = $js(column).attr(Attribute.ID);
-    var parentRow = "#" + $js(row).attr(Attribute.ID);
-    var relatedColumn = "#" + $js(column).attr(Attribute.ID);
-    
-    if (row) {
-     $js(parentRow).each(function () {
-       var _this = $js(this);
-       _this.find(relatedColumn).each(function () {
-         $js(this).find(tabs).append(
-           '<li class="nav-item">' +
-             '<a class="nav-link" id="' + rowID + columnID + 'tab' + index + '" data-toggle="tab" role="tab" href="#panel_' + rowID + columnID + index + '">' + _title + '</a>' +
-           '</li>'
-          );
-       });
-     });
-    }
-
-    tabs.each(function () {
-      $js(this).children().first().addClass(ClassName.ACTIVE);
-    });
+@media (min-width: 1200px) {
+  .remark-layout-boxed > .container,
+  .remark-layout-boxed > .container .header,
+  .remark-layout-boxed .headFixed.show {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px !important;
   }
+}
 
-  function createPanels(obj, columnID) {
-    var firstChild = obj.find(Selector.CONTAINER).children().first();
+.remark-pretty-panels [id^="componentRender"],
+.remark-pretty-panels.remark-ribbons [id^="componentRender"],
+.remark-ribbons [id^="componentRender"] {
+  margin: 10px;
+}
 
-    if (columnID) {
-      obj.find(Selector.CONTAINER).children().each(function (index) {
-        var _this = $js(this);
-        var parentRow = _this.closest(Selector.ROW).attr(Attribute.ID);
-        var panelColumn = $js(this).closest(Selector.REMARK).attr(Attribute.ID);
+.remark-pretty-panels .MainTitle,
+.remark-pretty-panels.remark-ribbons .MainTitle,
+.remark-ribbons .MainTitle {
+  background-color: rgba(0,0,0,.03);
+  border: 1px solid rgba(0,0,0,.125);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin: 0;
+}
 
-        _this.attr(Attribute.ID, Attribute.PANEL + parentRow + panelColumn + index);
-        _this.attr(Attribute.ROLE, Attribute.TAB).addClass(ClassName.FADE);
-        firstChild.addClass(ClassName.SHOW);
-      });
-       
-       // Set all first tab-panes to active state.
-      $js(Selector.REMARK).each(function () {
-        $js(this).find(Selector.CONTAINER).children().first().addClass(ClassName.SHOW);
-      });
-    }
-  }
+.remark-pretty-panels .MainTitle {
+  background-color: transparent;
+  padding: 0;
+}
+.remark-pretty-panels.remark-ribbons .MainTitle,
+.remark-ribbons .MainTitle {
+  background-color: transparent;
+  border-bottom: 0;
+  height: 50px;
+  padding: 10px 5px;
+  position: relative;
+}
 
-  // Case insensitive contains selector
-  jQuery.expr[':'].icontains = function(a, i, m) {
-    return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0; 
-  };
+.remark-pretty-panels .MainTitle.Titlehide,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide,
+.remark-ribbons .MainTitle.Titlehide {
+  border: 0;
+}
 
-  // TrueType Search for People Module
-  $js(document).on(Event.KEYUP, Selector.PEOPLELIST, function(e) {
-    var s = $js(this).val().trim();
-    var result = $js(this).parents(Selector.SEARCHABLE).find(Selector.PEOPLE);
+.remark-pretty-panels .MainTitle ~ div,
+.remark-pretty-panels.remark-ribbons .MainTitle ~ div,
+.remark-ribbons .MainTitle ~ div {
+  background-color: #fff;
+  border-left: 1px solid rgba(0,0,0,.125);
+  border-right: 1px solid rgba(0,0,0,.125);
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  padding: 15px;
+}
 
-    if (s === '') {
-      result.show();
-      return true;
-    }
+.remark-pretty-panels.remark-ribbons .MainTitle ~ div,
+.remark-ribbons .MainTitle ~ div {
+  padding: 25px 15px 15px;
+}
 
-    result.not(':icontains(' + s + ')').hide();
-    result.filter(':icontains(' + s + ')').show();
-  });
+.remark-pretty-panels .remark-tabs .MainTitle ~ div {
+  background-color: transparent;
+  border: 0;
+  padding: 0 15px;
+}
 
-  $js(document).on(Event.CLICK, Selector.ROWCLASSICON, function () {
-    $js(this).closest(Element.LI).find(Element.TEXTINPUT).each(function () {
-      var _this = $js(this);
-      var tabbable = _this.parent().prev().find(Selector.TABBABLE_ICON);
-      var timeline = _this.parent().prev().find(Selector.TIMELINE_ICON);
-      var tabbableContainer = _this.closest(Selector.SETROWCLASS).find(Selector.TABBABLE_CONTAINER);
+.remark-pretty-panels .MainTitle + .nav,
+.remark-pretty-panels.remark-ribbons .MainTitle + .nav,
+.remark-ribbons .MainTitle + .nav {
+  background-color: #fff;
+  border-left: 1px solid rgba(0,0,0,.125);
+  border-right: 1px solid rgba(0,0,0,.125);
+  margin: 0;
+  padding: 15px;
+}
 
-      // Check if 'remark-tabs' is in input[type="text"], if so:
-      // 1. Set toggle icon to on
-      // 2. Disable input[type="text"] for the related column
-      if (tabbable.length) {
-        if (_this.val().includes(Value.REMARK_TABS)) {
-          tabbable.addClass(ClassName.TOGGLE_ON); // 1
-          _this.attr(Attribute.DISABLED, true); // 2
-        } else {
-          tabbable.removeClass(ClassName.TOGGLE_ON); // if not, set toggle to off
-          _this.attr(Attribute.DISABLED, false); // remove disabled attribute
-        }
-      } else if (timeline.length) { // Check if timeline is set on
-        if (_this.val().includes(Value.TIMELINE)) {
-          timeline.addClass(ClassName.TOGGLE_ON); // set toggle to on if 'remark-timeline' is 
-          _this.attr(Attribute.DISABLED, true);   // on and disable input[type="text"] box.
-          tabbableContainer.hide();
-        } else {
-          timeline.removeClass(ClassName.TOGGLE_ON);
-          _this.attr(Attribute.DISABLED, false);
-        }
-      } else { // Remove disable attributes on all input[type="text"]
-        _this.attr(Attribute.DISABLED, false);
-      }
+.remark-pretty-panels.remark-ribbons .MainTitle + .nav,
+.remark-ribbons .MainTitle + .nav {
+  padding: 25px 15px 15px;
+}
 
-    });
-  });
+.remark-pretty-panels .remark-tabs .MainTitle + .nav {
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 15px 15px 0;
+}
 
-  $js(document).on(Event.CLICK, Selector.TOGGLER, function (event) {
-    event.preventDefault();
-    event.stopPropagation(); // prevent row/column class dropdown from closing when toggling tabs or timeline switches.
+.remark-pretty-panels .MainTitle + .nav:last-child,
+.remark-pretty-panels .MainTitle ~ div:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle + .nav:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle ~ div:last-child,
+.remark-ribbons .MainTitle + .nav:last-child,
+.remark-ribbons .MainTitle ~ div:last-child {
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
 
-    var tabInput = $js(this).closest(Selector.DROPDOWN_MENU).find(Selector.NEXT_TEXTBOX);
-    var isTabbable = $js(this).hasClass(ClassName.TABBABLE);
-    var tabbableIcon = $js(this).closest(Selector.FORMGROUP).next().find(Selector.TABBABLE_ICON);
-    var targetedInput = $js(this).closest(Selector.FORMGROUP).find(Element.TEXTINPUT);
-    var tabbableContainer = $js(this).closest(Selector.FORMGROUP).next().find(Selector.TABBABLE_CONTAINER);
+.remark-pretty-panels .MainTitle.Titlehide + .nav,
+.remark-pretty-panels .MainTitle.Titlehide + .nav:last-child,
+.remark-pretty-panels .MainTitle.Titlehide ~ div:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide ~ div:last-child,
+.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
+.remark-ribbons .MainTitle.Titlehide ~ div:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav,
+.remark-ribbons .MainTitle.Titlehide + .nav {
+  background: transparent;
+  border: 0;
+  padding: 15px;
+}
+ 
+.remark-pretty-panels .remark-tabs .MainTitle + .nav:last-child,
+.remark-pretty-panels .remark-tabs .MainTitle ~ div:last-child {
+  border-bottom-color: transparent;
+}
 
-    $js(this).children().toggleClass(ClassName.TOGGLE_ON);
+.remark-pretty-panels .MainTitle + .nav:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle + .nav:last-child,
+.remark-ribbons .MainTitle + .nav:last-child {
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  padding: 15px;
+}
 
-    if (isTabbable) {
-      if (targetedInput.val().includes(Value.REMARK_TABS)) {
-        targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-tabs', ''); });
-        targetedInput.attr(Attribute.DISABLED, false);
-      } else { 
-        targetedInput.val(function (index, value) { return value + ' remark-tabs' } );
-        targetedInput.attr(Attribute.DISABLED, true);
-      }   
-    } else {
-       if (targetedInput.val().includes(Value.TIMELINE)) {
-        targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-timeline', ''); });
-        targetedInput.attr(Attribute.DISABLED, false);
-        tabbableContainer.show();
-       } else {
-        // If timeline and tabbables are both enabled and timeline is enabled in the row
-        // 1. Remove all 'remark-tabs' in column class
-        // 2. Toggle button off so that it doesn't stick in case dashboard is save
-        // 3. Remove disabled state of input[type="text"] in column
-        // 4. Hide tabbable container
-        targetedInput.val(function (index, value) { return value + ' remark-timeline' }); 
-        targetedInput.attr(Attribute.DISABLED, true);
-        tabInput.val(function (index, value) { tabInput.val().replace(' remark-tabs', ''); }); // 1
-        tabbableIcon.removeClass(ClassName.TOGGLE_ON); // 2
-        tabInput.attr(Attribute.DISABLED, false); // 3
-        tabbableContainer.hide(); // 4
-       }
-    }
-      
-  });
+.remark-pretty-panels .MainTitle.Titlehide + div,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + div,
+.remark-ribbons .MainTitle.Titlehide + div,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide,
+.remark-ribbons .MainTitle.Titlehide {
+  background-color: transparent;
+  border: 0;
+}
 
-  $js(document).on(Event.CLICK, Selector.ROW_BUTTONS, function () {
-    var isName = $js(this).attr(Attribute.NAME);
-    var timeline = $js(Selector.TIMELINE_CONTAINER);
-    var tabbable = $js(Selector.TABBABLE_CONTAINER);
-    var timelineInput = $js(Selector.TIMELINE_CONTAINER).parent().next().find(Element.TEXTINPUT);
-    
-    // 1. Hide timeline option on row if user selects columns > 1
-    // 2. Remove 'remark-timeline' from row class
-    // 3. Remove disabled state on row's input[type="text"]
-    if (isName == Attribute.SINGLE_COL) {
-      timeline.show()
-    } else {
-      timeline.hide(); 
-      timelineInput.val(function (index, value) { return timelineInput.val().replace(' remark-timeline', ''); });  // 2
-      timelineInput.prop(Attribute.DISABLED, false); // 3
-      tabbable.show();
-    }
-  });
+.remark-pretty-panels .Titletxt,
+.remark-pretty-panels.remark-ribbons .Titletxt,
+.remark-ribbons .Titletxt {
+  border-bottom-color: transparent;
+  margin: 0 10px;
+}
 
-  if ($js(Selector.REMARK).length) {
-    // Check to make sure '.remark-tabs' is in DOM before building tabs and tab panes.
-    $js(Selector.REMARK_PANEL).addClass(ClassName.PANEL);
-    $js(Selector.REMARK_PANEL).before(Template.NAV_TABS);
+.remark-pretty-panels.remark-ribbons .Titletxt,
+.remark-ribbons .Titletxt {
+  position: absolute;
+  left: -8px;
+  background: #f5f5f5;
+  padding: 8px 24px;
+  border: 1px solid #ddd;
+}
 
-    // Using $.ajax() to construct tabs and panels after ajax content is done loading.
-    $js.ajax({
-      context: document.body
-    }).done(function () {
-      var _element = $js(Selector.REMARK);
+.remark-pretty-panels.remark-ribbons .Titletxt:before,
+.remark-ribbons .Titletxt:before {
+  position: absolute;
+  top: 0px;
+  left: 100%;
+  display: block;
+  width: 0;
+  height: 0;
+  content: '';
+  border: 23px solid #f5f5f5;
+  border-right: 24px solid transparent;
+}
 
-      $js(Selector.REMARK_PANEL).find(Selector.TITLE).each(function (index) {
-        var _this = $js(this);
-        var column = _this.closest(Selector.REMARK);
-        var row = _this.closest(Selector.ROW);
+.remark-pretty-panels.remark-ribbons .Titletxt:before,
+.remark-ribbons .Titletxt:before  {
+  background-color: #fff;
+  border-right-color: transparent;
+}
 
-        createTabs(this, index, column, row);
-      });
-      var columnID = $js(Selector.REMARK).each(function () {
-        $js(this).parent(Element.COLUMN).attr(Attribute.ID);
-      });
-      
-      createPanels(_element, columnID);
-    });
-  }
+.remark-pretty-panels.remark-ribbons .TruncateTxt,
+.remark-ribbons .TruncateTxt {
+  overflow: initial;
+}
 
-});
+.remark-pretty-panels.remark-ribbons .Titletxt,
+.remark-ribbons .Titletxt {
+  border: 0;
+  left: -15px;
+}
+
+.remark-ribbons .MainTitle .icon-rss-boxed {
+  margin-top: 0;
+}
+
+.tabbable-container,
+.timeline-container {
+  display: block;
+}
+
+.toggle-tabbable,
+.toggle-timeline {
+  background: transparent;
+  border: 0;
+}
+
+.toggle-tabbable .fa-toggle-off,
+.toggle-timeline .fa-toggle-off {
+  color: #777;
+}
+
+.toggle-tabbable .fa-toggle-on,
+.toggle-timeline .fa-toggle-on {
+  color: #05a85c;
+}
+
+.remark-timeline .sortable-list {
+  list-style: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0 20px;
+  position: relative;
+}
+
+.remark-timeline .sortable-list:before {
+  background-color: #e9ecef;
+  content: " ";
+  margin-left: -1.5px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+}
+
+.remark-timeline .sortable-list > .sortable-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.remark-timeline .sortable-list > .sortable-item:before,
+.remark-timeline .sortable-list > .sortable-item:after {
+  content: '';
+  display: table;
+}
+
+.remark-timeline .sortable-list > .sortable-item:nth-child(odd) {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.remark-timeline .sortable-list > .sortable-item:nth-child(even) {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div,
+.remark-timeline .sortable-list > .sortable-item:nth-child(even) > div {
+  position: relative;
+  width: 49%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div,
+.remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(even) > div {
+  width: 48%;
+}
+
+.remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div:before {
+  border-top: 8px solid transparent;
+  border-right: 0 solid #ddd;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid #ddd;
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  top: 26px;
+  right: -8px;
+}
+
+.remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div:after {
+  border-top: 7px solid transparent;
+  border-right: 0 solid #fff;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #fff;
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  top: 27px;
+  right: -7px;
+}
+
+.remark-timeline .sortable-list > .sortable-item:nth-child(even) > div:before {
+  border-top: 8px solid transparent;
+  border-right: 8px solid #ddd;
+  border-bottom: 8px solid transparent;
+  border-left: 0 solid #ddd;
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  top: 26px;
+  left: -8px;
+}
+
+.remark-timeline .sortable-list > .sortable-item:nth-child(even) > div:after {
+  border-top: 7px solid transparent;
+  border-right: 7px solid #fff;
+  border-bottom: 7px solid transparent;
+  border-left: 0 solid #fff;
+  content: " ";
+  display: inline-block;
+  position: absolute;
+  top: 27px;
+  left: -7px;
+}
+
+.remark-timeline .MainTitle {
+  margin: 0 0 15px;
+}
+
+.remark-pretty-panels .remark-timeline .MainTitle {
+  margin: 0;
+}
+
+#refreshTemplates .btn {
+  background-color: #fff;
+}
+
+.remark-tabs {
+  margin: 1.5em 0;
+}
+
+.remark-tabs .nav-item .nav-link {
+  background-color: rgba(0,0,0,.03);
+  border-radius: 0;
+  border-top-color: transparent;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  color: #333;
+  position: relative;
+}
+
+.remark-tabs .nav-item .nav-link:before {
+  content: '';
+  position: absolute;
+  height: 2px;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  transition: background-color .15s ease-in-out;
+}
+
+.remark-tabs .nav-item.active .nav-link {
+  background-color: #fff;
+}
+
+.remark-tabs .nav-item.active .nav-link:before {
+  background-color: rgba(0,0,0,.125);
+}
+
+.remark-tabs .tab-content {
+  border-right: 1px solid rgba(0,0,0,.125);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  border-left: 1px solid rgba(0,0,0,.125);
+}
+
+.tab-pane {
+  padding-top: 1.5em;
+}
+
+.tab-pane .MainTitle {
+  display: none;
+}
+
+.remark-pretty-panels.remark-ribbons .MainTitle,
+.remark-ribbons .MainTitle {
+  background-color: #fff;
+  border-bottom-color: #fff;
+}
