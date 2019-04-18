@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 1.18.1
- * Last Update: 04/04/2019
+ * Theme Version: 2.1
+ * Last Update: 18/04/2019
  */
 
 window.themes = {};
@@ -31,19 +31,34 @@ window.themes.fn = {
   themes = themes || {};
   var themeKey = 'data-remark-theme';
   var Attribute$1 = {
-    ID: 'id'
+    ID: 'id',
+    REMARK_THEME: 'data-theme',
+    REMARKABLE: 'remarkable'
   };
   var ClassName$1 = {
+    ACTIVESECTION: 'activesection',
     BOXED_LAYOUT: 'remark-layout-boxed',
     PRETTYPANELS: 'remark-pretty-panels',
     SEARCHABLE: 'searchable'
   };
   var Element$1 = {
+    COL1: '.icon-highq-columns + .dropdown-menu li:first',
     COMPONENTS: '[id^="componentRender"]',
     CONTACT_COMP: '.contact_comp',
+    FORM_GROUP: '.form-group',
     FORM_GROUPS: '.form-group:not(:first)',
+    LABEL: 'label',
     ROW: '.row',
-    ROW_COLUMN: '.setRowColClass'
+    ROW_CLASS_ICO: '.rowColClassico',
+    ROW_CLASS: '.form-group:first',
+    ROW_COLUMN: '.setRowColClass',
+    ROW_CONTROLS: '.rowControls',
+    TEXTBOXES: '.form-group:not(:first) input[type="text"]',
+    TAB_CONTAINER: '.tabbable-container',
+    TIMELINE_CONTAINER: '.setRowColClass .timeline-container'
+  };
+  var Event$1 = {
+    CLICK: 'click'
   };
   
   var Remark = function (wrapper, options) {
@@ -51,11 +66,12 @@ window.themes.fn = {
   };
 
   Remark.defaults = {
-    theme: 'default',
-    boxed: false,
+    layout: 'default',
     panels: false,
+    placeholder: 'Search',
     searchable: false,
-    tabbable: false
+    tabbable: false,
+    timeline: false
   };
 
   Remark.prototype = {
@@ -64,7 +80,8 @@ window.themes.fn = {
         .setOptions(options)
         .build(wrapper)
         .searchable(wrapper)
-        .tabbable(wrapper);
+        .tabbable(wrapper)
+        .timeline(wrapper);
       return this;
     },
     setOptions: function (options) {
@@ -72,19 +89,21 @@ window.themes.fn = {
       return this;
     },
     build: function (wrapper, options) {
-      if (this.options.theme) {
-        wrapper.attr(themeKey, this.options.theme);
-      }
+
       if (this.options.panels) {
         wrapper.addClass(ClassName$1.PRETTYPANELS);
       }
-      if (this.options.boxed) {
+      
+      if (this.options.layout == 'boxed') {
+        console.log(this.options.layout);
         wrapper.addClass(ClassName$1.BOXED_LAYOUT);
       }
 
       return this;
     },
     searchable: function (wrapper, options) {
+      var _placeholder = this.options.placeholder
+
       if (this.options.searchable) {
         // wait for ajax component to finish loading.
         $js.ajax({
@@ -95,7 +114,7 @@ window.themes.fn = {
             $js(this).children().first().after(
               '<div class="row">' +
                 '<div class="col-xs-12">' +
-                  '<input type="text" class="filterPeopleList form-control margBott20">' +
+                  '<input type="text" class="filterPeopleList form-control margBott20" placeholder="' + _placeholder + '">' +
                 '</div>' +
               '</div>'
             );
@@ -106,17 +125,63 @@ window.themes.fn = {
       return this;
     },
     tabbable: function () {
+
       if (this.options.tabbable) {
         $js.ajax({
           context: document.body
         }).done(function () {
           $js(Element$1.ROW_COLUMN).find(Element$1.FORM_GROUPS).each(function () {
             var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
+
             $js(this).children().first().append(
               '<div class="tabbable-container">Tabbable: ' +
                 '<button class="toggle-tabbable" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
               '</div>'
             );
+          });
+
+          // Add tabbable toggle switch on new columns that didn't already exist.
+          $js(document).on(Event$1.CLICK, Element$1.ROW_CLASS_ICO, function () {
+            $js(this).next().find(Element$1.TEXTBOXES).each(function () {
+              var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
+              var tabbable_container = $js(this).closest(Element$1.FORM_GROUP).find(Element$1.TAB_CONTAINER);
+              if (!tabbable_container.length) {
+                $js(this).closest(Element$1.FORM_GROUP).find(Element$1.LABEL).append(
+                  '<div class="tabbable-container">Tabbable: ' +
+                    '<button class="toggle-tabbable" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
+                  '</div>'
+                );
+              }
+            });
+          });
+
+        });
+      }
+
+      return this;
+    },
+    timeline: function () {
+      
+      if (this.options.timeline) {
+        $js.ajax({
+          context: document.body
+        }).done(function () {
+          $js(Element$1.ROW_COLUMN).find(Element$1.ROW_CLASS).each(function () {
+            var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
+            
+            $js(this).children().first().append(
+              '<div class="timeline-container">Timeline: ' +
+                '<button class="toggle-timeline" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
+              '</div>'
+            );
+
+            $js(this).closest(Element$1.ROW).find(Element$1.COL1).each(function () {
+              var _singleCol = $js(this).hasClass(ClassName$1.ACTIVESECTION);
+              var _timelines = $js(this).closest(Element$1.ROW_CONTROLS).find(Element$1.TIMELINE_CONTAINER);
+
+              (_singleCol) ? _timelines.show() : _timelines.hide();
+
+            }); // only if single column.
           });
         });
       }
@@ -146,94 +211,108 @@ $js(function () {
   var NAME = "Remark for HighQ Publisher 5.x";
   var ESCAPE_KEYCODE = 27; // keyboard value for esc key
   var Attribute = {
-    DATA_REMARK_KEY: "data-remark",
+    DATA_REMARK_KEY: 'data-remark',
     DISABLED: 'disabled',
-    ID: "id",
-    PANEL: "panel_",
-    NAV_TABS: "nav-tabs",
-    TAB: "tabpanel",
-    TAB_LIST: "tablist",
-    ROLE: "role"
+    ID: 'id',
+    PANEL: 'panel_',
+    NAME: 'name',
+    NAV_TABS: 'nav-tabs',
+    TAB: 'tabpanel',
+    TAB_LIST: 'tablist',
+    ROLE: 'role',
+    SINGLE_COL: 'col_xl'
   };
   var ClassName = {
-    ACTIVE: "active",
-    FADE: "tab-pane fade",
-    PANEL: "tab-content",
-    HIDE: "hide",
-    SHOW: "active in",
+    ACTIVE: 'active',
+    FADE: 'tab-pane fade',
+    PANEL: 'tab-content',
+    SHOW: 'active in',
+    TABBABLE: 'toggle-tabbable',
     TOGGLE_ON: 'fa-toggle-on'
   };
   var Element = {
-    DATA_TAB_KEY: "[data-remark='nav-tabs']",
-    CONTAINER: "<div class='tab-content'></div>",
-    FORMGROUP: '.form-group',
-    MAINTITLE: ".MainTitle",
-    NAV_TABS: "<ul class='nav nav-tabs' data-remark='nav-tabs'></ul>",
-    PEOPLE: '.thumbOuter',
-    PEOPLELIST: '.filterPeopleList',
-    ROWCLASSICON: '.rowColClassico',
-    REMARK: ".remark-tabs",
-    REMARK_PANEL: ".remark-tabs .sortable-list",
-    ROW: ".row",
-    SEARCHABLE: '.searchable',
-    TOGGLE_TABS: '.toggle-tabbable',
-    TABBABLE_ICON: '.toggle-tabbable i',
-    TEXTINPUT: 'input[type="text"]',
-    TITLE: ".Titletxt"
+    DATA_TAB_KEY: '[data-remark="nav-tabs"]',
+    LI: 'li',
+    TEXTINPUT: 'input[type="text"]'
   };
   var Event = {
     CLICK: 'click',
     KEYUP: 'keyup'
   };
   var Selector = {
-    CONTAINER: ".tab-content",
-    PANEL: ".tab-content div",
-    TITLE: ".Titletxt"
+    CONTAINER: '.tab-content',
+    DROPDOWN_MENU: '.dropdown-menu',
+    FORMGROUP: '.form-group',
+    NEXT_TEXTBOX: '.form-group:not(:first) input[type="text"]',
+    PANEL: '.tab-content div',
+    PEOPLE: '.thumbOuter',
+    PEOPLELIST: '.filterPeopleList',
+    REMARK: '.remark-tabs',
+    REMARK_PANEL: '.remark-tabs .sortable-list',
+    ROW: '.row',
+    ROWCLASSICON: '.rowColClassico',
+    ROW_BUTTONS: '.rowControls .icon-highq-columns + .dropdown-menu a',
+    SEARCHABLE: '.searchable',
+    SETROWCLASS: '.setRowColClass',
+    TABBABLE_ICON: '.toggle-tabbable i',
+    TABBABLE_CONTAINER: '.tabbable-container',
+    TIMELINE_ICON: '.toggle-timeline i',
+    TIMELINE_CONTAINER: '.timeline-container',
+    TITLE: '.Titletxt',
+    TOGGLER: '.toggle-tabbable, .toggle-timeline',
   };
   var Template = {
-    NAV_TABS: "<ul class='nav nav-tabs' data-remark='nav-tabs'></ul>"
+    NAV_TABS: '<ul class="nav nav-tabs" data-remark="nav-tabs"></ul>'
+  };
+  var Value = {
+    REMARK_TABS: 'remark-tabs',
+    TIMELINE: 'remark-timeline'
   };
 
-  function createTabs(Titletxt, index, _column, _row) {
-    var _tabs = $js(Element.DATA_TAB_KEY);
-    var _cID = $js(_column).attr(Attribute.ID);
-    var _columnObj = "#" + $js(_column).attr(Attribute.ID);
-    var _rID = $js(_row).attr(Attribute.ID);
-    var _rowObj = "#" + $js(_row).attr(Attribute.ID);
-
-    if (_row) {
-     $js(_rowObj).each(function () {
+  function createTabs(Titletxt, index, column, row) {
+    var tabs = $js(Element.DATA_TAB_KEY);
+    var rowID = $js(row).attr(Attribute.ID);
+    var _title = $js(Titletxt).html();
+    var columnID = $js(column).attr(Attribute.ID);
+    var parentRow = "#" + $js(row).attr(Attribute.ID);
+    var relatedColumn = "#" + $js(column).attr(Attribute.ID);
+    
+    if (row) {
+     $js(parentRow).each(function () {
        var _this = $js(this);
-       _this.find(_columnObj).each(function () {
-         $js(this).find(_tabs).append(
+       _this.find(relatedColumn).each(function () {
+         $js(this).find(tabs).append(
            '<li class="nav-item">' +
-             '<a class="nav-link" id="' + _rID + _cID + 'tab' + index + '" data-toggle="tab" role="tab" href="#panel_' + _rID + _cID + index + '">' + $js(Titletxt).html() + '</a>' +
+             '<a class="nav-link" id="' + rowID + columnID + 'tab' + index + '" data-toggle="tab" role="tab" href="#panel_' + rowID + columnID + index + '">' + _title + '</a>' +
            '</li>'
           );
        });
      });
     }
 
-    _tabs.each(function () {
-     $js(this).children().first().addClass(ClassName.ACTIVE);
+    tabs.each(function () {
+      $js(this).children().first().addClass(ClassName.ACTIVE);
     });
   }
 
-  function createPanels(obj, colID) {
-    var _first = obj.find(Selector.CONTAINER).children().first();
-    if (colID) {
+  function createPanels(obj, columnID) {
+    var firstChild = obj.find(Selector.CONTAINER).children().first();
+
+    if (columnID) {
       obj.find(Selector.CONTAINER).children().each(function (index) {
         var _this = $js(this);
-         var _parentRow = _this.closest(Element.ROW).attr(Attribute.ID);
-         var _panelColumn = $js(this).closest(Element.REMARK).attr(Attribute.ID);
-         _this.attr(Attribute.ID, Attribute.PANEL + _parentRow + _panelColumn + index);
-         _this.attr(Attribute.ROLE, Attribute.TAB).addClass(ClassName.FADE);
-         _first.addClass(ClassName.SHOW);
-       });
+        var parentRow = _this.closest(Selector.ROW).attr(Attribute.ID);
+        var panelColumn = $js(this).closest(Selector.REMARK).attr(Attribute.ID);
+
+        _this.attr(Attribute.ID, Attribute.PANEL + parentRow + panelColumn + index);
+        _this.attr(Attribute.ROLE, Attribute.TAB).addClass(ClassName.FADE);
+        firstChild.addClass(ClassName.SHOW);
+      });
        
-       $js(Element.REMARK).each(function () {
-         $js(this).find(Selector.CONTAINER).children().first().addClass(ClassName.SHOW);
-       });
+       // Set all first tab-panes to active state.
+      $js(Selector.REMARK).each(function () {
+        $js(this).find(Selector.CONTAINER).children().first().addClass(ClassName.SHOW);
+      });
     }
   }
 
@@ -243,9 +322,9 @@ $js(function () {
   };
 
   // TrueType Search for People Module
-  $js(document).on(Event.KEYUP, Element.PEOPLELIST, function(e) {
-    var s = $js(this).val().trim(),
-    result = $js(this).parents(Element.SEARCHABLE).find(Element.PEOPLE);
+  $js(document).on(Event.KEYUP, Selector.PEOPLELIST, function(e) {
+    var s = $js(this).val().trim();
+    var result = $js(this).parents(Selector.SEARCHABLE).find(Selector.PEOPLE);
 
     if (s === '') {
       result.show();
@@ -256,55 +335,124 @@ $js(function () {
     result.filter(':icontains(' + s + ')').show();
   });
 
-  $js(document).on(Event.CLICK, Element.ROWCLASSICON, function () {
-    $js(this).closest('li').find(Element.TEXTINPUT).each(function () {
-      var _icons = $js(this).parent().prev().find(Element.TABBABLE_ICON);
+  $js(document).on(Event.CLICK, Selector.ROWCLASSICON, function () {
+    $js(this).closest(Element.LI).find(Element.TEXTINPUT).each(function () {
+      var _this = $js(this);
+      var tabbable = _this.parent().prev().find(Selector.TABBABLE_ICON);
+      var timeline = _this.parent().prev().find(Selector.TIMELINE_ICON);
+      var tabbableContainer = _this.closest(Selector.SETROWCLASS).find(Selector.TABBABLE_CONTAINER);
 
-      if (_icons.length) {
-        ($js(this).val().includes('remark-tabs')) ? 
-        (_icons.addClass(ClassName.TOGGLE_ON), $js(this).attr(Attribute.DISABLED, true)) :
-        (_icons.removeClass(ClassName.TOGGLE_ON), $js(this).attr(Attribute.DISABLED, false));
-      } else {
-        $js(this).attr(Attribute.DISABLED, false);
+      // Check if 'remark-tabs' is in input[type="text"], if so:
+      // 1. Set toggle icon to on
+      // 2. Disable input[type="text"] for the related column
+      if (tabbable.length) {
+        if (_this.val().includes(Value.REMARK_TABS)) {
+          tabbable.addClass(ClassName.TOGGLE_ON); // 1
+          _this.attr(Attribute.DISABLED, true); // 2
+        } else {
+          tabbable.removeClass(ClassName.TOGGLE_ON); // if not, set toggle to off
+          _this.attr(Attribute.DISABLED, false); // remove disabled attribute
+        }
+      } else if (timeline.length) { // Check if timeline is set on
+        if (_this.val().includes(Value.TIMELINE)) {
+          timeline.addClass(ClassName.TOGGLE_ON); // set toggle to on if 'remark-timeline' is 
+          _this.attr(Attribute.DISABLED, true);   // on and disable input[type="text"] box.
+          tabbableContainer.hide();
+        } else {
+          timeline.removeClass(ClassName.TOGGLE_ON);
+          _this.attr(Attribute.DISABLED, false);
+        }
+      } else { // Remove disable attributes on all input[type="text"]
+        _this.attr(Attribute.DISABLED, false);
       }
 
     });
   });
 
-  $js(document).on(Event.CLICK, Element.TOGGLE_TABS, function (event) {
+  $js(document).on(Event.CLICK, Selector.TOGGLER, function (event) {
     event.preventDefault();
-    event.stopPropagation();
+    event.stopPropagation(); // prevent row/column class dropdown from closing when toggling tabs or timeline switches.
 
-    var _input = $js(this).closest(Element.FORMGROUP).find(Element.TEXTINPUT);
+    var tabInput = $js(this).closest(Selector.DROPDOWN_MENU).find(Selector.NEXT_TEXTBOX);
+    var isTabbable = $js(this).hasClass(ClassName.TABBABLE);
+    var tabbableIcon = $js(this).closest(Selector.FORMGROUP).next().find(Selector.TABBABLE_ICON);
+    var targetedInput = $js(this).closest(Selector.FORMGROUP).find(Element.TEXTINPUT);
+    var tabbableContainer = $js(this).closest(Selector.FORMGROUP).next().find(Selector.TABBABLE_CONTAINER);
 
     $js(this).children().toggleClass(ClassName.TOGGLE_ON);
-    (_input.val().includes('remark-tabs')) ? 
-      (_input.val(function (index, value) { return _input.val().replace(' remark-tabs', '') }), _input.attr(Attribute.DISABLED, false)) : 
-      (_input.val(function (index, value) { return value + ' remark-tabs' }), _input.attr(Attribute.DISABLED, true));   
+
+    if (isTabbable) {
+      if (targetedInput.val().includes(Value.REMARK_TABS)) {
+        targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-tabs', ''); });
+        targetedInput.attr(Attribute.DISABLED, false);
+      } else { 
+        targetedInput.val(function (index, value) { return value + ' remark-tabs' } );
+        targetedInput.attr(Attribute.DISABLED, true);
+      }   
+    } else {
+       if (targetedInput.val().includes(Value.TIMELINE)) {
+        targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-timeline', ''); });
+        targetedInput.attr(Attribute.DISABLED, false);
+        tabbableContainer.show();
+       } else {
+        // If timeline and tabbables are both enabled and timeline is enabled in the row
+        // 1. Remove all 'remark-tabs' in column class
+        // 2. Toggle button off so that it doesn't stick in case dashboard is save
+        // 3. Remove disabled state of input[type="text"] in column
+        // 4. Hide tabbable container
+        targetedInput.val(function (index, value) { return value + ' remark-timeline' }); 
+        targetedInput.attr(Attribute.DISABLED, true);
+        tabInput.val(function (index, value) { tabInput.val().replace(' remark-tabs', ''); }); // 1
+        tabbableIcon.removeClass(ClassName.TOGGLE_ON); // 2
+        tabInput.attr(Attribute.DISABLED, false); // 3
+        tabbableContainer.hide(); // 4
+       }
+    }
+      
   });
 
-  if ($js(Element.REMARK).length) {
+  $js(document).on(Event.CLICK, Selector.ROW_BUTTONS, function () {
+    var isName = $js(this).attr(Attribute.NAME);
+    var timeline = $js(Selector.TIMELINE_CONTAINER);
+    var tabbable = $js(Selector.TABBABLE_CONTAINER);
+    var timelineInput = $js(Selector.TIMELINE_CONTAINER).parent().next().find(Element.TEXTINPUT);
+    
+    // 1. Hide timeline option on row if user selects columns > 1
+    // 2. Remove 'remark-timeline' from row class
+    // 3. Remove disabled state on row's input[type="text"]
+    if (isName == Attribute.SINGLE_COL) {
+      timeline.show()
+    } else {
+      timeline.hide(); 
+      timelineInput.val(function (index, value) { return timelineInput.val().replace(' remark-timeline', ''); });  // 2
+      timelineInput.prop(Attribute.DISABLED, false); // 3
+      tabbable.show();
+    }
+  });
+
+  if ($js(Selector.REMARK).length) {
     // Check to make sure '.remark-tabs' is in DOM before building tabs and tab panes.
-    $js(Element.REMARK_PANEL).addClass(ClassName.PANEL);
-    $js(Element.REMARK_PANEL).before(Template.NAV_TABS);
+    $js(Selector.REMARK_PANEL).addClass(ClassName.PANEL);
+    $js(Selector.REMARK_PANEL).before(Template.NAV_TABS);
 
     // Using $.ajax() to construct tabs and panels after ajax content is done loading.
     $js.ajax({
       context: document.body
     }).done(function () {
-      var _element = $js(Element.REMARK);
+      var _element = $js(Selector.REMARK);
 
-      $js(Element.REMARK_PANEL).find(Element.TITLE).each(function (index) {
-        var _column = $js(this).closest(Element.REMARK);
-        var _row = $js(this).closest(Element.ROW);
+      $js(Selector.REMARK_PANEL).find(Selector.TITLE).each(function (index) {
+        var _this = $js(this);
+        var column = _this.closest(Selector.REMARK);
+        var row = _this.closest(Selector.ROW);
 
-        createTabs(this, index, _column, _row);
+        createTabs(this, index, column, row);
       });
-      var colID = $js(Element.REMARK).each(function () {
+      var columnID = $js(Selector.REMARK).each(function () {
         $js(this).parent(Element.COLUMN).attr(Attribute.ID);
       });
       
-      createPanels(_element, colID);
+      createPanels(_element, columnID);
     });
   }
 
