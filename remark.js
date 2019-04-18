@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.0
- * Last Update: 05/04/2019
+ * Theme Version: 2.1
+ * Last Update: 18/04/2019
  */
 
 window.themes = {};
@@ -31,7 +31,9 @@ window.themes.fn = {
   themes = themes || {};
   var themeKey = 'data-remark-theme';
   var Attribute$1 = {
-    ID: 'id'
+    ID: 'id',
+    REMARK_THEME: 'data-theme',
+    REMARKABLE: 'remarkable'
   };
   var ClassName$1 = {
     ACTIVESECTION: 'activesection',
@@ -43,12 +45,20 @@ window.themes.fn = {
     COL1: '.icon-highq-columns + .dropdown-menu li:first',
     COMPONENTS: '[id^="componentRender"]',
     CONTACT_COMP: '.contact_comp',
+    FORM_GROUP: '.form-group',
     FORM_GROUPS: '.form-group:not(:first)',
+    LABEL: 'label',
     ROW: '.row',
+    ROW_CLASS_ICO: '.rowColClassico',
     ROW_CLASS: '.form-group:first',
     ROW_COLUMN: '.setRowColClass',
     ROW_CONTROLS: '.rowControls',
+    TEXTBOXES: '.form-group:not(:first) input[type="text"]',
+    TAB_CONTAINER: '.tabbable-container',
     TIMELINE_CONTAINER: '.setRowColClass .timeline-container'
+  };
+  var Event$1 = {
+    CLICK: 'click'
   };
   
   var Remark = function (wrapper, options) {
@@ -56,8 +66,7 @@ window.themes.fn = {
   };
 
   Remark.defaults = {
-    theme: 'default',
-    boxed: false,
+    layout: 'default',
     panels: false,
     placeholder: 'Search',
     searchable: false,
@@ -81,15 +90,12 @@ window.themes.fn = {
     },
     build: function (wrapper, options) {
 
-      if (this.options.theme) {
-        wrapper.attr(themeKey, this.options.theme);
-      }
-
       if (this.options.panels) {
         wrapper.addClass(ClassName$1.PRETTYPANELS);
       }
-
-      if (this.options.boxed) {
+      
+      if (this.options.layout == 'boxed') {
+        console.log(this.options.layout);
         wrapper.addClass(ClassName$1.BOXED_LAYOUT);
       }
 
@@ -133,6 +139,22 @@ window.themes.fn = {
               '</div>'
             );
           });
+
+          // Add tabbable toggle switch on new columns that didn't already exist.
+          $js(document).on(Event$1.CLICK, Element$1.ROW_CLASS_ICO, function () {
+            $js(this).next().find(Element$1.TEXTBOXES).each(function () {
+              var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
+              var tabbable_container = $js(this).closest(Element$1.FORM_GROUP).find(Element$1.TAB_CONTAINER);
+              if (!tabbable_container.length) {
+                $js(this).closest(Element$1.FORM_GROUP).find(Element$1.LABEL).append(
+                  '<div class="tabbable-container">Tabbable: ' +
+                    '<button class="toggle-tabbable" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
+                  '</div>'
+                );
+              }
+            });
+          });
+
         });
       }
 
@@ -361,7 +383,7 @@ $js(function () {
 
     if (isTabbable) {
       if (targetedInput.val().includes(Value.REMARK_TABS)) {
-        targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-tabs', '') });
+        targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-tabs', ''); });
         targetedInput.attr(Attribute.DISABLED, false);
       } else { 
         targetedInput.val(function (index, value) { return value + ' remark-tabs' } );
@@ -369,7 +391,7 @@ $js(function () {
       }   
     } else {
        if (targetedInput.val().includes(Value.TIMELINE)) {
-        targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-timeline', '') });
+        targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-timeline', ''); });
         targetedInput.attr(Attribute.DISABLED, false);
         tabbableContainer.show();
        } else {
@@ -380,7 +402,7 @@ $js(function () {
         // 4. Hide tabbable container
         targetedInput.val(function (index, value) { return value + ' remark-timeline' }); 
         targetedInput.attr(Attribute.DISABLED, true);
-        tabInput.val(function (index, value) { tabInput.val().replace(' remark-tabs', '') }); // 1
+        tabInput.val(function (index, value) { tabInput.val().replace(' remark-tabs', ''); }); // 1
         tabbableIcon.removeClass(ClassName.TOGGLE_ON); // 2
         tabInput.attr(Attribute.DISABLED, false); // 3
         tabbableContainer.hide(); // 4
