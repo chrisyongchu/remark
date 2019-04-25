@@ -1,0 +1,33 @@
+{
+  "name": "remark",
+  "description": "A beautifully-designed front-end framework extension for HighQ Publisher 5.x.",
+  "version": "2.1.0",
+  "version_short": "2.1",
+  "keywords": [
+    "css",
+    "javascript",
+    "responsive",
+    "front-end",
+    "framework",
+    "web"
+  ],
+  "homepage": "https://chrisyongchu.com/",
+  "author": "Chris Yongchu",
+  "style": "dist/css/remark.css",
+  "main": "dist/js/remark.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisyongchu/remark.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrisyongchu/remark/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@FontAwesome/FontAwesome": "5.8.1"
+  },
+  "files": [
+    "dist/{css,js}/*.{css,js}",
+    "js/{src,dist}/**/*.{js}"
+  ]
+}
