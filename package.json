@@ -22,7 +22,6 @@
   "bugs": {
     "url": "https://github.com/chrisyongchu/remark/issues"
   },
-  "license": "MIT",
   "devDependencies": {
     "@FontAwesome/FontAwesome": "5.8.1"
   },
