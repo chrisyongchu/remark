@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.1
- * Last Update: 18/04/2019
+ * Theme Version: 2.2
+ * Last Update: 15/05/2019
  */
 
 window.themes = {};
@@ -36,18 +36,27 @@ window.themes.fn = {
     REMARKABLE: 'remarkable'
   };
   var ClassName$1 = {
+    ACTIVE: "active",
     ACTIVESECTION: 'activesection',
     BOXED_LAYOUT: 'remark-layout-boxed',
+    HIDE: 'hide',
+    LAZY: 'lazyload',
     PRETTYPANELS: 'remark-pretty-panels',
     SEARCHABLE: 'searchable'
   };
   var Element$1 = {
+    ACTIVE: ".active",
     COL1: '.icon-highq-columns + .dropdown-menu li:first',
     COMPONENTS: '[id^="componentRender"]',
+    CONTACT: 'div[id^="contact"]',
     CONTACT_COMP: '.contact_comp',
+    CONTACT_OUTTER: 'div[id^="contact"] .thumbOuter',
     FORM_GROUP: '.form-group',
     FORM_GROUPS: '.form-group:not(:first)',
     LABEL: 'label',
+    LOAD_BUTTON: '#loadMoreBtn',
+    PEOPLE: '.ppl_vert',
+    PEOPLE_CARDS: '.ppl_vert .thumbOuter',
     ROW: '.row',
     ROW_CLASS_ICO: '.rowColClassico',
     ROW_CLASS: '.form-group:first',
@@ -67,6 +76,7 @@ window.themes.fn = {
 
   Remark.defaults = {
     layout: 'default',
+    lazyload: false,
     panels: false,
     placeholder: 'Search',
     searchable: false,
@@ -81,7 +91,8 @@ window.themes.fn = {
         .build(wrapper)
         .searchable(wrapper)
         .tabbable(wrapper)
-        .timeline(wrapper);
+        .timeline(wrapper)
+        .lazyload(wrapper);
       return this;
     },
     setOptions: function (options) {
@@ -187,6 +198,30 @@ window.themes.fn = {
       }
 
       return this;
+    },
+    lazyload: function () {
+
+      if (this.options.lazyload) {
+        $js.ajax({
+          content: document.body,
+          success: function () {
+            $js(Element$1.PEOPLE).addClass(ClassName$1.LAZY);
+            $js(Element$1.CONTACT_OUTTER).slice(0, 12).addClass(ClassName$1.ACTIVE);
+            $js(Element$1.CONTACT).after('<button id="loadMoreBtn" class="btn btn-default">Load more</button>');
+
+            // Hide each "Load more" button when the last card is shown.
+            if ($js(Element$1.PEOPLE_CARDS).eq(-1).is(Element$1.ACTIVE)) {
+              $js(Element$1.PEOPLE).each(function () {
+                var _button = $js(this).find(Element$1.LOAD_BUTTON);
+                _button.addClass(ClassName$1.HIDE);
+              });
+            }
+          }
+          
+        });
+      }
+
+      return this;
     }
   };
 
@@ -225,14 +260,17 @@ $js(function () {
   var ClassName = {
     ACTIVE: 'active',
     FADE: 'tab-pane fade',
+    HIDE: 'hide',
     PANEL: 'tab-content',
     SHOW: 'active in',
     TABBABLE: 'toggle-tabbable',
     TOGGLE_ON: 'fa-toggle-on'
   };
   var Element = {
+    ACTIVE_CARDS: '.ppl_vert .active',
     DATA_TAB_KEY: '[data-remark="nav-tabs"]',
     LI: 'li',
+    PEOPLE_CARDS: '.ppl_vert .thumbOuter',
     TEXTINPUT: 'input[type="text"]'
   };
   var Event = {
@@ -243,6 +281,7 @@ $js(function () {
     CONTAINER: '.tab-content',
     DROPDOWN_MENU: '.dropdown-menu',
     FORMGROUP: '.form-group',
+    LOAD_BUTTON: '#loadMoreBtn',
     NEXT_TEXTBOX: '.form-group:not(:first) input[type="text"]',
     PANEL: '.tab-content div',
     PEOPLE: '.thumbOuter',
@@ -261,6 +300,9 @@ $js(function () {
     TITLE: '.Titletxt',
     TOGGLER: '.toggle-tabbable, .toggle-timeline',
   };
+  var State = {
+    ACTIVE: ".active"
+  }
   var Template = {
     NAV_TABS: '<ul class="nav nav-tabs" data-remark="nav-tabs"></ul>'
   };
@@ -455,5 +497,16 @@ $js(function () {
       createPanels(_element, columnID);
     });
   }
+
+
+  $js(document).on(Event.CLICK, Selector.LOAD_BUTTON, function () {
+    // Each time the "Load more" button is clicked, show the next 12 cards.
+    $js(Element.ACTIVE_CARDS).last().nextAll().slice(0, 12).addClass(ClassName.ACTIVE);
+
+    // Hide the "Load more" button when the last card is shown.
+    if ($js(Element.PEOPLE_CARDS).eq(-1).is(State.ACTIVE)) {
+      $js(Selector.LOAD_BUTTON).addClass(ClassName.HIDE);
+    }
+  });
 
 });
