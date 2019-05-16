@@ -1,8 +1,8 @@
 /*!
- * Remark Theme v2.1
+ * Remark Theme v2.2
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 18/04/2019
+ * Last Update: 15/05/2019
  */
 
  :root {
@@ -34,6 +34,11 @@
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+#loadMoreBtn {
+  display: block;
+  margin: 0 auto;
 }
 
 .remark-layout-boxed {
@@ -428,7 +433,10 @@
   padding-top: 1.5em;
 }
 
-.tab-pane .MainTitle {
+.lazyload.ppl_vert .thumbOuter:nth-child(n+20),
+.lazyload.ppl_vert .thumbOuter,
+.tab-pane .MainTitle,
+#loadMorebtn.hide {
   display: none;
 }
 
@@ -436,4 +444,8 @@
 .remark-ribbons .MainTitle {
   background-color: #fff;
   border-bottom-color: #fff;
+}
+
+.lazyload.ppl_vert .thumbOuter.active {
+  display: block;
 }
