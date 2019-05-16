@@ -368,6 +368,11 @@ $js(function () {
     var s = $js(this).val().trim();
     var result = $js(this).parents(Selector.SEARCHABLE).find(Selector.PEOPLE);
 
+    // Hide "Load more" button if Lazyload and Searchable are both enabled.
+    if ($js(Selector.LOAD_BUTTON).length) {
+      $js(Selector.LOAD_BUTTON).hide();
+    }
+
     if (s === '') {
       result.show();
       return true;
