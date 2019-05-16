@@ -106,7 +106,6 @@ window.themes.fn = {
       }
       
       if (this.options.layout == 'boxed') {
-        console.log(this.options.layout);
         wrapper.addClass(ClassName$1.BOXED_LAYOUT);
       }
 
