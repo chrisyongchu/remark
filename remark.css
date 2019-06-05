@@ -1,8 +1,8 @@
 /*!
- * Remark Theme v2.2
+ * Remark Theme v2.2.1
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 15/05/2019
+ * Last Update: 05/06/2019
  */
 
  :root {
@@ -39,6 +39,9 @@
 #loadMoreBtn {
   display: block;
   margin: 0 auto;
+}
+.tab-content #loadMoreBtn {
+  margin-bottom: 30px;
 }
 
 .remark-layout-boxed {
