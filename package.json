@@ -11,7 +11,7 @@
     "framework",
     "web"
   ],
-  "homepage": "https://chrisyongchu.com/",
+  "homepage": "https://yongchuc.gitbook.io/remark/",
   "author": "Chris Yongchu",
   "style": "dist/css/remark.css",
   "main": "dist/js/remark.js",
