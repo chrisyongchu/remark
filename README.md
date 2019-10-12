@@ -12,4 +12,4 @@ Get involved with Remark development by [opening an issue](https://github.com/ch
 
 ## Author
 * [https://twitter.com/chrisyongchu](https://twitter.com/chrisyongchu)
-* [https://instagram.com/chrisyongchu](https://instagram.com/chrisyongchu)
+* [http://chrisyongchu.com](http://chrisyongchu.com)
