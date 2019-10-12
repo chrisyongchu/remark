@@ -1,8 +1,15 @@
 /*!
+<<<<<<< HEAD
+ * Remark Theme v2.2.1
+ * Copyright 2019 HighQ Solutions, Ltd.
+ * Author: Christopher Yongchu, christopher.yongchu@highq.com
+ * Last Update: 05/06/2019
+=======
  * Remark Theme v2.3
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
  * Last Update: 11/10/2019
+>>>>>>> v2-dev
  */
 
  :root {
@@ -41,6 +48,10 @@
 #loadMoreBtn {
   display: block;
   margin: 0 auto;
+}
+
+.tab-content #loadMoreBtn {
+  margin-bottom: 30px;
 }
 
 .remark-layout-boxed {
@@ -477,6 +488,8 @@
   display: block;
 }
 
+<<<<<<< HEAD
+=======
 .peoplePanelUser .thumbDes .email {
   visibility: hidden;
 }
@@ -558,3 +571,4 @@
     position: relative;
   }
 }
+>>>>>>> v2-dev
