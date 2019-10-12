@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.2
- * Last Update: 15/05/2019
+ * Theme Version: 2.3
+ * Last Update: 11/10/2019
  */
 
 window.themes = {};
@@ -64,6 +64,7 @@ window.themes.fn = {
     ROW_CONTROLS: '.rowControls',
     TEXTBOXES: '.form-group:not(:first) input[type="text"]',
     TAB_CONTAINER: '.tabbable-container',
+    COLLAPSE_CONTAINER: '.collapsible-container',
     TIMELINE_CONTAINER: '.setRowColClass .timeline-container'
   };
   var Event$1 = {
@@ -75,6 +76,7 @@ window.themes.fn = {
   };
 
   Remark.defaults = {
+    collapsible: false,
     layout: 'default',
     lazyload: false,
     panels: false,
@@ -92,7 +94,8 @@ window.themes.fn = {
         .searchable(wrapper)
         .tabbable(wrapper)
         .timeline(wrapper)
-        .lazyload(wrapper);
+        .lazyload(wrapper)
+        .collapsible(wrapper);
       return this;
     },
     setOptions: function (options) {
@@ -106,6 +109,7 @@ window.themes.fn = {
       }
       
       if (this.options.layout == 'boxed') {
+        console.log(this.options.layout);
         wrapper.addClass(ClassName$1.BOXED_LAYOUT);
       }
 
@@ -221,8 +225,45 @@ window.themes.fn = {
       }
 
       return this;
+    },
+    collapsible: function () {
+
+      if (this.options.collapsible) {
+        $js.ajax({
+          context: document.body
+        }).done(function () {
+          $js(Element$1.ROW_COLUMN).find(Element$1.FORM_GROUPS).each(function () {
+            var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
+
+            $js(this).children().first().append(
+              '<div class="collapsible-container">Collapsible: ' +
+                '<button class="toggle-collapsible" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
+              '</div>'
+            );
+          });
+
+          // Add tabbable toggle switch on new columns that didn't already exist.
+          $js(document).on(Event$1.CLICK, Element$1.ROW_CLASS_ICO, function () {
+            $js(this).next().find(Element$1.TEXTBOXES).each(function () {
+              var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
+              var collapsible_container = $js(this).closest(Element$1.FORM_GROUP).find(Element$1.COLLAPSE_CONTAINER);
+              if (!collapsible_container.length) {
+                $js(this).closest(Element$1.FORM_GROUP).find(Element$1.LABEL).append(
+                  '<div class="tabbable-container">Collapsible: ' +
+                    '<button class="toggle-collapsible" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
+                  '</div>'
+                );
+              }
+            });
+          });
+
+        });
+      }
+
+      return this;
     }
   };
+
 
   // theme plugin
   $js.fn.remarkable = function (options) {
@@ -263,6 +304,7 @@ $js(function () {
     PANEL: 'tab-content',
     SHOW: 'active in',
     TABBABLE: 'toggle-tabbable',
+    COLLAPSIBLE: 'toggle-collapsible',
     TOGGLE_ON: 'fa-toggle-on'
   };
   var Element = {
@@ -285,6 +327,8 @@ $js(function () {
     PANEL: '.tab-content div',
     PEOPLE: '.thumbOuter',
     PEOPLELIST: '.filterPeopleList',
+    COLLAPSIBLE: '.remark-collapsible',
+    FIRST_COLLAPSIBLE: '.remark-collapsible .sortable-item:first-child .collapse',
     REMARK: '.remark-tabs',
     REMARK_PANEL: '.remark-tabs .sortable-list',
     ROW: '.row',
@@ -296,8 +340,11 @@ $js(function () {
     TABBABLE_CONTAINER: '.tabbable-container',
     TIMELINE_ICON: '.toggle-timeline i',
     TIMELINE_CONTAINER: '.timeline-container',
+    COLLAPSIBLE_ICON: '.toggle-collapsible i',
+    COLLAPSIBLE_CONTAINER: '.collapsible-container',
+    MAINTITLE: '.MainTitle',
     TITLE: '.Titletxt',
-    TOGGLER: '.toggle-tabbable, .toggle-timeline',
+    TOGGLER: '.toggle-tabbable, .toggle-timeline, .toggle-collapsible',
   };
   var State = {
     ACTIVE: ".active"
@@ -307,6 +354,7 @@ $js(function () {
   };
   var Value = {
     REMARK_TABS: 'remark-tabs',
+    COLLAPSIBLE: 'remark-collapsible',
     TIMELINE: 'remark-timeline'
   };
 
@@ -386,17 +434,25 @@ $js(function () {
       var _this = $js(this);
       var tabbable = _this.parent().prev().find(Selector.TABBABLE_ICON);
       var timeline = _this.parent().prev().find(Selector.TIMELINE_ICON);
-      var tabbableContainer = _this.closest(Selector.SETROWCLASS).find(Selector.TABBABLE_CONTAINER);
+      var collapsible = _this.parent().prev().find(Selector.COLLAPSIBLE_ICON);
+      var tabbableContainer = _this.closest(Selector.FORMGROUP).find(Selector.TABBABLE_CONTAINER);
+      var collapsibleContainer = _this.closest(Selector.FORMGROUP).find(Selector.COLLAPSIBLE_CONTAINER);
 
       // Check if 'remark-tabs' is in input[type="text"], if so:
       // 1. Set toggle icon to on
       // 2. Disable input[type="text"] for the related column
-      if (tabbable.length) {
+      if (tabbable.length || collapsible.length) {
         if (_this.val().includes(Value.REMARK_TABS)) {
           tabbable.addClass(ClassName.TOGGLE_ON); // 1
           _this.attr(Attribute.DISABLED, true); // 2
+          collapsibleContainer.hide();
+        } else if (_this.val().includes(Value.COLLAPSIBLE)) {
+          collapsible.addClass(ClassName.TOGGLE_ON);
+          _this.attr(Attribute.DISABLED, true);
+          tabbableContainer.hide();
         } else {
           tabbable.removeClass(ClassName.TOGGLE_ON); // if not, set toggle to off
+          collapsible.removeClass(ClassName.TOGGLE_ON); // set collapse toggle to off too
           _this.attr(Attribute.DISABLED, false); // remove disabled attribute
         }
       } else if (timeline.length) { // Check if timeline is set on
@@ -404,6 +460,7 @@ $js(function () {
           timeline.addClass(ClassName.TOGGLE_ON); // set toggle to on if 'remark-timeline' is 
           _this.attr(Attribute.DISABLED, true);   // on and disable input[type="text"] box.
           tabbableContainer.hide();
+          collapsibleContainer.hide();
         } else {
           timeline.removeClass(ClassName.TOGGLE_ON);
           _this.attr(Attribute.DISABLED, false);
@@ -421,37 +478,60 @@ $js(function () {
 
     var tabInput = $js(this).closest(Selector.DROPDOWN_MENU).find(Selector.NEXT_TEXTBOX);
     var isTabbable = $js(this).hasClass(ClassName.TABBABLE);
+    var isCollapsible = $js(this).hasClass(ClassName.COLLAPSIBLE);
     var tabbableIcon = $js(this).closest(Selector.FORMGROUP).next().find(Selector.TABBABLE_ICON);
+    var collasibleIcon = $js(this).closest(Selector.FORMGROUP).next().find(Selector.COLLAPSIBLE_ICON);
     var targetedInput = $js(this).closest(Selector.FORMGROUP).find(Element.TEXTINPUT);
     var tabbableContainer = $js(this).closest(Selector.FORMGROUP).next().find(Selector.TABBABLE_CONTAINER);
+    var collapsibleContainer = $js(this).closest(Selector.FORMGROUP).next().find(Selector.COLLAPSIBLE_CONTAINER);
+    var nextContainer = $js(this).closest(Selector.FORMGROUP).find(Selector.COLLAPSIBLE_CONTAINER);
+    var prevContainer = $js(this).closest(Selector.FORMGROUP).find(Selector.TABBABLE_CONTAINER);
 
     $js(this).children().toggleClass(ClassName.TOGGLE_ON);
 
     if (isTabbable) {
       if (targetedInput.val().includes(Value.REMARK_TABS)) {
         targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-tabs', ''); });
+        nextContainer.show();
         targetedInput.attr(Attribute.DISABLED, false);
       } else { 
         targetedInput.val(function (index, value) { return value + ' remark-tabs' } );
         targetedInput.attr(Attribute.DISABLED, true);
+        nextContainer.hide();
       }   
+    } else if(isCollapsible) {
+      if (targetedInput.val().includes(Value.COLLAPSIBLE)) {
+        targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-collapsible', ''); });
+        targetedInput.attr(Attribute.DISABLED, false);
+        prevContainer.show();
+      } else {
+        targetedInput.val(function (index, value) { return value + ' remark-collapsible' } );
+        targetedInput.attr(Attribute.DISABLED, true);
+        prevContainer.hide();
+      }
     } else {
        if (targetedInput.val().includes(Value.TIMELINE)) {
         targetedInput.val(function (index, value) { return targetedInput.val().replace(' remark-timeline', ''); });
         targetedInput.attr(Attribute.DISABLED, false);
         tabbableContainer.show();
+        collapsibleContainer.show();
        } else {
         // If timeline and tabbables are both enabled and timeline is enabled in the row
         // 1. Remove all 'remark-tabs' in column class
-        // 2. Toggle button off so that it doesn't stick in case dashboard is save
-        // 3. Remove disabled state of input[type="text"] in column
-        // 4. Hide tabbable container
+        // 2. Remove all 'remark-collapsible' in column class
+        // 3. Toggle button off so that it doesn't stick in case dashboard is save
+        // 4. Remove disabled state of input[type="text"] in column
+        // 5. Hide tabbable container
+        // 6. Hide collapsible container
         targetedInput.val(function (index, value) { return value + ' remark-timeline' }); 
         targetedInput.attr(Attribute.DISABLED, true);
         tabInput.val(function (index, value) { tabInput.val().replace(' remark-tabs', ''); }); // 1
-        tabbableIcon.removeClass(ClassName.TOGGLE_ON); // 2
-        tabInput.attr(Attribute.DISABLED, false); // 3
-        tabbableContainer.hide(); // 4
+        tabInput.val(function (index, value) { tabInput.val().replace(' remark-collapsible', ''); }); // 2
+        tabbableIcon.removeClass(ClassName.TOGGLE_ON); // 3
+        collasibleIcon.removeClass(ClassName.TOGGLE_ON); // 3
+        tabInput.attr(Attribute.DISABLED, false); // 4
+        tabbableContainer.hide(); // 5
+        collapsibleContainer.hide(); // 6
        }
     }
       
@@ -499,6 +579,38 @@ $js(function () {
       });
       
       createPanels(_element, columnID);
+    });
+  }
+
+  if ($js(Selector.COLLAPSIBLE).length) {
+    $js.ajax({
+      context: document.body
+    }).done(() => {
+      $js(Selector.COLLAPSIBLE).children().addClass('accordion');
+
+      $js(Selector.COLLAPSIBLE).find(Selector.MAINTITLE).each(function (index) {
+        var _this = $js(this);
+        var column = _this.closest(Selector.COLLAPSIBLE).attr('id');
+        var row = _this.closest(Selector.ROW).attr('id');
+        var accordion = 'collapse' + index + column + row;
+
+        $js(Selector.COLLAPSIBLE).children().attr('id', 'accordion' + column + row);
+
+        _this.attr({
+          type : 'button',
+          'data-target' : '#' + accordion,
+          'data-toggle' : 'collapse',
+          'aria-controls' : accordion,
+          'aria-expanded' : 'true'
+        });
+        _this
+          .next()
+          .attr({
+            'id' : accordion
+          })
+          .addClass('panel-collapse collapse in');
+      });
+      //$js(Selector.FIRST_COLLAPSIBLE).addClass('in');
     });
   }
 
