@@ -774,3 +774,28 @@
     padding: 10px 15px;
   }
 }
+
+/* Overwrite default Publisher Bootstrap Contextual Colors */
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-success {
+  background-color: var(--success);
+}
+
+.bg-info {
+  background-color: var(--info);
+}
+
+.bg-warning {
+  background-color: var(--orange);
+}
+
+.bg-danger {
+  background-color: var(--red);
+}
+
+.bg-indigo {
+  background-color: var(--purple);
+}
