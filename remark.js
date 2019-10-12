@@ -29,11 +29,10 @@ window.themes.fn = {
 // other plugins that may not be closed properly.
 ;(function (themes, $js) {
   themes = themes || {};
-  var themeKey = 'data-remark-theme';
+  var themeKey = 'Remark';
   var Attribute$1 = {
     ID: 'id',
     REMARK_THEME: 'data-theme',
-    REMARKABLE: 'remarkable'
   };
   var ClassName$1 = {
     ACTIVE: "active",
@@ -42,6 +41,7 @@ window.themes.fn = {
     HIDE: 'hide',
     LAZY: 'lazyload',
     PRETTYPANELS: 'remark-pretty-panels',
+    REMARKABLE: 'Remark',
     SEARCHABLE: 'searchable'
   };
   var Element$1 = {
@@ -51,6 +51,7 @@ window.themes.fn = {
     CONTACT: 'div[id^="contact"]',
     CONTACT_COMP: '.contact_comp',
     CONTACT_OUTTER: 'div[id^="contact"] .thumbOuter',
+    HTML: 'html',
     FORM_GROUP: '.form-group',
     FORM_GROUPS: '.form-group:not(:first)',
     LABEL: 'label',
@@ -88,6 +89,7 @@ window.themes.fn = {
 
   Remark.prototype = {
     init: function (wrapper, options) {
+      $js(Element$1.HTML).addClass(ClassName$1.REMARKABLE);
       this
         .setOptions(options)
         .build(wrapper)
