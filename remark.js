@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.3.1
+ * Theme Version: 2.3.2
  * Last Update: 12/10/2019
  */
 
