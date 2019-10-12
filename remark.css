@@ -107,8 +107,7 @@
 .remark-ribbons .MainTitle {
   background-color: rgba(0,0,0,.03);
   border: 1px solid rgba(0,0,0,.125);
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-radius: 0;
   margin: 0;
 }
 
@@ -321,6 +320,7 @@
 }
 
 .remark-pretty-panels .fa {
+  display: block;
   font: normal normal normal 14px/1 "FontAwesome";
   font-size: inherit;
   text-rendering: auto;
@@ -364,7 +364,8 @@
 .remark-pretty-panels .remark-timeline [class*="bg-"] .Titletxt,
 .remark-pretty-panels .sortable-item .dark-icon[class*="fa-"]:before,
 .remark-pretty-panels .sortable-item [class*="fa-"]:before,
-.remark-pretty-panels .text-dark .itemList a {
+.remark-pretty-panels .text-dark .itemList a,
+.remark-pretty-panels .text-dark .MainTitle .Titletxt {
   color: var(--dark);
 }
 
@@ -773,4 +774,172 @@
   .remark-pretty-panels .contlist_masonry .item .padd10 {
     padding: 10px 15px;
   }
+}
+
+.Remark .ppldir-fullWidth .ppldir-thumbContainer {
+  margin-left: .1em;
+}
+
+.Remark .ppldir-avtar {
+  float: left;
+}
+
+.Remark .ppldir-peopleTitle {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.Remark .ppldir-peopleEmail {
+  font-size: 1em;
+}
+
+.Remark .ppldir-thumbContainer.five .ppldir-thumbOuter,
+.Remark .ppldir-thumbContainer .ppldir-thumbOuter { 
+  text-align: left; 
+}
+
+.Remark .ppldir-thumbContainer.one .ppldir-thumbOuter,
+.Remark .ppldir-thumbContainer.two .ppldir-thumbOuter,
+.Remark .ppldir-thumbContainer.three .ppldir-thumbOuter,
+.Remark .ppldir-thumbContainer.four .ppldir-thumbOuter,
+.Remark .ppldir-thumbContainer.five .ppldir-thumbOuter {
+  background-color: var(--white);
+  border: 1px solid var(--cyan);
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  margin: 0 .5em 1em;
+  padding: 0;
+  transition: border-color .35s ease-out,box-shadow .35s ease-out;
+  width: 440px;
+}
+
+.Remark .ppldir-thumbContainer.one .ppldir-thumbOuter:hover,
+.Remark .ppldir-thumbContainer.two .ppldir-thumbOuter:hover,
+.Remark .ppldir-thumbContainer.three .ppldir-thumbOuter:hover,
+.Remark .ppldir-thumbContainer.four .ppldir-thumbOuter:hover,
+.Remark .ppldir-thumbContainer.five .ppldir-thumbOuter:hover {
+  box-shadow: 0 10px 30px 5px rgba(0,0,0,.15);
+  border-color: rgba(0,0,0,.125);
+}
+
+.Remark .ppldir-thumbOuter:nth-child(3n+1) {
+  clear: left;
+}
+
+.Remark .ppldir-thumbOuter:nth-child(5n+1) {
+  clear: none;
+}
+
+.Remark .ppldir-thumbContainer .ppldir-thumbOuter img.img-responsive {
+  border-radius: 50%;
+  height: auto;
+  padding-right: 10px;
+  margin: 1.5em;
+  width: 150px;
+}
+
+.Remark .ppldir-alphabetFilter a:hover, 
+.Remark .ppldir-alphabetFilter a.active {
+  background-color: var(--cyan);
+}
+
+.Remark .ppldir-peopleRole {
+  font-size: 1em; 
+  font-weight: 300;
+}
+
+.Remark .ppldir-peopleEmail a {
+  visibility: hidden;
+}
+
+.Remark .ppldir-peopleEmail a:before {
+  content: "\f0e0";
+  font-family: "FontAwesome";
+  visibility: visible;
+}
+
+.Remark .five .ppldir-thumbOuter:nth-child(5n+1), 
+.Remark .four .ppldir-thumbOuter:nth-child(4n+1), 
+.Remark .one .ppldir-thumbOuter, 
+.Remark .three .ppldir-thumbOuter:nth-child(3n+1), 
+.Remark .two .ppldir-thumbOuter:nth-child(2n+1) {
+  clear: none;
+}
+
+@media (min-width: 375px) and (max-width: 415px) {
+  .Remark .ppldir-thumbContainer.one .ppldir-thumbOuter {
+    padding-bottom: 1.5em;
+    width: 330px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .Remark .ppldir-thumbContainer.three .ppldir-thumbOuter {
+    width: 354px;
+    padding-bottom: 1.5em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ppldir-thumbOuter > * {
+    text-align: center;
+  }
+  .Remark .ppldir-thumbContainer.five .ppldir-thumbOuter {
+    padding: 1em;
+    width: 315px;
+  }
+  .Remark .ppldir-avtar {
+    float: none;
+  }
+  .Remark .ppldir-thumbContainer .ppldir-thumbOuter img.img-responsive {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .Remark .ppldir-peopleEmail a {
+    display: block;
+    text-align: center;
+    position: relative;
+  }
+  .Remark .ppldir-peopleEmail a:before {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  .ppldir-peopleCont {
+    display: inline;
+  }
+  .ppldir-officeCont {
+    margin-left: 1.5em;
+  }
+}
+
+@media (max-width: 1400px) {
+  .Remark .ppldir-thumbContainer.five .ppldir-thumbOuter {
+    width: 430px;
+  }
+}
+
+/* Overwrite default Publisher Bootstrap Contextual Colors */
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-success {
+  background-color: var(--success);
+}
+
+.bg-info {
+  background-color: var(--info);
+}
+
+.bg-warning {
+  background-color: var(--orange);
+}
+
+.bg-danger {
+  background-color: var(--red);
+}
+
+.bg-indigo {
+  background-color: var(--purple);
 }
