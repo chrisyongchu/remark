@@ -1,8 +1,15 @@
 /*!
+<<<<<<< HEAD
  * Remark Theme v2.2.1
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
  * Last Update: 05/06/2019
+=======
+ * Remark Theme v2.3
+ * Copyright 2019 HighQ Solutions, Ltd.
+ * Author: Christopher Yongchu, christopher.yongchu@highq.com
+ * Last Update: 11/10/2019
+>>>>>>> v2-dev
  */
 
  :root {
@@ -26,12 +33,14 @@
   --warning: #ffc107;
   --danger: #dc3545;
   --light: #f8f9fa;
+  --lighter: #f5f5f5;
   --dark: #343a40;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1600px;
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -46,11 +55,11 @@
 }
 
 .remark-layout-boxed {
-  background: #f5f5f5;
+  background: var(--lighter);
 }
 
 .remark-layout-boxed > .container {
-  background: #fff;
+  background: var(--white);
   box-shadow: -4px 2px 4px rgba(0,0,0,.15), 4px 2px 4px rgba(0,0,0,.15);
 }
 
@@ -62,23 +71,23 @@
   left: 0 !important;
 }
 
-@media (min-width: 992px) {
+@media (min-width: var(--breakpoint-lg)) {
   .remark-layout-boxed > .container, 
   .remark-layout-boxed > .container .header,
   .remark-layout-boxed .headFixed.show {
     margin-left: auto;
     margin-right: auto;
-    width: 992px !important;
+    width: var(--breakpoint-lg) !important;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: var(--breakpoint-xl)) {
   .remark-layout-boxed > .container,
   .remark-layout-boxed > .container .header,
   .remark-layout-boxed .headFixed.show {
     margin-left: auto;
     margin-right: auto;
-    width: 1200px !important;
+    width: var(--breakpoint-xl) !important;
   }
 }
 
@@ -120,12 +129,19 @@
 .remark-pretty-panels .MainTitle ~ div,
 .remark-pretty-panels.remark-ribbons .MainTitle ~ div,
 .remark-ribbons .MainTitle ~ div {
-  background-color: #fff;
+  background-color: var(--white);
   border-left: 1px solid rgba(0,0,0,.125);
   border-right: 1px solid rgba(0,0,0,.125);
+  border-bottom: 1px solid rgba(0,0,0,.125);
   border-bottom-left-radius: .25rem;
   border-bottom-right-radius: .25rem;
   padding: 15px;
+}
+
+.remark-pretty-panels .Titlehide ~ [class*="slider"],
+.remark-pretty-panels.remark-ribbons .Titlehide ~ [class*="slider"] {
+  border: 0;
+  padding-top: 30px;
 }
 
 .remark-pretty-panels.remark-ribbons .MainTitle ~ div,
@@ -142,7 +158,7 @@
 .remark-pretty-panels .MainTitle + .nav,
 .remark-pretty-panels.remark-ribbons .MainTitle + .nav,
 .remark-ribbons .MainTitle + .nav {
-  background-color: #fff;
+  background-color: var(--white);
   border-left: 1px solid rgba(0,0,0,.125);
   border-right: 1px solid rgba(0,0,0,.125);
   margin: 0;
@@ -168,6 +184,7 @@
 .remark-ribbons .MainTitle + .nav:last-child,
 .remark-ribbons .MainTitle ~ div:last-child {
   border-bottom: 1px solid rgba(0,0,0,.125);
+  padding-top: 15px;
 }
 
 .remark-pretty-panels .MainTitle.Titlehide + .nav,
@@ -217,7 +234,7 @@
 .remark-ribbons .Titletxt {
   position: absolute;
   left: -8px;
-  background: #f5f5f5;
+  background: var(--lighter);
   padding: 8px 24px;
   border: 1px solid #ddd;
 }
@@ -231,13 +248,13 @@
   width: 0;
   height: 0;
   content: '';
-  border: 23px solid #f5f5f5;
+  border: 23px solid var(--lighter);
   border-right: 24px solid transparent;
 }
 
 .remark-pretty-panels.remark-ribbons .Titletxt:before,
 .remark-ribbons .Titletxt:before  {
-  background-color: #fff;
+  background-color: var(--white);
   border-right-color: transparent;
 }
 
@@ -262,19 +279,22 @@
 }
 
 .toggle-tabbable,
-.toggle-timeline {
+.toggle-timeline,
+.toggle-collapsible {
   background: transparent;
   border: 0;
 }
 
 .toggle-tabbable .fa-toggle-off,
-.toggle-timeline .fa-toggle-off {
+.toggle-timeline .fa-toggle-off,
+.toggle-collapsible .fa-toggle-off {
   color: #777;
 }
 
 .toggle-tabbable .fa-toggle-on,
-.toggle-timeline .fa-toggle-on {
-  color: #05a85c;
+.toggle-timeline .fa-toggle-on,
+.toggle-collapsible .fa-toggle-on {
+  color: var(--green);
 }
 
 .remark-timeline .sortable-list {
@@ -332,6 +352,7 @@
 
 .remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div,
 .remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(even) > div {
+  background: var(--white);
   width: 48%;
 }
 
@@ -349,9 +370,9 @@
 
 .remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div:after {
   border-top: 7px solid transparent;
-  border-right: 0 solid #fff;
+  border-right: 0 solid var(--white);
   border-bottom: 7px solid transparent;
-  border-left: 7px solid #fff;
+  border-left: 7px solid var(--white);
   content: " ";
   display: inline-block;
   position: absolute;
@@ -373,14 +394,22 @@
 
 .remark-timeline .sortable-list > .sortable-item:nth-child(even) > div:after {
   border-top: 7px solid transparent;
-  border-right: 7px solid #fff;
+  border-right: 7px solid var(--white);
   border-bottom: 7px solid transparent;
-  border-left: 0 solid #fff;
+  border-left: 0 solid var(--white);
   content: " ";
   display: inline-block;
   position: absolute;
   top: 27px;
   left: -7px;
+}
+
+.remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(even) > div .Titletxt,
+.remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div .Titletxt {
+  padding: 0 0 0.5em;
+}
+.remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div .Titletxt {
+  text-align: right;
 }
 
 .remark-timeline .MainTitle {
@@ -392,7 +421,7 @@
 }
 
 #refreshTemplates .btn {
-  background-color: #fff;
+  background-color: var(--white);
 }
 
 .remark-tabs {
@@ -420,7 +449,7 @@
 }
 
 .remark-tabs .nav-item.active .nav-link {
-  background-color: #fff;
+  background-color: var(--white);
 }
 
 .remark-tabs .nav-item.active .nav-link:before {
@@ -437,6 +466,11 @@
   padding-top: 1.5em;
 }
 
+.tab-pane [class*="bg-"] {
+  margin: -21px 0 0;
+  padding: 15px;
+}
+
 .lazyload.ppl_vert .thumbOuter:nth-child(n+20),
 .lazyload.ppl_vert .thumbOuter,
 .tab-pane .MainTitle,
@@ -446,11 +480,95 @@
 
 .remark-pretty-panels.remark-ribbons .MainTitle,
 .remark-ribbons .MainTitle {
-  background-color: #fff;
-  border-bottom-color: #fff;
+  background-color: var(--white);
+  border-bottom-color: var(--white);
 }
 
 .lazyload.ppl_vert .thumbOuter.active {
   display: block;
 }
 
+<<<<<<< HEAD
+=======
+.peoplePanelUser .thumbDes .email {
+  visibility: hidden;
+}
+
+.peoplePanelUser .thumbDes .email:before {
+  content: "\e048";
+  font-family: "highq50";
+  visibility: visible;
+}
+
+[class*="Publications_Module_"].remark-pretty-panels .MainTitle,
+[class*="Publications_Module_"].remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
+.remark-pretty-panels .remark-timeline .MainTitle,
+.remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
+.remark-pretty-panels .masonry_comp .MainTitle,
+.remark-pretty-panels .masonry_comp .MainTitle ~ div:last-child {
+  background: transparent;
+  border: 0;
+}
+
+[class*="bg-"] .Titlehide + .compWrapper {
+  transition: box-shadow .35s ease-out;
+}
+
+[class*="bg-"] .Titlehide + .compWrapper:hover {
+  box-shadow: 0 10px 30px 5px rgba(0,0,0,.15);
+}
+
+[class*="bg-"] .itemList + hr {
+  border-color: transparent;
+  margin: 0;
+}
+
+[class*="bg-"] .owl-controls {
+  background: transparent;
+}
+
+.remark-pretty-panels .masonry_comp {
+  position: relative;
+}
+
+.remark-collapsible [type="button"]:hover {
+  cursor: pointer;
+}
+
+.remark-collapsible .Titletxt {
+  position: relative;
+}
+
+.remark-collapsible [aria-expanded="false"] .Titletxt:after,
+.remark-collapsible [aria-expanded="true"] .Titletxt:after {
+  font-family: 'FontAwesome';
+  position: absolute;
+  right: 10px;
+}
+
+.remark-collapsible [aria-expanded="true"] .Titletxt:after {
+  content: "\f068";
+}
+
+.remark-collapsible [aria-expanded="false"] .Titletxt:after {
+  content: "\f067";
+}
+
+@media (min-width: var(--breakpoint-xxl)) {
+  .remark-pretty-panels .masonry_comp .MainTitle {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  .remark-pretty-panels .masonry_comp .MainTitle .Titletxt {
+    color: var(--dark);
+    font-size: 6em;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0;
+    position: relative;
+  }
+}
+>>>>>>> v2-dev
