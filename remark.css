@@ -339,6 +339,7 @@
   position: absolute;
 }
 
+.remark-tabs .peoplePanelUser .thumbDes > *,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titlehide + .compWrapper > *,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
 .remark-tabs .tab-pane [class*="bg-"] .compWrapper > *,
@@ -380,6 +381,7 @@
   position: relative;
 }
 
+#refreshTemplates .btn,
 .remark-timeline .sortable-item [class*="bg-"] {
   background-color: var(--white);
 }
@@ -500,10 +502,6 @@
   margin: 0;
 }
 
-#refreshTemplates .btn {
-  background-color: var(--white);
-}
-
 .remark-tabs {
   margin: 1.5em 0;
 }
@@ -514,7 +512,7 @@
   border-top-color: transparent;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  color: #333;
+  color: var(--dark);
   position: relative;
 }
 
