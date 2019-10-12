@@ -443,20 +443,22 @@ $js(function () {
       var tabbableContainer = _this.closest(Selector.FORMGROUP).find(Selector.TABBABLE_CONTAINER);
       var collapsibleContainer = _this.closest(Selector.FORMGROUP).find(Selector.COLLAPSIBLE_CONTAINER);
 
+      // if tabbable is not called.
+      if (!tabbable.length) { 
+        _this.attr(Attribute.DISABLED, false);
+        _this.val(function (index, value) { return _this.val().replace(' remark-tabs', ''); });
+      }
+
+      // if collapsible is no called.
+      if (!collapsible.length) {
+        _this.attr(Attribute.DISABLED, false);
+        _this.val(function (index, value) { return _this.val().replace(' remark-collapsible', ''); });
+      }
+
       // Check if 'remark-tabs' is in input[type="text"], if so:
       // 1. Set toggle icon to on
       // 2. Disable input[type="text"] for the related column
-      if (tabbable.length || collapsible.length) {
-        if (!tabbable.length) { 
-          _this.attr(Attribute.DISABLED, false);
-          _this.val(function (index, value) { return _this.val().replace(' remark-tabs', ''); });
-        }
-
-        if (!collapsible.length) {
-          _this.attr(Attribute.DISABLED, false);
-          _this.val(function (index, value) { return _this.val().replace(' remark-collapsible', ''); });
-        }
-        
+      if (tabbable.length || collapsible.length) {        
         if (tabbable.length && _this.val().includes(Value.REMARK_TABS)) {
           tabbable.addClass(ClassName.TOGGLE_ON); // 1
           _this.attr(Attribute.DISABLED, true); // 2
@@ -531,7 +533,8 @@ $js(function () {
         tabbableContainer.show();
         collapsibleContainer.show();
        } else {
-        // If timeline and tabbables are both enabled and timeline is enabled in the row
+         
+        // If timeline and tabbables/collapsible are both enabled and timeline is enabled in the row
         // 1. Remove all 'remark-tabs' in column class
         // 2. Remove all 'remark-collapsible' in column class
         // 3. Toggle button off so that it doesn't stick in case dashboard is save
