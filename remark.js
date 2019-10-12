@@ -3,7 +3,7 @@
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
  * Theme Version: 2.3
- * Last Update: 11/10/2019
+ * Last Update: 12/10/2019
  */
 
 window.themes = {};
@@ -286,7 +286,10 @@ $js(function () {
   var NAME = "Remark for HighQ Publisher 5.x";
   var ESCAPE_KEYCODE = 27; // keyboard value for esc key
   var Attribute = {
+    ACCORDION: 'accordion',
     DATA_REMARK_KEY: 'data-remark',
+    DATA_TARGET: 'data-target',
+    DATA_TOGGLE: 'data-toggle',
     DISABLED: 'disabled',
     ID: 'id',
     PANEL: 'panel_',
@@ -298,10 +301,12 @@ $js(function () {
     SINGLE_COL: 'col_xl'
   };
   var ClassName = {
+    ACCORDION: 'accordion',
     ACTIVE: 'active',
     FADE: 'tab-pane fade',
     HIDE: 'hide',
     PANEL: 'tab-content',
+    PANEL_OPEN: 'panel-collapse collapse in',
     SHOW: 'active in',
     TABBABLE: 'toggle-tabbable',
     COLLAPSIBLE: 'toggle-collapsible',
@@ -442,11 +447,21 @@ $js(function () {
       // 1. Set toggle icon to on
       // 2. Disable input[type="text"] for the related column
       if (tabbable.length || collapsible.length) {
-        if (_this.val().includes(Value.REMARK_TABS)) {
+        if (!tabbable.length) { 
+          _this.attr(Attribute.DISABLED, false);
+          _this.val(function (index, value) { return _this.val().replace(' remark-tabs', ''); });
+        }
+
+        if (!collapsible.length) {
+          _this.attr(Attribute.DISABLED, false);
+          _this.val(function (index, value) { return _this.val().replace(' remark-collapsible', ''); });
+        }
+        
+        if (tabbable.length && _this.val().includes(Value.REMARK_TABS)) {
           tabbable.addClass(ClassName.TOGGLE_ON); // 1
           _this.attr(Attribute.DISABLED, true); // 2
           collapsibleContainer.hide();
-        } else if (_this.val().includes(Value.COLLAPSIBLE)) {
+        } else if (collapsible.length && _this.val().includes(Value.COLLAPSIBLE)) {
           collapsible.addClass(ClassName.TOGGLE_ON);
           _this.attr(Attribute.DISABLED, true);
           tabbableContainer.hide();
@@ -586,15 +601,15 @@ $js(function () {
     $js.ajax({
       context: document.body
     }).done(() => {
-      $js(Selector.COLLAPSIBLE).children().addClass('accordion');
+      $js(Selector.COLLAPSIBLE).children().addClass(ClassName.ACCORDION);
 
       $js(Selector.COLLAPSIBLE).find(Selector.MAINTITLE).each(function (index) {
         var _this = $js(this);
-        var column = _this.closest(Selector.COLLAPSIBLE).attr('id');
-        var row = _this.closest(Selector.ROW).attr('id');
+        var column = _this.closest(Selector.COLLAPSIBLE).attr(Attribute.ID);
+        var row = _this.closest(Selector.ROW).attr(Attribute.ID);
         var accordion = 'collapse' + index + column + row;
 
-        $js(Selector.COLLAPSIBLE).children().attr('id', 'accordion' + column + row);
+        $js(Selector.COLLAPSIBLE).children().attr(Attribute.ID, Attribute.ACCORDION + column + row);
 
         _this.attr({
           type : 'button',
@@ -605,12 +620,9 @@ $js(function () {
         });
         _this
           .next()
-          .attr({
-            'id' : accordion
-          })
-          .addClass('panel-collapse collapse in');
+          .attr(Attribute.ID, accordion)
+          .addClass(ClassName.PANEL_OPEN);
       });
-      //$js(Selector.FIRST_COLLAPSIBLE).addClass('in');
     });
   }
 
