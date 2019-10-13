@@ -1,5 +1,5 @@
 /*!
- * Remark Theme v2.3.2
+ * Remark Theme v2.3.3
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
  * Last Update: 12/10/2019
@@ -99,7 +99,7 @@
 .remark-pretty-panels [id^="componentRender"],
 .remark-pretty-panels.remark-ribbons [id^="componentRender"],
 .remark-ribbons [id^="componentRender"] {
-  margin: 10px;
+  margin: 10px 7px 15px;
 }
 
 .remark-pretty-panels .MainTitle,
@@ -124,6 +124,7 @@
   position: relative;
 }
 
+.remark-timeline [class*="bg-"] .MainTitle ~ div:last-child,
 .remark-pretty-panels .MainTitle.Titlehide,
 .remark-pretty-panels.remark-ribbons .MainTitle.Titlehide,
 .remark-ribbons .MainTitle.Titlehide {
@@ -305,9 +306,12 @@
   bottom: auto;
   top: 0;
 }
+
+.remark-pretty-panels .remark-timeline [class*="bg-"] .MainTitle,
 .remark-pretty-panels .columns .thumbnail .titleOverlap .titleTransbg {
   background: transparent;
 }
+
 .remark-pretty-panels .columns .thumbnail .titleOverlap {
   color: var(--dark);
   font-size: .975em;
@@ -315,12 +319,12 @@
 }
 
 .remark-pretty-panels .sortable-list .fa {
+  display: block;
   margin-top: 10px;
   position: relative;
 }
 
 .remark-pretty-panels .fa {
-  display: block;
   font: normal normal normal 14px/1 "FontAwesome";
   font-size: inherit;
   text-rendering: auto;
@@ -330,6 +334,12 @@
 .remark-pretty-panels [class*="fa-"] [class*="cont_"] .compWrapper,
 .remark-pretty-panels [class*="bg-"] .MainTitle ~ div:last-child {
   padding-top: 15px;
+}
+
+.remark-pretty-panels [class*="bg-"] .MainTitle ~ div:last-child {
+  border-left: 1px solid rgba(0,0,0,.125);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  border-right: 1px solid rgba(0,0,0,.125);
 }
 
 .remark-pretty-panels .sortable-item [class*="fa-"]:before,

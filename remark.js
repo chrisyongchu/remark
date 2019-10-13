@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.3.2
+ * Theme Version: 2.3.3
  * Last Update: 12/10/2019
  */
 
@@ -52,6 +52,7 @@ window.themes.fn = {
     CONTACT_COMP: '.contact_comp',
     CONTACT_OUTTER: 'div[id^="contact"] .thumbOuter',
     HTML: 'html',
+    HEAD: 'head',
     FORM_GROUP: '.form-group',
     FORM_GROUPS: '.form-group:not(:first)',
     LABEL: 'label',
@@ -90,6 +91,9 @@ window.themes.fn = {
   Remark.prototype = {
     init: function (wrapper, options) {
       $js(Element$1.HTML).addClass(ClassName$1.REMARKABLE);
+      // insert FontAwesome;
+      $js(Element$1.HEAD).append("<script src='//use.fontawesome.com/aedcb74114.js'></script>");
+
       this
         .setOptions(options)
         .build(wrapper)
