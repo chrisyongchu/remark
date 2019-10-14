@@ -886,6 +886,19 @@
   clear: none;
 }
 
+.Remark .checkbox input[type="checkbox"],
+.Remark .form-group .checkbox input[type="checkbox"],
+.Remark .form-group .checkbox-inline input[type="checkbox"],
+.Remark .form-group .radio-inline input[type="radio"],
+.Remark .form-group .radio input[type="radio"] {
+  width: auto;
+}
+
+.Remark select,
+.Remark select[disabled] {
+  background-image: none !important;
+}
+
 @media (min-width: 375px) and (max-width: 415px) {
   .Remark .ppldir-thumbContainer.one .ppldir-thumbOuter {
     padding-bottom: 1.5em;
@@ -938,3 +951,4 @@
     width: 430px;
   }
 }
+ 
