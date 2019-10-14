@@ -569,6 +569,8 @@
 .remark-tabs .tab-pane [class*="fa-"]:before,
 .remark-pretty-panels .lazyload.ppl_vert .thumbOuter:nth-child(n+20),
 .remark-pretty-panels .lazyload.ppl_vert .thumbOuter,
+.remark-tabs .tab-content .sortable-item.tab-pane.fade,
+.remark-tabs .tab-content .sortable-item,
 .remark-tabs .tab-pane .MainTitle,
 #loadMorebtn.hide {
   display: none;
@@ -580,6 +582,10 @@
   border-bottom-color: var(--white);
 }
 
+.remark-tabs .tab-content .sortable-item.tab-pane.fade.active,
+.remark-tabs .tab-content .sortable-item.tab-pane.fade.in,
+.remark-tabs .tab-content .sortable-item.tab-pane.fade.active.in,
+.remark-tabs .tab-content .sortable-item.tab-pane,
 .lazyload.ppl_vert .thumbOuter.active {
   display: block;
 }
@@ -931,29 +937,4 @@
   .Remark .ppldir-thumbContainer.five .ppldir-thumbOuter {
     width: 430px;
   }
-}
-
-/* Overwrite default Publisher Bootstrap Contextual Colors */
-.bg-primary {
-  background-color: var(--primary);
-}
-
-.bg-success {
-  background-color: var(--success);
-}
-
-.bg-info {
-  background-color: var(--info);
-}
-
-.bg-warning {
-  background-color: var(--orange);
-}
-
-.bg-danger {
-  background-color: var(--red);
-}
-
-.bg-indigo {
-  background-color: var(--purple);
 }
