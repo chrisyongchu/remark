@@ -602,6 +602,8 @@
 
 [class*="Publications_Module_"].remark-pretty-panels .MainTitle,
 [class*="Publications_Module_"].remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
+[class*="Events_Module_"].remark-pretty-panels .MainTitle,
+[class*="Events_Module_"].remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
 .remark-pretty-panels .remark-timeline .MainTitle,
 .remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
 .remark-pretty-panels .masonry_comp .MainTitle,
@@ -631,6 +633,12 @@
 
 .remark-pretty-panels .masonry_comp {
   position: relative;
+}
+
+.remark-pretty-panels .MainTitle + .tabmenu,
+.remark-pretty-panels [class*="bg-"] .MainTitle + .tabmenu {
+  border-left: 1px solid var(--default-rgb);
+  border-right: 1px solid var(--default-rgb);
 }
 
 .remark-collapsible [type="button"]:hover {
@@ -898,6 +906,7 @@
 .Remark select[disabled] {
   background-image: none !important;
 }
+
 
 @media (min-width: 375px) and (max-width: 415px) {
   .Remark .ppldir-thumbContainer.one .ppldir-thumbOuter {
