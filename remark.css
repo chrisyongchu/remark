@@ -2,7 +2,7 @@
  * Remark Theme v2.3.4
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 12/10/2019
+ * Last Update: 16/10/2019
  */
 
  :root {
@@ -907,6 +907,45 @@
   background-image: none !important;
 }
 
+.Remark .modal {
+  background: rgba(0,0,0,.25);
+  margin: 0;
+}
+
+.Remark .modal .MainTitle,
+.Remark .modal .MainTitle ~ div:last-child {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.Remark .modal .MainTitle {
+  margin-top: 7em;
+}
+
+.Remark .modal .MainTitle {
+  background-color: var(--cyan);
+}
+
+.Remark .modal .MainTitle .Titletxt {
+  color: var(--white);
+}
+
+.Remark .modal .MainTitle ~ div:last-child {
+  background-color: var(--white);
+}
+
+.Remark .modal .MainTitle ~ div:last-child input[type="text"]::placeholder {
+  padding: 0.5em;
+}
+
+.Remark .modal .hq-form-control ~ label {
+  left: 10px;
+}
+
+.Remark .modal .hq-form-control:focus ~ label,
+.Remark .modal .has-content.hq-form-control ~ label {
+  left: 0;
+}
 
 @media (min-width: 375px) and (max-width: 415px) {
   .Remark .ppldir-thumbContainer.one .ppldir-thumbOuter {
