@@ -590,6 +590,17 @@
   display: block;
 }
 
+.remark-tabs .tab-content .loadingsection {
+  border: 0;
+  box-shadow: none;
+  margin-top: 0;
+  padding-top: 1em;
+}
+
+.remark-tabs .tab-content .loadingsection img {
+  top: 60%;
+}
+
 .remark-pretty-panels .peoplePanelUser .thumbDes .email {
   visibility: hidden;
 }

@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.3.3
- * Last Update: 12/10/2019
+ * Theme Version: 2.3.4
+ * Last Update: 16/10/2019
  */
 
 window.themes = {};
@@ -584,6 +584,7 @@ $js(function () {
     // Check to make sure '.remark-tabs' is in DOM before building tabs and tab panes.
     $js(Selector.REMARK_PANEL).addClass(ClassName.PANEL);
     $js(Selector.REMARK_PANEL).before(Template.NAV_TABS);
+    $js(Selector.REMARK_PANEL).append('<div class="loadingsection"><img src="images/v4/common/gray-loaderbig.gif" alt="loading"></div>');
 
     // Using $.ajax() to construct tabs and panels after ajax content is done loading.
     $js.ajax({
