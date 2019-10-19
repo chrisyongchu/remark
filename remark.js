@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.3.5
+ * Theme Version: 2.3.3
  * Last Update: 18/10/2019
  */
 
@@ -362,6 +362,7 @@ $js(function () {
     ROW_BUTTONS: '.rowControls .icon-highq-columns + .dropdown-menu a',
     SEARCHABLE: '.searchable',
     SETROWCLASS: '.setRowColClass',
+    TABMENU: '.tabmenu',
     TABBABLE_ICON: '.toggle-tabbable i',
     TABBABLE_CONTAINER: '.tabbable-container',
     TIMELINE_ICON: '.toggle-timeline i',
@@ -630,23 +631,30 @@ $js(function () {
 
       $js(Selector.COLLAPSIBLE).find(Selector.MAINTITLE).each(function (index) {
         var _this = $js(this);
+        var _siblings = _this.siblings();
         var column = _this.closest(Selector.COLLAPSIBLE).attr(Attribute.ID);
         var row = _this.closest(Selector.ROW).attr(Attribute.ID);
         var accordion = 'collapse' + index + column + row;
 
         $js(Selector.COLLAPSIBLE).children().attr(Attribute.ID, Attribute.ACCORDION + column + row);
 
-        _this.attr({
-          type : 'button',
-          'data-target' : '#' + accordion,
-          'data-toggle' : 'collapse',
-          'aria-controls' : accordion,
-          'aria-expanded' : 'true'
-        });
-        _this
-          .next()
-          .attr(Attribute.ID, accordion)
-          .addClass(ClassName.PANEL_OPEN);
+        if (!_this.next(Selector.TABMENU).length) {
+          // add panel heading trigger classes and attributes
+          _this.attr({
+            type : 'button',
+            'data-target' : '#' + accordion,
+            'data-toggle' : 'collapse',
+            'aria-controls' : accordion,
+            'aria-expanded' : 'true'
+          });
+
+          // add panel body attributes
+          _this
+            .next()
+            .attr(Attribute.ID, accordion)
+            .addClass(ClassName.PANEL_OPEN);
+        }
+          
       });
     });
   }
