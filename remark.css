@@ -50,6 +50,15 @@
   text-rendering: optimizeLegibility;
 }
 
+.Remark .pageWrapper .row {
+  padding: 1.5em 0;
+}
+
+.Remark #gridContainer .row,
+.Remark .pageWrapper .row.remark-timeline {
+  padding: 0;
+}
+
 #loadMoreBtn {
   display: block;
   margin: 0 auto;
@@ -232,7 +241,7 @@
 .remark-pretty-panels.remark-ribbons .Titletxt,
 .remark-ribbons .Titletxt {
   border-bottom-color: transparent;
-  margin: 0 10px;
+  margin: 0 0.15em;
 }
 
 .remark-pretty-panels.remark-ribbons .Titletxt,
@@ -625,6 +634,18 @@
   border: 0;
 }
 
+[class*="Publications_Module_"] .headingAnchor {
+  margin-top: 0 !important; /* override dumb !important definition in default Pub style sheet */
+}
+
+[class*="Publications_Module_"] .ContactRightPanel .gridCommonSec {
+  padding-top: 0;
+}
+
+[class*="Publications_Module_"] .ContactRightPanel .gridCommonSec .MainTitle .Titletxt {
+  padding-bottom: 0;
+}
+
 .remark-pretty-panels [class*="bg-"] .Titlehide + .compWrapper {
   transition: box-shadow .35s ease-out;
 }
@@ -682,72 +703,95 @@
   content: "\f067";
 }
 
-.remark-pretty-panels .contlist_masonry .columns .thumbnail img {
+.Remark .contlist_masonry .columns .thumbnail img {
   border-radius: 0;
 }
 
-.remark-pretty-panels .contlist_masonry .item img {
+.Remark .contlist_masonry .item img {
   visibility: hidden;
 }
 
-.remark-pretty-panels .masonry_comp {
+.Remark .masonry_comp {
   position: relative;
 }
 
-.remark-pretty-panels .masonry_comp .MainTitle .Titletxt {
+.Remark .masonry_comp .MainTitle .Titletxt {
   color: var(--dark);
   font-size: 2em;
   font-weight: 600;
   margin-left: 30px;
 }
 
-.remark-pretty-panels .masonry_comp .item {
+.Remark .masonry_comp .item {
   background-color: var(--white);
   transition: color .35s ease-out,border-color .35s ease-out,box-shadow .35s ease-out;
 }
 
-.remark-pretty-panels .masonry_comp .item:hover {
+.Remark .masonry_comp .item:hover {
   box-shadow: 0 10px 30px 5px rgba(0,0,0,.15);
   color: var(--dark);
   border-color: #e3e3e3;
 }
 
-.remark-pretty-panels .masonry_comp .item:nth-child(8n) {
+.Remark .masonry_comp .item:nth-child(8n) {
   border: 1px solid var(--cyan);
 }
 
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+1) {
+.Remark .masonry_comp .item:nth-child(8n+1) {
   border: 1px solid var(--cyan);
 }
 
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+2) {
+.Remark .masonry_comp .item:nth-child(8n+2) {
   border: 1px solid var(--cyan);
 }
 
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+3) {
+.Remark .masonry_comp .item:nth-child(8n+3) {
   border: 1px solid var(--cyan);
 }
 
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+4) {
+.Remark .masonry_comp .item:nth-child(8n+4) {
   border: 1px solid var(--cyan);
 }
 
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+5) {
+.Remark .masonry_comp .item:nth-child(8n+5) {
   border: 1px solid var(--cyan);
 }
 
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+6) {
+.Remark .masonry_comp .item:nth-child(8n+6) {
   border: 1px solid var(--cyan);
 }
 
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+7) {
+.Remark .masonry_comp .item:nth-child(8n+7) {
   border: 1px solid var(--cyan);
 }
 
-.remark-pretty-panels .masonry_comp .item .TruncateTxt, .masonry_comp .item .TruncateLink {
+.Remark .masonry_comp .item .TruncateTxt, 
+.Remark .masonry_comp .item .TruncateLink {
+  color: var(--muted);
+  font-size: 1.75em;
   font-weight: 400;
   text-overflow: initial;
   white-space: normal !important;
+}
+.Remark .masonry_comp .item:nth-child(4) .TruncateTxt {
+  color: var(--white);
+}
+
+@media (max-width: 1600px) {
+  .Remark .masonry_comp .item .TruncateTxt,
+  .Remark .masonry_comp .item:nth-child(4) .TruncateTxt {
+    color: var(--dark);
+  }
+  .Remark .contlist_masonry .columns .item {
+    display: block;
+  }
+  .Remark .masonry_comp .item .TruncateTxt, 
+  .Remark .masonry_comp .item .TruncateLink {
+    font-size: 1em;
+  }
+  .Remark .contlist_masonry .item .icon_content + p {
+    display: none;
+  }
 }
 
 .remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes > *,
@@ -764,7 +808,7 @@
 }
 
 @media (min-width: 1600px) {
-  .remark-pretty-panels .contlist_masonry .item {
+  .Remark .contlist_masonry .item {
     border-radius: 0;
     display: inline-block;
     float: left !important;
@@ -774,14 +818,14 @@
     position: static !important;
     width: 30% !important;
   }
-  .remark-pretty-panels .masonry_comp .MainTitle {
+  .Remark .masonry_comp .MainTitle {
     position: absolute;
     top: 10px;
     right: 30px;
     writing-mode: vertical-rl;
     text-orientation: mixed;
   }
-  .remark-pretty-panels .masonry_comp .MainTitle .Titletxt {
+  .Remark .masonry_comp .MainTitle .Titletxt {
     color: var(--dark);
     font-size: 6em;
     font-weight: 600;
@@ -789,35 +833,36 @@
     padding: 0;
     position: relative;
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4) {
+  .Remark .contlist_masonry .item:nth-child(4) {
     width: 61.20% !important;
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4) > .padd10 {
+  .Remark .contlist_masonry .item .icon_content + p,
+  .Remark .contlist_masonry .item:nth-child(4) > .padd10 {
     display: none;
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4) > a {
+  .Remark .contlist_masonry .item:nth-child(4) > a {
     background-color: #6ec4e8;
     height: 362px;
     position: relative;
   }
-  .remark-pretty-panels .home.pUser .contlist_masonry .item:nth-child(4) > a,
-  .remark-pretty-panels .news--grid .contlist_masonry .item:nth-child(4) > a {
+  .Remark .home.pUser .contlist_masonry .item:nth-child(4) > a,
+  .Remark .news--grid .contlist_masonry .item:nth-child(4) > a {
     height: 280px;
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4):hover {
+  .Remark .contlist_masonry .item:nth-child(4):hover {
     border-color: #6ec4e8;
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4) img {
+  .Remark .contlist_masonry .item:nth-child(4) img {
     visibility: hidden;
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4) .titleOverlap {
+  .Remark .contlist_masonry .item:nth-child(4) .titleOverlap {
     color: #fff;
     font-size: 2em;
     position: absolute;
     top: auto;
     bottom: 15px;
   }
-  .remark-pretty-panels .contlist_masonry .item .padd10 {
+  .Remark .contlist_masonry .item .padd10 {
     padding: 10px 15px;
   }
 }
@@ -894,83 +939,12 @@
   font-weight: 300;
 }
 
-.Remark .ppldir-peopleEmail a {
-  visibility: hidden;
-}
-
-.Remark .ppldir-peopleEmail a:before {
-  content: "\f0e0";
-  font-family: "FontAwesome";
-  visibility: visible;
-}
-
 .Remark .five .ppldir-thumbOuter:nth-child(5n+1), 
 .Remark .four .ppldir-thumbOuter:nth-child(4n+1), 
 .Remark .one .ppldir-thumbOuter, 
 .Remark .three .ppldir-thumbOuter:nth-child(3n+1), 
 .Remark .two .ppldir-thumbOuter:nth-child(2n+1) {
   clear: none;
-}
-
-.Remark .checkbox input[type="checkbox"],
-.Remark .form-group .checkbox input[type="checkbox"],
-.Remark .form-group .checkbox-inline input[type="checkbox"],
-.Remark .form-group .radio-inline input[type="radio"],
-.Remark .form-group .radio input[type="radio"] {
-  width: auto;
-}
-
-.Remark .modal {
-  background: rgba(0,0,0,.25);
-  margin: 0;
-}
-
-.Remark .modal .MainTitle,
-.Remark .modal .MainTitle ~ div:last-child {
-  margin: 0 auto;
-  max-width: 500px;
-}
-
-.Remark .modal .MainTitle {
-  margin-top: 7em;
-}
-
-.Remark .modal .MainTitle {
-  background-color: var(--cyan);
-}
-
-.Remark .modal .MainTitle .Titletxt {
-  color: var(--white);
-}
-
-.Remark .modal .MainTitle ~ div:last-child {
-  background-color: var(--white);
-}
-
-.Remark .modal .MainTitle ~ div:last-child input[type="text"]::placeholder {
-  padding: 0.5em;
-}
-
-.Remark .modal .hq-form-control ~ label {
-  left: 10px;
-}
-
-.Remark .modal .hq-form-control:focus ~ label,
-.Remark .modal .has-content.hq-form-control ~ label {
-  left: 0;
-}
-
-.Remark .fa .filterVerList .dropContent, 
-.Remark .fa .Subrow .filterVerList .dropContent,
-.Remark .fa .itemList a,
-.Remark .fa .itemList > *,
-.Remark .fa .tabmenu a {
-  font-family: sans-serif;
-  line-height: 1.25;
-}
-
-.Remark .fa .itemList:not(:first-child) {
-  margin-top: .5em;
 }
 
 @media (min-width: 375px) and (max-width: 415px) {
@@ -1026,9 +1000,65 @@
   }
 }
 
-@media (max-width: 1600px) {
-  .Remark .contlist_masonry .columns .item {
-    display: block;
-  }
+.Remark .checkbox input[type="checkbox"],
+.Remark .form-group .checkbox input[type="checkbox"],
+.Remark .form-group .checkbox-inline input[type="checkbox"],
+.Remark .form-group .radio-inline input[type="radio"],
+.Remark .form-group .radio input[type="radio"] {
+  width: auto;
+}
+
+.Remark .modal {
+  background: rgba(0,0,0,.25);
+  margin: 0;
+}
+
+.Remark .modal .MainTitle,
+.Remark .modal .MainTitle ~ div:last-child {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.Remark .modal .MainTitle {
+  margin-top: 7em;
+}
+
+.Remark .modal .MainTitle {
+  background-color: var(--cyan);
+}
+
+.Remark .modal .MainTitle .Titletxt {
+  color: var(--white);
+}
+
+.Remark [class*="bg-"] .rss_hero_comp, 
+.Remark .modal .MainTitle ~ div:last-child {
+  background-color: var(--white);
+}
+
+.Remark .modal .MainTitle ~ div:last-child input[type="text"]::placeholder {
+  padding: 0.5em;
+}
+
+.Remark .modal .hq-form-control ~ label {
+  left: 10px;
+}
+
+.Remark .modal .hq-form-control:focus ~ label,
+.Remark .modal .has-content.hq-form-control ~ label {
+  left: 0;
+}
+
+.Remark .fa .filterVerList .dropContent, 
+.Remark .fa .Subrow .filterVerList .dropContent,
+.Remark .fa .itemList a,
+.Remark .fa .itemList > *,
+.Remark .fa .tabmenu a {
+  font-family: sans-serif;
+  line-height: 1.25;
+}
+
+.Remark .fa .itemList:not(:first-child) {
+  margin-top: .5em;
 }
  
