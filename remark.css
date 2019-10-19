@@ -1,8 +1,8 @@
 /*!
- * Remark Theme v2.3.4
+ * Remark Theme v2.3.5
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 16/10/2019
+ * Last Update: 18/10/2019
  */
 
  :root {
@@ -349,11 +349,11 @@
   position: absolute;
 }
 
-.remark-tabs .peoplePanelUser .thumbDes > *,
+.remark-tabs [class*="bg-"] .peoplePanelUser .thumbDes > *,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titlehide + .compWrapper > *,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
 .remark-tabs .tab-pane [class*="bg-"] .compWrapper > *,
-.remark-pretty-panels [class*="bg-"] .rss_content_comp .dateTime,
+.remark-pretty-panels [class*="bg-"] .rss_content_comp .MainTitle.Titlehide .dateTime,
 .remark-pretty-panels [class*="bg-"] .MainTitle .icon-rss-boxed,
 .remark-pretty-panels .sortable-item [class*="bg-"][class*="fa-"]:before {
   color: var(--white);
@@ -375,6 +375,7 @@
 .remark-pretty-panels .sortable-item .dark-icon[class*="fa-"]:before,
 .remark-pretty-panels .sortable-item [class*="fa-"]:before,
 .remark-pretty-panels .text-dark .itemList a,
+.remark-pretty-panels [class*="bg-"] .rss_content_comp .MainTitle .dateTime,
 .remark-pretty-panels .text-dark .MainTitle .Titletxt {
   color: var(--dark);
 }
@@ -514,7 +515,7 @@
 }
 
 .remark-tabs {
-  margin: 1.5em 0;
+  margin: 0.75em 0;
 }
 
 .remark-tabs.column {
@@ -634,7 +635,7 @@
 
 .remark-pretty-panels [class*="bg-"] .itemList + hr {
   border-color: transparent;
-  margin: 0;
+  margin: .5em 0;
 }
 
 .remark-pretty-panels .owl-controls,
@@ -665,6 +666,12 @@
   font-family: 'FontAwesome';
   position: absolute;
   right: 10px;
+}
+
+.remark-collapsible [aria-expanded="false"] .Titletxt + .icon-rss-boxed,
+.remark-collapsible [aria-expanded="true"] .Titletxt + .icon-rss-boxed {
+  margin-right: 2.25em;
+  margin-top: -39px;
 }
 
 .remark-collapsible [aria-expanded="true"] .Titletxt:after {
@@ -913,11 +920,6 @@
   width: auto;
 }
 
-.Remark select,
-.Remark select[disabled] {
-  background-image: none !important;
-}
-
 .Remark .modal {
   background: rgba(0,0,0,.25);
   margin: 0;
@@ -956,6 +958,19 @@
 .Remark .modal .hq-form-control:focus ~ label,
 .Remark .modal .has-content.hq-form-control ~ label {
   left: 0;
+}
+
+.Remark .fa .filterVerList .dropContent, 
+.Remark .fa .Subrow .filterVerList .dropContent,
+.Remark .fa .itemList a,
+.Remark .fa .itemList > *,
+.Remark .fa .tabmenu a {
+  font-family: sans-serif;
+  line-height: 1.25;
+}
+
+.Remark .fa .itemList:not(:first-child) {
+  margin-top: .5em;
 }
 
 @media (min-width: 375px) and (max-width: 415px) {

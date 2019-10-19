@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.3.4
- * Last Update: 16/10/2019
+ * Theme Version: 2.3.5
+ * Last Update: 18/10/2019
  */
 
 window.themes = {};
@@ -195,6 +195,21 @@ window.themes.fn = {
               '</div>'
             );
 
+            // Add timeline toggle switch on new columns that didn't already exist.
+            $js(document).on(Event$1.CLICK, Element$1.ROW_CLASS_ICO, function () {
+              $js(this).next().find(Element$1.ROW_CLASS).each(function () {
+                var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
+                var timeline_container = $js(this).closest(Element$1.FORM_GROUP).find('.timeline-container');
+                if (!timeline_container.length) {
+                  $js(this).closest(Element$1.FORM_GROUP).find(Element$1.LABEL).append(
+                    '<div class="timeline-container">Timeline: ' +
+                      '<button class="toggle-timeline" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
+                    '</div>'
+                  );
+                }
+              });
+            });
+
             $js(this).closest(Element$1.ROW).find(Element$1.COL1).each(function () {
               var _singleCol = $js(this).hasClass(ClassName$1.ACTIVESECTION);
               var _timelines = $js(this).closest(Element$1.ROW_CONTROLS).find(Element$1.TIMELINE_CONTAINER);
@@ -255,7 +270,7 @@ window.themes.fn = {
               var collapsible_container = $js(this).closest(Element$1.FORM_GROUP).find(Element$1.COLLAPSE_CONTAINER);
               if (!collapsible_container.length) {
                 $js(this).closest(Element$1.FORM_GROUP).find(Element$1.LABEL).append(
-                  '<div class="tabbable-container">Collapsible: ' +
+                  '<div class="collapsible-container">Collapsible: ' +
                     '<button class="toggle-collapsible" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
                   '</div>'
                 );
