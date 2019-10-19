@@ -108,7 +108,7 @@
 .remark-pretty-panels [id^="componentRender"],
 .remark-pretty-panels.remark-ribbons [id^="componentRender"],
 .remark-ribbons [id^="componentRender"] {
-  margin: 10px 7px 15px;
+  margin: 0px 7px;
 }
 
 .remark-pretty-panels .MainTitle,
