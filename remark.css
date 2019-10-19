@@ -51,7 +51,7 @@
 }
 
 .Remark .pageWrapper .row {
-  padding: 1.5em 0;
+  padding: 1.5em 0 2.5em;
 }
 
 .Remark #gridContainer .row,
@@ -105,10 +105,8 @@
   }
 }
 
-.remark-pretty-panels [id^="componentRender"],
-.remark-pretty-panels.remark-ribbons [id^="componentRender"],
-.remark-ribbons [id^="componentRender"] {
-  margin: 0px 7px;
+.Remark [id^="componentRender"] {
+  margin: 0.75em 0.5em;
 }
 
 .remark-pretty-panels .MainTitle,
@@ -329,7 +327,7 @@
 
 .remark-pretty-panels .sortable-list .fa {
   display: block;
-  margin-top: 10px;
+  margin-top: 0.75em;
   position: relative;
 }
 
@@ -567,11 +565,12 @@
 }
 
 .remark-tabs .tab-pane {
-  padding-top: 1.5em;
+  padding-top: 0;
+  margin-top: -0.7em;
 }
 
 .remark-tabs .tab-pane [class*="bg-"] {
-  margin: -21px 0 0;
+  margin: 0.7em 0 0;
   padding: 15px;
 }
 
@@ -659,8 +658,8 @@
   margin: .5em 0;
 }
 
-.remark-pretty-panels .owl-controls,
-.remark-pretty-panels [class*="bg-"] .owl-controls {
+.Remark .owl-controls,
+.Remark [class*="bg-"] .owl-controls {
   background: transparent;
 }
 
@@ -1027,6 +1026,9 @@
   background-color: var(--cyan);
 }
 
+.Remark .remark-tabs [class*="bg-"] .compWrapper a:active,
+.Remark .remark-tabs [class*="bg-"] .compWrapper a:focus,
+.Remark .remark-tabs [class*="bg-"] .compWrapper a:hover,
 .Remark .modal .MainTitle .Titletxt {
   color: var(--white);
 }
@@ -1034,6 +1036,11 @@
 .Remark [class*="bg-"] .rss_hero_comp, 
 .Remark .modal .MainTitle ~ div:last-child {
   background-color: var(--white);
+}
+
+.Remark [class*="bg-"] [class*="slider"] {
+  border: 1px solid transparent;
+  margin-top: 1em;
 }
 
 .Remark .modal .MainTitle ~ div:last-child input[type="text"]::placeholder {
@@ -1049,6 +1056,7 @@
   left: 0;
 }
 
+.Remark .fa .owl-item .WordWrap > *,
 .Remark .fa .filterVerList .dropContent, 
 .Remark .fa .Subrow .filterVerList .dropContent,
 .Remark .fa .itemList a,
@@ -1056,6 +1064,25 @@
 .Remark .fa .tabmenu a {
   font-family: sans-serif;
   line-height: 1.25;
+}
+
+.Remark .remark-tabs [class*="bg-"] .moduleName a, 
+.Remark .remark-tabs [class*="bg-"] .authorName a, 
+.Remark .remark-tabs [class*="bg-"] .orgName span,
+.Remark .remark-tabs [class*="bg-"] .dateTime,
+.Remark .remark-tabs [class*="bg-"] .itemList a,
+.Remark .remark-tabs [class*="bg-"] .compWrapper a,
+.Remark .remark-tabs [class*="bg-"] .itemList .icon-screen-full:before, 
+.Remark .remark-tabs [class*="bg-"] .itemList .icon-screen-normal:before, 
+.Remark .remark-tabs [class*="bg-"] .itemList .icon-share-menu:before, 
+.Remark .remark-tabs [class*="bg-"] .itemList .icon-favourite-empty:before, 
+.Remark .remark-tabs [class*="bg-"] .itemList .icon-share-this:before {
+  color: var(--lighter);
+}
+
+.Remark [class*="bg-"] .event_title .Titlehide + .compWrapper > *,
+.Remark .remark-tabs [class*="bg-"] .itemList .dropdown a {
+  color: var(--dark);
 }
 
 .Remark .fa .itemList:not(:first-child) {
