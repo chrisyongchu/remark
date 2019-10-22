@@ -416,7 +416,6 @@
   position: relative;
 }
 
-#refreshTemplates .btn,
 .remark-timeline .sortable-item [class*="bg-"] {
   background-color: var(--white);
 }
