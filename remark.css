@@ -1,8 +1,8 @@
 /*!
- * Remark Theme v2.3.3
+ * Remark Theme v2.3.4
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 18/10/2019
+ * Last Update: 19/10/2019
  */
 
  :root {
@@ -25,10 +25,11 @@
   --info: #17a2b8;
   --warning: #ffc107;
   --danger: #dc3545;
-  --light: #f8f9fa;
+  --light: #ddd;
   --lighter: #f5f5f5;
   --dark: #343a40;
   --muted: #777;
+  --default-rgb-light: rgba(0,0,0,.03);
   --default-rgb: rgba(0,0,0,.125);
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
@@ -44,14 +45,16 @@
 *,
 *:after,
 *:before {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 .Remark .pageWrapper .row {
   padding: 1.5em 0 2.5em;
+}
+
+.Remark .pageWrapper .adminContent .row {
+  padding: 8px 0;
 }
 
 .Remark #gridContainer .row,
@@ -106,7 +109,7 @@
 }
 
 .Remark [id^="componentRender"] {
-  margin: 0.75em 0.5em;
+  margin: 0.75em 0.5em 1em;
 }
 
 .remark-pretty-panels .MainTitle,
@@ -118,10 +121,6 @@
   margin: 0;
 }
 
-.remark-pretty-panels .MainTitle {
-  background-color: transparent;
-  padding: 0;
-}
 .remark-pretty-panels.remark-ribbons .MainTitle,
 .remark-ribbons .MainTitle {
   background-color: transparent;
@@ -162,7 +161,7 @@
 }
 
 .remark-pretty-panels .remark-tabs .MainTitle ~ div {
-  background-color: transparent;
+  background-color: var(--white);
   border: 0;
   padding: 0 15px;
 }
@@ -183,7 +182,6 @@
 }
 
 .remark-pretty-panels .remark-tabs .MainTitle + .nav {
-  background-color: transparent;
   border: 0;
   margin: 0;
   padding: 15px 15px 0;
@@ -199,6 +197,10 @@
   padding-top: 15px;
 }
 
+.remark-tabs .tab-pane .MainTitle ~ div:last-child {
+  padding-top: 20px;
+}
+
 .remark-pretty-panels .MainTitle.Titlehide + .nav,
 .remark-pretty-panels .MainTitle.Titlehide + .nav:last-child,
 .remark-pretty-panels .MainTitle.Titlehide ~ div:last-child,
@@ -207,7 +209,8 @@
 .remark-ribbons .MainTitle.Titlehide + .nav:last-child,
 .remark-ribbons .MainTitle.Titlehide ~ div:last-child,
 .remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav,
-.remark-ribbons .MainTitle.Titlehide + .nav {
+.remark-ribbons .MainTitle.Titlehide + .nav,
+.remark-pretty-panels .masonry_comp .MainTitle ~ div:last-child {
   background: transparent;
   border: 0;
   padding: 15px;
@@ -292,7 +295,8 @@
 
 .toggle-tabbable,
 .toggle-timeline,
-.toggle-collapsible {
+.toggle-collapsible,
+.remark-pretty-panels .masonry_comp .MainTitle {
   background: transparent;
   border: 0;
 }
@@ -314,6 +318,8 @@
   top: 0;
 }
 
+.remark-pretty-panels .remark-timeline .MainTitle,
+.remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
 .remark-pretty-panels .remark-timeline [class*="bg-"] .MainTitle,
 .remark-pretty-panels .columns .thumbnail .titleOverlap .titleTransbg {
   background: transparent;
@@ -343,16 +349,14 @@
   padding-top: 15px;
 }
 
-.remark-pretty-panels [class*="bg-"] .MainTitle ~ div:last-child {
-  border-left: 1px solid rgba(0,0,0,.125);
-  border-bottom: 1px solid rgba(0,0,0,.125);
-  border-right: 1px solid rgba(0,0,0,.125);
+.remark-pretty-panels [class*="bg-"] .MainTitle.Titlehide ~ div:last-child {
+  border: 1px solid rgba(0,0,0,.125);
 }
 
 .remark-pretty-panels .sortable-item [class*="fa-"]:before,
 .remark-pretty-panels .sortable-item [class*="bg-"][class*="fa-"]:before {
-  font-size: 1em;
-  padding: 10px;
+  font-size: 1.25em;
+  padding: 0.9em 0.65em;
   position: absolute;
 }
 
@@ -373,12 +377,25 @@
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
 .remark-pretty-panels .rss_content_comp .media-body > *,
 .remark-pretty-panels [class*="cont_"] .itemList,
-.remark-pretty-panels .peoplePanelUser .thumbDes  {
+.remark-pretty-panels .peoplePanelUser .thumbDes,
+.remark-tabs [class*="fa-"] .pagination > .active > a,
+.remark-tabs [class*="fa-"] .pagination > li > a,
+.remark-tabs [class*="fa-"] .pagination > li > a:hover,
+.remark-tabs [class*="fa-"] .pagination > li > span,
+.remark-pretty-panels [class*="fa-"] .Titletxt,
+.Remark .fa [class*="event_"] .thumbDes,
+.Remark .fa .owl-item .WordWrap > *,
+.Remark .fa .filterVerList .dropContent, 
+.Remark .fa .Subrow .filterVerList .dropContent,
+.Remark .fa .itemList a,
+.Remark .fa .itemList > *,
+.Remark .fa .tabmenu a {
   font-family: sans-serif;
   line-height: 1.4;
 }
 
 .remark-pretty-panels .remark-timeline [class*="bg-"] .Titletxt,
+.remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child > *,
 .remark-pretty-panels .sortable-item .dark-icon[class*="fa-"]:before,
 .remark-pretty-panels .sortable-item [class*="fa-"]:before,
 .remark-pretty-panels .text-dark .itemList a,
@@ -387,9 +404,23 @@
   color: var(--dark);
 }
 
+.remark-pretty-panels .MainTitle {
+  padding: 0.5em 0 0.5em 0.9em;
+}
+
 .remark-pretty-panels .sortable-item [class*="fa-"] .MainTitle {
-  padding-left: 1.5em;
+  padding: 0.5em 0 0.5em 2.25em;
   border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.remark-timeline .sortable-item [class*="fa-"]:before,
+.remark-timeline .sortable-item [class*="bg-"][class*="fa-"]:before,
+.remark-timeline .sortable-item [class*="fa-"] .MainTitle {
+  padding: 0;
+}
+
+.remark-timeline .sortable-item [class*="fa-"] .MainTitle {
+  border: 0;
 }
 
 .remark-timeline .sortable-list {
@@ -555,13 +586,13 @@
 }
 
 .remark-tabs .nav-item.active .nav-link:before {
-  background-color: var(--cyan);
+  background-color: var(--default-rgb);
 }
 
 .remark-tabs .tab-content {
-  border-right: 1px solid var(--default-rgb);
-  border-bottom: 1px solid var(--default-rgb);
-  border-left: 1px solid var(--default-rgb);
+  border-right: 1px solid var(--light);
+  border-bottom: 1px solid var(--light);
+  border-left: 1px solid var(--light);
 }
 
 .remark-tabs .tab-pane {
@@ -621,15 +652,9 @@
 }
 
 [class*="Publications_Module_"].remark-pretty-panels .MainTitle,
-[class*="Publications_Module_"].remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
 [class*="Events_Module_"].remark-pretty-panels .MainTitle,
-[class*="Events_Module_"].remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
-.remark-pretty-panels .remark-timeline .MainTitle,
-.remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
-.remark-pretty-panels .masonry_comp .MainTitle,
-.remark-tabs .tab-pane div[class^="cont_"],
-.remark-pretty-panels .masonry_comp .MainTitle ~ div:last-child {
-  background: transparent;
+.remark-tabs .tab-pane div[class^="cont_"] {
+  background: var(--default-rgb);
   border: 0;
 }
 
@@ -637,6 +662,7 @@
   margin-top: 0 !important; /* override dumb !important definition in default Pub style sheet */
 }
 
+.remark-tabs .tab-pane [class*="bg-"] .MainTitle ~ div:last-child,
 [class*="Publications_Module_"] .ContactRightPanel .gridCommonSec {
   padding-top: 0;
 }
@@ -671,6 +697,15 @@
 .remark-pretty-panels [class*="bg-"] .MainTitle + .tabmenu {
   border-left: 1px solid var(--default-rgb);
   border-right: 1px solid var(--default-rgb);
+}
+
+.remark-collapsible .MainTitle {
+  padding-left: 0.9em;
+}
+
+.remark-timeline .MainTitle,
+.remark-timeline .MainTitle ~ div:last-child {
+  border: 0;
 }
 
 .remark-collapsible [type="button"]:hover {
@@ -715,7 +750,6 @@
 }
 
 .Remark .masonry_comp .MainTitle .Titletxt {
-  color: var(--dark);
   font-size: 2em;
   font-weight: 600;
   margin-left: 30px;
@@ -728,40 +762,11 @@
 
 .Remark .masonry_comp .item:hover {
   box-shadow: 0 10px 30px 5px rgba(0,0,0,.15);
-  color: var(--dark);
   border-color: #e3e3e3;
 }
 
-.Remark .masonry_comp .item:nth-child(8n) {
-  border: 1px solid var(--cyan);
-}
-
-.Remark .masonry_comp .item:nth-child(8n+1) {
-  border: 1px solid var(--cyan);
-}
-
-.Remark .masonry_comp .item:nth-child(8n+2) {
-  border: 1px solid var(--cyan);
-}
-
-.Remark .masonry_comp .item:nth-child(8n+3) {
-  border: 1px solid var(--cyan);
-}
-
-.Remark .masonry_comp .item:nth-child(8n+4) {
-  border: 1px solid var(--cyan);
-}
-
-.Remark .masonry_comp .item:nth-child(8n+5) {
-  border: 1px solid var(--cyan);
-}
-
-.Remark .masonry_comp .item:nth-child(8n+6) {
-  border: 1px solid var(--cyan);
-}
-
-.Remark .masonry_comp .item:nth-child(8n+7) {
-  border: 1px solid var(--cyan);
+.Remark .masonry_comp .item {
+  border: 1px solid var(--default-rgb);
 }
 
 .Remark .masonry_comp .item .TruncateTxt, 
@@ -772,13 +777,15 @@
   text-overflow: initial;
   white-space: normal !important;
 }
-.Remark .masonry_comp .item:nth-child(4) .TruncateTxt {
+.Remark .masonry_comp .item:nth-child(4) .TruncateTxt,
+.Remark .masonry_comp .item:nth-child(7) .TruncateTxt {
   color: var(--white);
 }
 
 @media (max-width: 1600px) {
   .Remark .masonry_comp .item .TruncateTxt,
-  .Remark .masonry_comp .item:nth-child(4) .TruncateTxt {
+  .Remark .masonry_comp .item:nth-child(4) .TruncateTxt,
+  .Remark .masonry_comp .item:nth-child(7) .TruncateTxt {
     color: var(--dark);
   }
   .Remark .contlist_masonry .columns .item {
@@ -832,28 +839,31 @@
     padding: 0;
     position: relative;
   }
+  .Remark .contlist_masonry .item:nth-child(7),
   .Remark .contlist_masonry .item:nth-child(4) {
     width: 61.20% !important;
   }
   .Remark .contlist_masonry .item .icon_content + p,
+  .Remark .contlist_masonry .item:nth-child(7) > .padd10,
   .Remark .contlist_masonry .item:nth-child(4) > .padd10 {
     display: none;
   }
+  .Remark .contlist_masonry .item:nth-child(7) > a,
   .Remark .contlist_masonry .item:nth-child(4) > a {
-    background-color: #6ec4e8;
+    background-color: var(--default-rgb);
+    border-radius: 0;
     height: 362px;
     position: relative;
   }
-  .Remark .home.pUser .contlist_masonry .item:nth-child(4) > a,
-  .Remark .news--grid .contlist_masonry .item:nth-child(4) > a {
-    height: 280px;
-  }
+  .Remark .contlist_masonry .item:nth-child(7):hover,
   .Remark .contlist_masonry .item:nth-child(4):hover {
-    border-color: #6ec4e8;
+    border-color: var(--default-rgb);
   }
+  .Remark .contlist_masonry .item:nth-child(7) img,
   .Remark .contlist_masonry .item:nth-child(4) img {
     visibility: hidden;
   }
+  .Remark .contlist_masonry .item:nth-child(7) .titleOverlap,
   .Remark .contlist_masonry .item:nth-child(4) .titleOverlap {
     color: #fff;
     font-size: 2em;
@@ -1040,7 +1050,7 @@
 
 .Remark [class*="bg-"] [class*="slider"] {
   border: 1px solid transparent;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
 .Remark .modal .MainTitle ~ div:last-child input[type="text"]::placeholder {
@@ -1054,16 +1064,6 @@
 .Remark .modal .hq-form-control:focus ~ label,
 .Remark .modal .has-content.hq-form-control ~ label {
   left: 0;
-}
-
-.Remark .fa .owl-item .WordWrap > *,
-.Remark .fa .filterVerList .dropContent, 
-.Remark .fa .Subrow .filterVerList .dropContent,
-.Remark .fa .itemList a,
-.Remark .fa .itemList > *,
-.Remark .fa .tabmenu a {
-  font-family: sans-serif;
-  line-height: 1.25;
 }
 
 .Remark .remark-tabs [class*="bg-"] .moduleName a, 
@@ -1088,4 +1088,3 @@
 .Remark .fa .itemList:not(:first-child) {
   margin-top: .5em;
 }
- 
