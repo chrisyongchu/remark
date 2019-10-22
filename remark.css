@@ -187,16 +187,6 @@
   padding: 15px 15px 0;
 }
 
-.remark-pretty-panels .MainTitle + .nav:last-child,
-.remark-pretty-panels .MainTitle ~ div:last-child,
-.remark-pretty-panels.remark-ribbons .MainTitle + .nav:last-child,
-.remark-pretty-panels.remark-ribbons .MainTitle ~ div:last-child,
-.remark-ribbons .MainTitle + .nav:last-child,
-.remark-ribbons .MainTitle ~ div:last-child {
-  border-bottom: 1px solid rgba(0,0,0,.125);
-  padding-top: 15px;
-}
-
 .remark-tabs .tab-pane .MainTitle ~ div:last-child {
   padding-top: 20px;
 }
@@ -342,11 +332,6 @@
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-}
-
-.remark-pretty-panels [class*="fa-"] [class*="cont_"] .compWrapper,
-.remark-pretty-panels [class*="bg-"] .MainTitle ~ div:last-child {
-  padding-top: 15px;
 }
 
 .remark-pretty-panels [class*="bg-"] .MainTitle.Titlehide ~ div:last-child {
@@ -566,7 +551,6 @@
   border-top-color: transparent;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  color: var(--dark);
   position: relative;
 }
 
@@ -654,7 +638,7 @@
 [class*="Publications_Module_"].remark-pretty-panels .MainTitle,
 [class*="Events_Module_"].remark-pretty-panels .MainTitle,
 .remark-tabs .tab-pane div[class^="cont_"] {
-  background: var(--default-rgb);
+  background: var(--lighter);
   border: 0;
 }
 
@@ -780,6 +764,7 @@
 .Remark .masonry_comp .item:nth-child(4) .TruncateTxt,
 .Remark .masonry_comp .item:nth-child(7) .TruncateTxt {
   color: var(--white);
+  padding-left: 0.5em;
 }
 
 @media (max-width: 1600px) {
