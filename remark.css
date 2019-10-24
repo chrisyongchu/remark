@@ -1,8 +1,8 @@
 /*!
- * Remark Theme v2.3.4
+ * Remark Theme v2.3.5
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 19/10/2019
+ * Last Update: 23/10/2019
  */
 
  :root {
@@ -105,6 +105,34 @@
     margin-left: auto;
     margin-right: auto;
     width: var(--breakpoint-xl) !important;
+  }
+}
+
+.GridCol2.col_ls > .column, 
+.GridCol2.col_ls.swipeCol .cell2,
+.GridCol2.col_sl > .column.cell2 {
+  width: 66.5%;
+}
+
+.GridCol2.col_ls > .column.cell2, 
+.GridCol2.col_ls.swipeCol .cell1 {
+  width: 33.5%;
+}
+
+.GridCol2.col_sl > .column {
+  margin-left: 0%;
+  width: 33.5%;
+}
+
+
+@media (max-width: 639px) {
+  .GridCol2.col_ls > .column, 
+  .GridCol2.col_ls.swipeCol .cell2,
+  .GridCol2.col_sl > .column.cell2,
+  .GridCol2.col_ls > .column.cell2, 
+  .GridCol2.col_ls.swipeCol .cell1,
+  .GridCol2.col_sl > .column {
+    width: 100%;
   }
 }
 
@@ -356,25 +384,31 @@
 }
 
 .remark-pretty-panels [class*="bg-"] .Titlehide + .compWrapper > *,
-.remark-pretty-panels .tab-pane [class*="bg-"] .compWrapper > *,
 .remark-pretty-panels [class*="bg-"] .rss_content_comp .dateTime,
 .remark-pretty-panels [class*="bg-"] .MainTitle .icon-rss-boxed,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
 .remark-pretty-panels .rss_content_comp .media-body > *,
 .remark-pretty-panels [class*="cont_"] .itemList,
 .remark-pretty-panels .peoplePanelUser .thumbDes,
+.remark-pretty-panels .fa .MainTitle ~ .compWrapper,
+.remark-pretty-panels .fa .btn,
+.remark-pretty-panels [class*="fa-"] .Titletxt,
 .remark-tabs [class*="fa-"] .pagination > .active > a,
 .remark-tabs [class*="fa-"] .pagination > li > a,
 .remark-tabs [class*="fa-"] .pagination > li > a:hover,
 .remark-tabs [class*="fa-"] .pagination > li > span,
-.remark-pretty-panels [class*="fa-"] .Titletxt,
+.remark-tabs .tab-pane [class*="bg-"] .compWrapper > *,
 .Remark .fa [class*="event_"] .thumbDes,
 .Remark .fa .owl-item .WordWrap > *,
 .Remark .fa .filterVerList .dropContent, 
 .Remark .fa .Subrow .filterVerList .dropContent,
 .Remark .fa .itemList a,
 .Remark .fa .itemList > *,
-.Remark .fa .tabmenu a {
+.Remark .fa .tabmenu a,
+.Remark .fa .list-group,
+.Remark .fa .panel-body,
+.Remark .fa .recentActivityTab,
+.Remark .fa .modal {
   font-family: sans-serif;
   line-height: 1.4;
 }
@@ -400,12 +434,27 @@
 
 .remark-timeline .sortable-item [class*="fa-"]:before,
 .remark-timeline .sortable-item [class*="bg-"][class*="fa-"]:before,
-.remark-timeline .sortable-item [class*="fa-"] .MainTitle {
+.remark-timeline .sortable-item [class*="fa-"] .MainTitle,
+.Remark .ContTaxMap .row, 
+.Remark .pageWrapper .row.gridCommonSec {
   padding: 0;
+}
+
+.Remark .pageWrapper .row.gridCommonSec {
+  padding-bottom: 1em;
 }
 
 .remark-timeline .sortable-item [class*="fa-"] .MainTitle {
   border: 0;
+}
+
+.Remark .remark-pretty-panels .MainTitle ~ div:not(:last-child) {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.Remark .remark-pretty-panels .MainTitle ~ div:nth-last-child(2) {
+  border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
 .remark-timeline .sortable-list {
@@ -416,6 +465,7 @@
   position: relative;
 }
 
+.Remark .MainTitle + .row, 
 .remark-timeline .sortable-item [class*="bg-"] {
   background-color: var(--white);
 }
@@ -878,9 +928,16 @@
   font-size: 1em;
 }
 
+.Remark .ppldir-peopleEmail a:before {
+  content: "\f0e0";
+  font-family: "FontAwesome";
+  margin-right: 0.35em;
+}
+
 .Remark .ppldir-thumbContainer.five .ppldir-thumbOuter,
 .Remark .ppldir-thumbContainer .ppldir-thumbOuter { 
   text-align: left; 
+  padding: 1em;
 }
 
 .Remark .ppldir-thumbContainer.one .ppldir-thumbOuter,
@@ -892,7 +949,7 @@
   border: 1px solid var(--cyan);
   box-shadow: 0 1px 2px rgba(0,0,0,.05);
   margin: 0 .5em 1em;
-  padding: 0;
+  padding: 0.5em;
   transition: border-color .35s ease-out,box-shadow .35s ease-out;
   width: 440px;
 }
@@ -973,17 +1030,6 @@
     display: block;
     text-align: center;
     position: relative;
-  }
-  .Remark .ppldir-peopleEmail a:before {
-    position: absolute;
-    left: 0;
-    right: 0;
-  }
-  .ppldir-peopleCont {
-    display: inline;
-  }
-  .ppldir-officeCont {
-    margin-left: 1.5em;
   }
 }
 
@@ -1071,4 +1117,8 @@
 
 .Remark .fa .itemList:not(:first-child) {
   margin-top: .5em;
+}
+
+.Remark .adminQuicksearchAcc > li > a .icon {
+  margin-right: 0.5em;
 }
