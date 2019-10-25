@@ -2,7 +2,7 @@
  * Remark Theme v2.3.4
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 23/10/2019
+ * Last Update: 25/10/2019
  */
 
  :root {
@@ -138,6 +138,23 @@
 
 .Remark [id^="componentRender"] {
   margin: 0.75em 0.5em 1em;
+}
+
+.Remark .pageWrapper .row.fullwidth {
+  margin-bottom: -5px;
+  padding: 0;
+}
+
+.Remark .container .fullwidth .grid {
+  max-width: 100%;
+}
+
+.Remark .fullwidth [id^="componentRender"] {
+  margin: 0;
+}
+
+.remark-pretty-panels .fullwidth .MainTitle.Titlehide ~ div:last-child {
+  padding: 0;
 }
 
 .remark-pretty-panels .MainTitle,
