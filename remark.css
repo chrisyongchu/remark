@@ -1,8 +1,8 @@
 /*!
- * Remark Theme v2.3.2
+ * Remark Theme v2.3.4
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 12/10/2019
+ * Last Update: 25/10/2019
  */
 
  :root {
@@ -25,10 +25,11 @@
   --info: #17a2b8;
   --warning: #ffc107;
   --danger: #dc3545;
-  --light: #f8f9fa;
+  --light: #ddd;
   --lighter: #f5f5f5;
   --dark: #343a40;
   --muted: #777;
+  --default-rgb-light: rgba(0,0,0,.03);
   --default-rgb: rgba(0,0,0,.125);
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
@@ -44,10 +45,21 @@
 *,
 *:after,
 *:before {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.Remark .pageWrapper .row {
+  padding: 1.5em 0 2.5em;
+}
+
+.Remark .pageWrapper .adminContent .row {
+  padding: 8px 0;
+}
+
+.Remark #gridContainer .row,
+.Remark .pageWrapper .row.remark-timeline {
+  padding: 0;
 }
 
 #loadMoreBtn {
@@ -96,10 +108,53 @@
   }
 }
 
-.remark-pretty-panels [id^="componentRender"],
-.remark-pretty-panels.remark-ribbons [id^="componentRender"],
-.remark-ribbons [id^="componentRender"] {
-  margin: 10px;
+.GridCol2.col_ls > .column, 
+.GridCol2.col_ls.swipeCol .cell2,
+.GridCol2.col_sl > .column.cell2 {
+  width: 66.5%;
+}
+
+.GridCol2.col_ls > .column.cell2, 
+.GridCol2.col_ls.swipeCol .cell1 {
+  width: 33.5%;
+}
+
+.GridCol2.col_sl > .column {
+  margin-left: 0%;
+  width: 33.5%;
+}
+
+
+@media (max-width: 639px) {
+  .GridCol2.col_ls > .column, 
+  .GridCol2.col_ls.swipeCol .cell2,
+  .GridCol2.col_sl > .column.cell2,
+  .GridCol2.col_ls > .column.cell2, 
+  .GridCol2.col_ls.swipeCol .cell1,
+  .GridCol2.col_sl > .column {
+    width: 100%;
+  }
+}
+
+.Remark [id^="componentRender"] {
+  margin: 0.75em 0.5em 1em;
+}
+
+.Remark .pageWrapper .row.fullwidth {
+  margin-bottom: -5px;
+  padding: 0;
+}
+
+.Remark .container .fullwidth .grid {
+  max-width: 100%;
+}
+
+.Remark .fullwidth [id^="componentRender"] {
+  margin: 0;
+}
+
+.remark-pretty-panels .fullwidth .MainTitle.Titlehide ~ div:last-child {
+  padding: 0;
 }
 
 .remark-pretty-panels .MainTitle,
@@ -111,10 +166,6 @@
   margin: 0;
 }
 
-.remark-pretty-panels .MainTitle {
-  background-color: transparent;
-  padding: 0;
-}
 .remark-pretty-panels.remark-ribbons .MainTitle,
 .remark-ribbons .MainTitle {
   background-color: transparent;
@@ -124,6 +175,7 @@
   position: relative;
 }
 
+.remark-timeline [class*="bg-"] .MainTitle ~ div:last-child,
 .remark-pretty-panels .MainTitle.Titlehide,
 .remark-pretty-panels.remark-ribbons .MainTitle.Titlehide,
 .remark-ribbons .MainTitle.Titlehide {
@@ -154,7 +206,7 @@
 }
 
 .remark-pretty-panels .remark-tabs .MainTitle ~ div {
-  background-color: transparent;
+  background-color: var(--white);
   border: 0;
   padding: 0 15px;
 }
@@ -175,20 +227,13 @@
 }
 
 .remark-pretty-panels .remark-tabs .MainTitle + .nav {
-  background-color: transparent;
   border: 0;
   margin: 0;
   padding: 15px 15px 0;
 }
 
-.remark-pretty-panels .MainTitle + .nav:last-child,
-.remark-pretty-panels .MainTitle ~ div:last-child,
-.remark-pretty-panels.remark-ribbons .MainTitle + .nav:last-child,
-.remark-pretty-panels.remark-ribbons .MainTitle ~ div:last-child,
-.remark-ribbons .MainTitle + .nav:last-child,
-.remark-ribbons .MainTitle ~ div:last-child {
-  border-bottom: 1px solid rgba(0,0,0,.125);
-  padding-top: 15px;
+.remark-tabs .tab-pane .MainTitle ~ div:last-child {
+  padding-top: 20px;
 }
 
 .remark-pretty-panels .MainTitle.Titlehide + .nav,
@@ -199,7 +244,8 @@
 .remark-ribbons .MainTitle.Titlehide + .nav:last-child,
 .remark-ribbons .MainTitle.Titlehide ~ div:last-child,
 .remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav,
-.remark-ribbons .MainTitle.Titlehide + .nav {
+.remark-ribbons .MainTitle.Titlehide + .nav,
+.remark-pretty-panels .masonry_comp .MainTitle ~ div:last-child {
   background: transparent;
   border: 0;
   padding: 15px;
@@ -231,7 +277,7 @@
 .remark-pretty-panels.remark-ribbons .Titletxt,
 .remark-ribbons .Titletxt {
   border-bottom-color: transparent;
-  margin: 0 10px;
+  margin: 0 0.15em;
 }
 
 .remark-pretty-panels.remark-ribbons .Titletxt,
@@ -284,7 +330,8 @@
 
 .toggle-tabbable,
 .toggle-timeline,
-.toggle-collapsible {
+.toggle-collapsible,
+.remark-pretty-panels .masonry_comp .MainTitle {
   background: transparent;
   border: 0;
 }
@@ -305,9 +352,14 @@
   bottom: auto;
   top: 0;
 }
+
+.remark-pretty-panels .remark-timeline .MainTitle,
+.remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
+.remark-pretty-panels .remark-timeline [class*="bg-"] .MainTitle,
 .remark-pretty-panels .columns .thumbnail .titleOverlap .titleTransbg {
   background: transparent;
 }
+
 .remark-pretty-panels .columns .thumbnail .titleOverlap {
   color: var(--dark);
   font-size: .975em;
@@ -315,62 +367,110 @@
 }
 
 .remark-pretty-panels .sortable-list .fa {
-  margin-top: 10px;
+  display: block;
+  margin-top: 0.75em;
   position: relative;
 }
 
 .remark-pretty-panels .fa {
-  display: block;
   font: normal normal normal 14px/1 "FontAwesome";
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
 }
 
-.remark-pretty-panels [class*="fa-"] [class*="cont_"] .compWrapper,
-.remark-pretty-panels [class*="bg-"] .MainTitle ~ div:last-child {
-  padding-top: 15px;
+.remark-pretty-panels [class*="bg-"] .MainTitle.Titlehide ~ div:last-child {
+  border: 1px solid rgba(0,0,0,.125);
 }
 
 .remark-pretty-panels .sortable-item [class*="fa-"]:before,
 .remark-pretty-panels .sortable-item [class*="bg-"][class*="fa-"]:before {
-  font-size: 1em;
-  padding: 10px;
+  font-size: 1.25em;
+  padding: 0.9em 0.65em;
   position: absolute;
 }
 
-.remark-tabs .peoplePanelUser .thumbDes > *,
+.remark-tabs [class*="bg-"] .peoplePanelUser .thumbDes > *,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titlehide + .compWrapper > *,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
 .remark-tabs .tab-pane [class*="bg-"] .compWrapper > *,
-.remark-pretty-panels [class*="bg-"] .rss_content_comp .dateTime,
+.remark-pretty-panels [class*="bg-"] .rss_content_comp .MainTitle.Titlehide .dateTime,
 .remark-pretty-panels [class*="bg-"] .MainTitle .icon-rss-boxed,
 .remark-pretty-panels .sortable-item [class*="bg-"][class*="fa-"]:before {
   color: var(--white);
 }
 
 .remark-pretty-panels [class*="bg-"] .Titlehide + .compWrapper > *,
-.remark-pretty-panels .tab-pane [class*="bg-"] .compWrapper > *,
 .remark-pretty-panels [class*="bg-"] .rss_content_comp .dateTime,
 .remark-pretty-panels [class*="bg-"] .MainTitle .icon-rss-boxed,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
 .remark-pretty-panels .rss_content_comp .media-body > *,
 .remark-pretty-panels [class*="cont_"] .itemList,
-.remark-pretty-panels .peoplePanelUser .thumbDes  {
+.remark-pretty-panels .peoplePanelUser .thumbDes,
+.remark-pretty-panels .fa .MainTitle ~ .compWrapper,
+.remark-pretty-panels .fa .btn,
+.remark-pretty-panels [class*="fa-"] .Titletxt,
+.remark-tabs [class*="fa-"] .pagination > .active > a,
+.remark-tabs [class*="fa-"] .pagination > li > a,
+.remark-tabs [class*="fa-"] .pagination > li > a:hover,
+.remark-tabs [class*="fa-"] .pagination > li > span,
+.remark-tabs .tab-pane [class*="bg-"] .compWrapper > *,
+.Remark .fa [class*="event_"] .thumbDes,
+.Remark .fa .owl-item .WordWrap > *,
+.Remark .fa .filterVerList .dropContent, 
+.Remark .fa .Subrow .filterVerList .dropContent,
+.Remark .fa .itemList a,
+.Remark .fa .itemList > *,
+.Remark .fa .tabmenu a,
+.Remark .fa .list-group,
+.Remark .fa .panel-body,
+.Remark .fa .recentActivityTab,
+.Remark .fa .modal {
   font-family: sans-serif;
   line-height: 1.4;
 }
 
 .remark-pretty-panels .remark-timeline [class*="bg-"] .Titletxt,
+.remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child > *,
 .remark-pretty-panels .sortable-item .dark-icon[class*="fa-"]:before,
 .remark-pretty-panels .sortable-item [class*="fa-"]:before,
 .remark-pretty-panels .text-dark .itemList a,
+.remark-pretty-panels [class*="bg-"] .rss_content_comp .MainTitle .dateTime,
 .remark-pretty-panels .text-dark .MainTitle .Titletxt {
   color: var(--dark);
 }
 
+.remark-pretty-panels .MainTitle {
+  padding: 0.5em 0 0.5em 0.9em;
+}
+
 .remark-pretty-panels .sortable-item [class*="fa-"] .MainTitle {
-  padding-left: 1.5em;
+  padding: 0.5em 0 0.5em 2.25em;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.remark-timeline .sortable-item [class*="fa-"]:before,
+.remark-timeline .sortable-item [class*="bg-"][class*="fa-"]:before,
+.remark-timeline .sortable-item [class*="fa-"] .MainTitle,
+.Remark .ContTaxMap .row, 
+.Remark .pageWrapper .row.gridCommonSec {
+  padding: 0;
+}
+
+.Remark .pageWrapper .row.gridCommonSec {
+  padding-bottom: 1em;
+}
+
+.remark-timeline .sortable-item [class*="fa-"] .MainTitle {
+  border: 0;
+}
+
+.Remark .remark-pretty-panels .MainTitle ~ div:not(:last-child) {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.Remark .remark-pretty-panels .MainTitle ~ div:nth-last-child(2) {
   border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
@@ -382,7 +482,7 @@
   position: relative;
 }
 
-#refreshTemplates .btn,
+.Remark .MainTitle + .row, 
 .remark-timeline .sortable-item [class*="bg-"] {
   background-color: var(--white);
 }
@@ -504,7 +604,11 @@
 }
 
 .remark-tabs {
-  margin: 1.5em 0;
+  margin: 0.75em 0;
+}
+
+.remark-tabs.column {
+  padding: 0 0.5em;
 }
 
 .remark-tabs .nav-item .nav-link {
@@ -513,7 +617,6 @@
   border-top-color: transparent;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  color: var(--dark);
   position: relative;
 }
 
@@ -533,21 +636,22 @@
 }
 
 .remark-tabs .nav-item.active .nav-link:before {
-  background-color: var(--cyan);
+  background-color: var(--default-rgb);
 }
 
 .remark-tabs .tab-content {
-  border-right: 1px solid var(--default-rgb);
-  border-bottom: 1px solid var(--default-rgb);
-  border-left: 1px solid var(--default-rgb);
+  border-right: 1px solid var(--light);
+  border-bottom: 1px solid var(--light);
+  border-left: 1px solid var(--light);
 }
 
 .remark-tabs .tab-pane {
-  padding-top: 1.5em;
+  padding-top: 0;
+  margin-top: -0.7em;
 }
 
 .remark-tabs .tab-pane [class*="bg-"] {
-  margin: -21px 0 0;
+  margin: 0.7em 0 0;
   padding: 15px;
 }
 
@@ -555,6 +659,8 @@
 .remark-tabs .tab-pane [class*="fa-"]:before,
 .remark-pretty-panels .lazyload.ppl_vert .thumbOuter:nth-child(n+20),
 .remark-pretty-panels .lazyload.ppl_vert .thumbOuter,
+.remark-tabs .tab-content .sortable-item.tab-pane.fade,
+.remark-tabs .tab-content .sortable-item,
 .remark-tabs .tab-pane .MainTitle,
 #loadMorebtn.hide {
   display: none;
@@ -566,8 +672,23 @@
   border-bottom-color: var(--white);
 }
 
+.remark-tabs .tab-content .sortable-item.tab-pane.fade.active,
+.remark-tabs .tab-content .sortable-item.tab-pane.fade.in,
+.remark-tabs .tab-content .sortable-item.tab-pane.fade.active.in,
+.remark-tabs .tab-content .sortable-item.tab-pane,
 .lazyload.ppl_vert .thumbOuter.active {
   display: block;
+}
+
+.remark-tabs .tab-content .loadingsection {
+  border: 0;
+  box-shadow: none;
+  margin-top: 0;
+  padding-top: 1em;
+}
+
+.remark-tabs .tab-content .loadingsection img {
+  top: 60%;
 }
 
 .remark-pretty-panels .peoplePanelUser .thumbDes .email {
@@ -581,14 +702,23 @@
 }
 
 [class*="Publications_Module_"].remark-pretty-panels .MainTitle,
-[class*="Publications_Module_"].remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
-.remark-pretty-panels .remark-timeline .MainTitle,
-.remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
-.remark-pretty-panels .masonry_comp .MainTitle,
-.remark-tabs .tab-pane div[class^="cont_"],
-.remark-pretty-panels .masonry_comp .MainTitle ~ div:last-child {
-  background: transparent;
+[class*="Events_Module_"].remark-pretty-panels .MainTitle,
+.remark-tabs .tab-pane div[class^="cont_"] {
+  background: var(--lighter);
   border: 0;
+}
+
+[class*="Publications_Module_"] .headingAnchor {
+  margin-top: 0 !important; /* override dumb !important definition in default Pub style sheet */
+}
+
+.remark-tabs .tab-pane [class*="bg-"] .MainTitle ~ div:last-child,
+[class*="Publications_Module_"] .ContactRightPanel .gridCommonSec {
+  padding-top: 0;
+}
+
+[class*="Publications_Module_"] .ContactRightPanel .gridCommonSec .MainTitle .Titletxt {
+  padding-bottom: 0;
 }
 
 .remark-pretty-panels [class*="bg-"] .Titlehide + .compWrapper {
@@ -601,16 +731,31 @@
 
 .remark-pretty-panels [class*="bg-"] .itemList + hr {
   border-color: transparent;
-  margin: 0;
+  margin: .5em 0;
 }
 
-.remark-pretty-panels .owl-controls,
-.remark-pretty-panels [class*="bg-"] .owl-controls {
+.Remark .owl-controls,
+.Remark [class*="bg-"] .owl-controls {
   background: transparent;
 }
 
 .remark-pretty-panels .masonry_comp {
   position: relative;
+}
+
+.remark-pretty-panels .MainTitle + .tabmenu,
+.remark-pretty-panels [class*="bg-"] .MainTitle + .tabmenu {
+  border-left: 1px solid var(--default-rgb);
+  border-right: 1px solid var(--default-rgb);
+}
+
+.remark-collapsible .MainTitle {
+  padding-left: 0.9em;
+}
+
+.remark-timeline .MainTitle,
+.remark-timeline .MainTitle ~ div:last-child {
+  border: 0;
 }
 
 .remark-collapsible [type="button"]:hover {
@@ -628,6 +773,12 @@
   right: 10px;
 }
 
+.remark-collapsible [aria-expanded="false"] .Titletxt + .icon-rss-boxed,
+.remark-collapsible [aria-expanded="true"] .Titletxt + .icon-rss-boxed {
+  margin-right: 2.25em;
+  margin-top: -39px;
+}
+
 .remark-collapsible [aria-expanded="true"] .Titletxt:after {
   content: "\f068";
 }
@@ -636,72 +787,68 @@
   content: "\f067";
 }
 
-.remark-pretty-panels .contlist_masonry .columns .thumbnail img {
+.Remark .contlist_masonry .columns .thumbnail img {
   border-radius: 0;
 }
 
-.remark-pretty-panels .contlist_masonry .item img {
+.Remark .contlist_masonry .item img {
   visibility: hidden;
 }
 
-.remark-pretty-panels .masonry_comp {
+.Remark .masonry_comp {
   position: relative;
 }
 
-.remark-pretty-panels .masonry_comp .MainTitle .Titletxt {
-  color: var(--dark);
+.Remark .masonry_comp .MainTitle .Titletxt {
   font-size: 2em;
   font-weight: 600;
   margin-left: 30px;
 }
 
-.remark-pretty-panels .masonry_comp .item {
+.Remark .masonry_comp .item {
   background-color: var(--white);
   transition: color .35s ease-out,border-color .35s ease-out,box-shadow .35s ease-out;
 }
 
-.remark-pretty-panels .masonry_comp .item:hover {
+.Remark .masonry_comp .item:hover {
   box-shadow: 0 10px 30px 5px rgba(0,0,0,.15);
-  color: var(--dark);
   border-color: #e3e3e3;
 }
 
-.remark-pretty-panels .masonry_comp .item:nth-child(8n) {
-  border: 1px solid var(--cyan);
+.Remark .masonry_comp .item {
+  border: 1px solid var(--default-rgb);
 }
 
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+1) {
-  border: 1px solid var(--cyan);
-}
-
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+2) {
-  border: 1px solid var(--cyan);
-}
-
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+3) {
-  border: 1px solid var(--cyan);
-}
-
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+4) {
-  border: 1px solid var(--cyan);
-}
-
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+5) {
-  border: 1px solid var(--cyan);
-}
-
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+6) {
-  border: 1px solid var(--cyan);
-}
-
-.remark-pretty-panels .masonry_comp .item:nth-child(8n+7) {
-  border: 1px solid var(--cyan);
-}
-
-.remark-pretty-panels .masonry_comp .item .TruncateTxt, .masonry_comp .item .TruncateLink {
+.Remark .masonry_comp .item .TruncateTxt, 
+.Remark .masonry_comp .item .TruncateLink {
+  color: var(--muted);
+  font-size: 1.75em;
   font-weight: 400;
   text-overflow: initial;
   white-space: normal !important;
+}
+.Remark .masonry_comp .item:nth-child(4) .TruncateTxt,
+.Remark .masonry_comp .item:nth-child(7) .TruncateTxt {
+  color: var(--white);
+  padding-left: 0.5em;
+}
+
+@media (max-width: 1600px) {
+  .Remark .masonry_comp .item .TruncateTxt,
+  .Remark .masonry_comp .item:nth-child(4) .TruncateTxt,
+  .Remark .masonry_comp .item:nth-child(7) .TruncateTxt {
+    color: var(--dark);
+  }
+  .Remark .contlist_masonry .columns .item {
+    display: block;
+  }
+  .Remark .masonry_comp .item .TruncateTxt, 
+  .Remark .masonry_comp .item .TruncateLink {
+    font-size: 1em;
+  }
+  .Remark .contlist_masonry .item .icon_content + p {
+    display: none;
+  }
 }
 
 .remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes > *,
@@ -718,7 +865,7 @@
 }
 
 @media (min-width: 1600px) {
-  .remark-pretty-panels .contlist_masonry .item {
+  .Remark .contlist_masonry .item {
     border-radius: 0;
     display: inline-block;
     float: left !important;
@@ -728,14 +875,14 @@
     position: static !important;
     width: 30% !important;
   }
-  .remark-pretty-panels .masonry_comp .MainTitle {
+  .Remark .masonry_comp .MainTitle {
     position: absolute;
     top: 10px;
     right: 30px;
     writing-mode: vertical-rl;
     text-orientation: mixed;
   }
-  .remark-pretty-panels .masonry_comp .MainTitle .Titletxt {
+  .Remark .masonry_comp .MainTitle .Titletxt {
     color: var(--dark);
     font-size: 6em;
     font-weight: 600;
@@ -743,35 +890,39 @@
     padding: 0;
     position: relative;
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4) {
+  .Remark .contlist_masonry .item:nth-child(7),
+  .Remark .contlist_masonry .item:nth-child(4) {
     width: 61.20% !important;
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4) > .padd10 {
+  .Remark .contlist_masonry .item .icon_content + p,
+  .Remark .contlist_masonry .item:nth-child(7) > .padd10,
+  .Remark .contlist_masonry .item:nth-child(4) > .padd10 {
     display: none;
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4) > a {
-    background-color: #6ec4e8;
+  .Remark .contlist_masonry .item:nth-child(7) > a,
+  .Remark .contlist_masonry .item:nth-child(4) > a {
+    background-color: var(--default-rgb);
+    border-radius: 0;
     height: 362px;
     position: relative;
   }
-  .remark-pretty-panels .home.pUser .contlist_masonry .item:nth-child(4) > a,
-  .remark-pretty-panels .news--grid .contlist_masonry .item:nth-child(4) > a {
-    height: 280px;
+  .Remark .contlist_masonry .item:nth-child(7):hover,
+  .Remark .contlist_masonry .item:nth-child(4):hover {
+    border-color: var(--default-rgb);
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4):hover {
-    border-color: #6ec4e8;
-  }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4) img {
+  .Remark .contlist_masonry .item:nth-child(7) img,
+  .Remark .contlist_masonry .item:nth-child(4) img {
     visibility: hidden;
   }
-  .remark-pretty-panels .contlist_masonry .item:nth-child(4) .titleOverlap {
+  .Remark .contlist_masonry .item:nth-child(7) .titleOverlap,
+  .Remark .contlist_masonry .item:nth-child(4) .titleOverlap {
     color: #fff;
     font-size: 2em;
     position: absolute;
     top: auto;
     bottom: 15px;
   }
-  .remark-pretty-panels .contlist_masonry .item .padd10 {
+  .Remark .contlist_masonry .item .padd10 {
     padding: 10px 15px;
   }
 }
@@ -794,9 +945,16 @@
   font-size: 1em;
 }
 
+.Remark .ppldir-peopleEmail a:before {
+  content: "\f0e0";
+  font-family: "FontAwesome";
+  margin-right: 0.35em;
+}
+
 .Remark .ppldir-thumbContainer.five .ppldir-thumbOuter,
 .Remark .ppldir-thumbContainer .ppldir-thumbOuter { 
   text-align: left; 
+  padding: 1em;
 }
 
 .Remark .ppldir-thumbContainer.one .ppldir-thumbOuter,
@@ -808,7 +966,7 @@
   border: 1px solid var(--cyan);
   box-shadow: 0 1px 2px rgba(0,0,0,.05);
   margin: 0 .5em 1em;
-  padding: 0;
+  padding: 0.5em;
   transition: border-color .35s ease-out,box-shadow .35s ease-out;
   width: 440px;
 }
@@ -846,16 +1004,6 @@
 .Remark .ppldir-peopleRole {
   font-size: 1em; 
   font-weight: 300;
-}
-
-.Remark .ppldir-peopleEmail a {
-  visibility: hidden;
-}
-
-.Remark .ppldir-peopleEmail a:before {
-  content: "\f0e0";
-  font-family: "FontAwesome";
-  visibility: visible;
 }
 
 .Remark .five .ppldir-thumbOuter:nth-child(5n+1), 
@@ -900,17 +1048,6 @@
     text-align: center;
     position: relative;
   }
-  .Remark .ppldir-peopleEmail a:before {
-    position: absolute;
-    left: 0;
-    right: 0;
-  }
-  .ppldir-peopleCont {
-    display: inline;
-  }
-  .ppldir-officeCont {
-    margin-left: 1.5em;
-  }
 }
 
 @media (max-width: 1400px) {
@@ -919,27 +1056,86 @@
   }
 }
 
-/* Overwrite default Publisher Bootstrap Contextual Colors */
-.bg-primary {
-  background-color: var(--primary);
+.Remark .checkbox input[type="checkbox"],
+.Remark .form-group .checkbox input[type="checkbox"],
+.Remark .form-group .checkbox-inline input[type="checkbox"],
+.Remark .form-group .radio-inline input[type="radio"],
+.Remark .form-group .radio input[type="radio"] {
+  width: auto;
 }
 
-.bg-success {
-  background-color: var(--success);
+.Remark .modal {
+  background: rgba(0,0,0,.25);
+  margin: 0;
 }
 
-.bg-info {
-  background-color: var(--info);
+.Remark .modal .MainTitle,
+.Remark .modal .MainTitle ~ div:last-child {
+  margin: 0 auto;
+  max-width: 500px;
 }
 
-.bg-warning {
-  background-color: var(--orange);
+.Remark .modal .MainTitle {
+  margin-top: 7em;
 }
 
-.bg-danger {
-  background-color: var(--red);
+.Remark .modal .MainTitle {
+  background-color: var(--cyan);
 }
 
-.bg-indigo {
-  background-color: var(--purple);
+.Remark .remark-tabs [class*="bg-"] .compWrapper a:active,
+.Remark .remark-tabs [class*="bg-"] .compWrapper a:focus,
+.Remark .remark-tabs [class*="bg-"] .compWrapper a:hover,
+.Remark .modal .MainTitle .Titletxt {
+  color: var(--white);
+}
+
+.Remark [class*="bg-"] .rss_hero_comp, 
+.Remark .modal .MainTitle ~ div:last-child {
+  background-color: var(--white);
+}
+
+.Remark [class*="bg-"] [class*="slider"] {
+  border: 1px solid transparent;
+  margin-top: 0.5em;
+}
+
+.Remark .modal .MainTitle ~ div:last-child input[type="text"]::placeholder {
+  padding: 0.5em;
+}
+
+.Remark .modal .hq-form-control ~ label {
+  left: 10px;
+}
+
+.Remark .modal .hq-form-control:focus ~ label,
+.Remark .modal .has-content.hq-form-control ~ label {
+  left: 0;
+}
+
+.Remark .remark-tabs [class*="bg-"] .moduleName a, 
+.Remark .remark-tabs [class*="bg-"] .authorName a, 
+.Remark .remark-tabs [class*="bg-"] .orgName span,
+.Remark .remark-tabs [class*="bg-"] .dateTime,
+.Remark .remark-tabs [class*="bg-"] .itemList a,
+.Remark .remark-tabs [class*="bg-"] .compWrapper a,
+.Remark .remark-tabs [class*="bg-"] .itemList .icon-screen-full:before, 
+.Remark .remark-tabs [class*="bg-"] .itemList .icon-screen-normal:before, 
+.Remark .remark-tabs [class*="bg-"] .itemList .icon-share-menu:before, 
+.Remark .remark-tabs [class*="bg-"] .itemList .icon-favourite-empty:before, 
+.Remark .remark-tabs [class*="bg-"] .itemList .icon-share-this:before {
+  color: var(--lighter);
+}
+
+.Remark [class*="bg-"] .event_title .Titlehide + .compWrapper > *,
+.Remark .remark-tabs [class*="bg-"] .itemList .dropdown a {
+  color: var(--dark);
+}
+
+.Remark .fa .itemList:not(:first-child) {
+  margin-top: .5em;
+}
+
+.Remark .adminQuicksearchAcc > li > a .icon {
+  margin-right: 0.5em;
 }

@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.3.2
- * Last Update: 12/10/2019
+ * Theme Version: 2.3.4
+ * Last Update: 25/10/2019
  */
 
 window.themes = {};
@@ -52,6 +52,7 @@ window.themes.fn = {
     CONTACT_COMP: '.contact_comp',
     CONTACT_OUTTER: 'div[id^="contact"] .thumbOuter',
     HTML: 'html',
+    HEAD: 'head',
     FORM_GROUP: '.form-group',
     FORM_GROUPS: '.form-group:not(:first)',
     LABEL: 'label',
@@ -67,6 +68,9 @@ window.themes.fn = {
     TAB_CONTAINER: '.tabbable-container',
     COLLAPSE_CONTAINER: '.collapsible-container',
     TIMELINE_CONTAINER: '.setRowColClass .timeline-container'
+  };
+  var Template$1 = {
+    LOAD_BUTTON: '<button id="loadMoreBtn" class="btn btn-default">Load more</button>'
   };
   var Event$1 = {
     CLICK: 'click'
@@ -90,6 +94,9 @@ window.themes.fn = {
   Remark.prototype = {
     init: function (wrapper, options) {
       $js(Element$1.HTML).addClass(ClassName$1.REMARKABLE);
+      // insert FontAwesome;
+      $js(Element$1.HEAD).append("<script src='//use.fontawesome.com/aedcb74114.js'></script>");
+
       this
         .setOptions(options)
         .build(wrapper)
@@ -191,6 +198,21 @@ window.themes.fn = {
               '</div>'
             );
 
+            // Add timeline toggle switch on new columns that didn't already exist.
+            $js(document).on(Event$1.CLICK, Element$1.ROW_CLASS_ICO, function () {
+              $js(this).next().find(Element$1.ROW_CLASS).each(function () {
+                var _row = $js(this).closest(Element$1.ROW).attr(Attribute$1.ID);
+                var timeline_container = $js(this).closest(Element$1.FORM_GROUP).find('.timeline-container');
+                if (!timeline_container.length) {
+                  $js(this).closest(Element$1.FORM_GROUP).find(Element$1.LABEL).append(
+                    '<div class="timeline-container">Timeline: ' +
+                      '<button class="toggle-timeline" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
+                    '</div>'
+                  );
+                }
+              });
+            });
+
             $js(this).closest(Element$1.ROW).find(Element$1.COL1).each(function () {
               var _singleCol = $js(this).hasClass(ClassName$1.ACTIVESECTION);
               var _timelines = $js(this).closest(Element$1.ROW_CONTROLS).find(Element$1.TIMELINE_CONTAINER);
@@ -212,7 +234,7 @@ window.themes.fn = {
           success: function () {
             $js(Element$1.PEOPLE).addClass(ClassName$1.LAZY);
             $js(Element$1.CONTACT_OUTTER).slice(0, 12).addClass(ClassName$1.ACTIVE);
-            $js(Element$1.CONTACT).after('<button id="loadMoreBtn" class="btn btn-default">Load more</button>');
+            $js(Element$1.CONTACT).after(Template$1.LOAD_BUTTON);
 
             // Hide each "Load more" button when the last card is shown.
             if ($js(Element$1.PEOPLE_CARDS).eq(-1).is(Element$1.ACTIVE)) {
@@ -251,7 +273,7 @@ window.themes.fn = {
               var collapsible_container = $js(this).closest(Element$1.FORM_GROUP).find(Element$1.COLLAPSE_CONTAINER);
               if (!collapsible_container.length) {
                 $js(this).closest(Element$1.FORM_GROUP).find(Element$1.LABEL).append(
-                  '<div class="tabbable-container">Collapsible: ' +
+                  '<div class="collapsible-container">Collapsible: ' +
                     '<button class="toggle-collapsible" for="' + _row + '"><i class="fa fa-toggle-off"></i></button>' +
                   '</div>'
                 );
@@ -319,6 +341,7 @@ $js(function () {
     DATA_TAB_KEY: '[data-remark="nav-tabs"]',
     LI: 'li',
     PEOPLE_CARDS: '.ppl_vert .thumbOuter',
+    ROW_CONTROLS: '.rowControls',
     TEXTINPUT: 'input[type="text"]'
   };
   var Event = {
@@ -343,6 +366,7 @@ $js(function () {
     ROW_BUTTONS: '.rowControls .icon-highq-columns + .dropdown-menu a',
     SEARCHABLE: '.searchable',
     SETROWCLASS: '.setRowColClass',
+    TABMENU: '.tabmenu',
     TABBABLE_ICON: '.toggle-tabbable i',
     TABBABLE_CONTAINER: '.tabbable-container',
     TIMELINE_ICON: '.toggle-timeline i',
@@ -357,7 +381,8 @@ $js(function () {
     ACTIVE: ".active"
   }
   var Template = {
-    NAV_TABS: '<ul class="nav nav-tabs" data-remark="nav-tabs"></ul>'
+    NAV_TABS: '<ul class="nav nav-tabs" data-remark="nav-tabs"></ul>',
+    LOADING_IMG: '<div class="loadingsection"><img src="images/v4/common/gray-loaderbig.gif" alt="loading"></div>'
   };
   var Value = {
     REMARK_TABS: 'remark-tabs',
@@ -559,20 +584,24 @@ $js(function () {
 
   $js(document).on(Event.CLICK, Selector.ROW_BUTTONS, function () {
     var isName = $js(this).attr(Attribute.NAME);
-    var timeline = $js(Selector.TIMELINE_CONTAINER);
-    var tabbable = $js(Selector.TABBABLE_CONTAINER);
-    var timelineInput = $js(Selector.TIMELINE_CONTAINER).parent().next().find(Element.TEXTINPUT);
+    var timeline = $js(this).closest(Element.ROW_CONTROLS).children().siblings().find($js(Selector.TIMELINE_CONTAINER));
+    var tabbable = $js(this).closest(Element.ROW_CONTROLS).children().siblings().find($js(Selector.TABBABLE_CONTAINER));
+    var collapsible = $js(this).closest(Element.ROW_CONTROLS).children().siblings().find($js(Selector.COLLAPSIBLE_CONTAINER));
+    var timelineInput = timeline.parent().next().find(Element.TEXTINPUT);
     
     // 1. Hide timeline option on row if user selects columns > 1
     // 2. Remove 'remark-timeline' from row class
     // 3. Remove disabled state on row's input[type="text"]
+    // 4. Show tabbable container
+    // 5. Show collapsible container
     if (isName == Attribute.SINGLE_COL) {
       timeline.show()
     } else {
-      timeline.hide(); 
+      timeline.hide(); // 1
       timelineInput.val(function (index, value) { return timelineInput.val().replace(' remark-timeline', ''); });  // 2
       timelineInput.prop(Attribute.DISABLED, false); // 3
-      tabbable.show();
+      tabbable.show(); // 4
+      collapsible.show(); // 5
     }
   });
 
@@ -580,6 +609,7 @@ $js(function () {
     // Check to make sure '.remark-tabs' is in DOM before building tabs and tab panes.
     $js(Selector.REMARK_PANEL).addClass(ClassName.PANEL);
     $js(Selector.REMARK_PANEL).before(Template.NAV_TABS);
+    $js(Selector.REMARK_PANEL).append(Template.LOADING_IMG);
 
     // Using $.ajax() to construct tabs and panels after ajax content is done loading.
     $js.ajax({
@@ -599,6 +629,7 @@ $js(function () {
       });
       
       createPanels(_element, columnID);
+
     });
   }
 
@@ -610,23 +641,30 @@ $js(function () {
 
       $js(Selector.COLLAPSIBLE).find(Selector.MAINTITLE).each(function (index) {
         var _this = $js(this);
+        var _siblings = _this.siblings();
         var column = _this.closest(Selector.COLLAPSIBLE).attr(Attribute.ID);
         var row = _this.closest(Selector.ROW).attr(Attribute.ID);
         var accordion = 'collapse' + index + column + row;
 
         $js(Selector.COLLAPSIBLE).children().attr(Attribute.ID, Attribute.ACCORDION + column + row);
 
-        _this.attr({
-          type : 'button',
-          'data-target' : '#' + accordion,
-          'data-toggle' : 'collapse',
-          'aria-controls' : accordion,
-          'aria-expanded' : 'true'
-        });
-        _this
-          .next()
-          .attr(Attribute.ID, accordion)
-          .addClass(ClassName.PANEL_OPEN);
+        if (!_this.next(Selector.TABMENU).length) {
+          // add panel heading trigger classes and attributes
+          _this.attr({
+            type : 'button',
+            'data-target' : '#' + accordion,
+            'data-toggle' : 'collapse',
+            'aria-controls' : accordion,
+            'aria-expanded' : 'true'
+          });
+
+          // add panel body attributes
+          _this
+            .next()
+            .attr(Attribute.ID, accordion)
+            .addClass(ClassName.PANEL_OPEN);
+        }
+
       });
     });
   }
