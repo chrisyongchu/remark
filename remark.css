@@ -1,8 +1,8 @@
 /*!
- * Remark Theme v2.3.4
+ * Remark Theme v2.3.5
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 25/10/2019
+ * Last Update: 18/11/2019
  */
 
  :root {
@@ -49,17 +49,37 @@
   text-rendering: optimizeLegibility;
 }
 
+.radio input[type="radio"], 
+.radio-inline input[type="radio"], 
+.checkbox input[type="checkbox"], 
+.checkbox-inline input[type="checkbox"] {
+  left: 20px;
+}
+
 .Remark .pageWrapper .row {
   padding: 1.5em 0 2.5em;
 }
 
-.Remark .pageWrapper .adminContent .row {
-  padding: 8px 0;
+.Remark .pageWrapper .wrapperSpace .row {
+  margin: 0;
+  padding: 0;
+}
+
+.Remark .pageWrapper .wrapperSpace .pubMiddleBar {
+  margin-bottom: 2em;
+}
+
+.Remark .pageWrapper .wrapperSpace .adminContent .row {
+  padding: 10px 0 5px;
 }
 
 .Remark #gridContainer .row,
 .Remark .pageWrapper .row.remark-timeline {
   padding: 0;
+}
+
+.pageWrapper .SubRowContainer {
+  margin-top: 10px;
 }
 
 #loadMoreBtn {
@@ -140,20 +160,24 @@
   margin: 0.75em 0.5em 1em;
 }
 
+.Remark .SubRowContainer [id^="componentRender"] {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .Remark .pageWrapper .row.fullwidth {
-  margin-bottom: -5px;
   padding: 0;
 }
 
-.Remark .container .fullwidth .grid {
+.Remark .container .row.fullwidth .grid {
   max-width: 100%;
 }
 
-.Remark .fullwidth [id^="componentRender"] {
+.Remark .row.fullwidth [id^="componentRender"] {
   margin: 0;
 }
 
-.remark-pretty-panels .fullwidth .MainTitle.Titlehide ~ div:last-child {
+.remark-pretty-panels .row.fullwidth .MainTitle.Titlehide ~ div:last-child {
   padding: 0;
 }
 
@@ -208,7 +232,15 @@
 .remark-pretty-panels .remark-tabs .MainTitle ~ div {
   background-color: var(--white);
   border: 0;
-  padding: 0 15px;
+  padding: 15px;
+}
+
+.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle ~ div,
+.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle ~ div:last-child {
+  background-color: var(--white);
+  border-left: 1px solid rgba(0,0,0,.125);
+  border-right: 1px solid rgba(0,0,0,.125);
+  border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
 .remark-pretty-panels .MainTitle + .nav,
@@ -232,8 +264,9 @@
   padding: 15px 15px 0;
 }
 
+.remark-tabs .tab-pane .peoplePanelUser,
 .remark-tabs .tab-pane .MainTitle ~ div:last-child {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .remark-pretty-panels .MainTitle.Titlehide + .nav,
@@ -328,6 +361,12 @@
   display: block;
 }
 
+.toggle-tabbable, 
+.toggle-timeline, 
+.toggle-collapsible {
+  padding: 0;
+}
+
 .toggle-tabbable,
 .toggle-timeline,
 .toggle-collapsible,
@@ -390,7 +429,7 @@
   position: absolute;
 }
 
-.remark-tabs [class*="bg-"] .peoplePanelUser .thumbDes > *,
+.remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .peoplePanelUser .thumbDes > *,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titlehide + .compWrapper > *,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
 .remark-tabs .tab-pane [class*="bg-"] .compWrapper > *,
@@ -472,6 +511,10 @@
 
 .Remark .remark-pretty-panels .MainTitle ~ div:nth-last-child(2) {
   border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.Remark .remark-pretty-panels .MainTitle.Titlehide ~ div:nth-last-child(2) {
+  border-bottom: 0;
 }
 
 .remark-timeline .sortable-list {
@@ -639,10 +682,13 @@
   background-color: var(--default-rgb);
 }
 
-.remark-tabs .tab-content {
-  border-right: 1px solid var(--light);
-  border-bottom: 1px solid var(--light);
-  border-left: 1px solid var(--light);
+.remark-tabs .nav-tabs {
+  border: 0;
+  margin-bottom: 10px;
+}
+
+.remark-tabs .tab-pane {
+  border: 1px solid var(--light);
 }
 
 .remark-tabs .tab-pane {
@@ -680,15 +726,9 @@
   display: block;
 }
 
-.remark-tabs .tab-content .loadingsection {
-  border: 0;
+.remark-tabs .loadingsection {
+  background: #fff;
   box-shadow: none;
-  margin-top: 0;
-  padding-top: 1em;
-}
-
-.remark-tabs .tab-content .loadingsection img {
-  top: 60%;
 }
 
 .remark-pretty-panels .peoplePanelUser .thumbDes .email {
@@ -867,7 +907,6 @@
 @media (min-width: 1600px) {
   .Remark .contlist_masonry .item {
     border-radius: 0;
-    display: inline-block;
     float: left !important;
     margin-right: 15px;
     margin-bottom: 15px;
@@ -1056,12 +1095,9 @@
   }
 }
 
-.Remark .checkbox input[type="checkbox"],
-.Remark .form-group .checkbox input[type="checkbox"],
-.Remark .form-group .checkbox-inline input[type="checkbox"],
-.Remark .form-group .radio-inline input[type="radio"],
-.Remark .form-group .radio input[type="radio"] {
-  width: auto;
+.Remark .tiles .compWrapper a {
+  display: block;
+  padding: .75em .5em 0;
 }
 
 .Remark .modal {
@@ -1083,9 +1119,9 @@
   background-color: var(--cyan);
 }
 
-.Remark .remark-tabs [class*="bg-"] .compWrapper a:active,
-.Remark .remark-tabs [class*="bg-"] .compWrapper a:focus,
-.Remark .remark-tabs [class*="bg-"] .compWrapper a:hover,
+.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .compWrapper a:active,
+.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .compWrapper a:focus,
+.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .compWrapper a:hover,
 .Remark .modal .MainTitle .Titletxt {
   color: var(--white);
 }
@@ -1097,6 +1133,9 @@
 
 .Remark [class*="bg-"] [class*="slider"] {
   border: 1px solid transparent;
+}
+
+.Remark [class*="bg-"] [class*="slider"] .owl-carousel {
   margin-top: 0.5em;
 }
 
@@ -1113,12 +1152,12 @@
   left: 0;
 }
 
-.Remark .remark-tabs [class*="bg-"] .moduleName a, 
-.Remark .remark-tabs [class*="bg-"] .authorName a, 
-.Remark .remark-tabs [class*="bg-"] .orgName span,
-.Remark .remark-tabs [class*="bg-"] .dateTime,
+.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .moduleName a, 
+.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .authorName a, 
+.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .orgName span,
+.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .dateTime,
 .Remark .remark-tabs [class*="bg-"] .itemList a,
-.Remark .remark-tabs [class*="bg-"] .compWrapper a,
+.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .compWrapper a,
 .Remark .remark-tabs [class*="bg-"] .itemList .icon-screen-full:before, 
 .Remark .remark-tabs [class*="bg-"] .itemList .icon-screen-normal:before, 
 .Remark .remark-tabs [class*="bg-"] .itemList .icon-share-menu:before, 
