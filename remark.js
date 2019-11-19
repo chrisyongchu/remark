@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.3.4
- * Last Update: 25/10/2019
+ * Theme Version: 2.3.5
+ * Last Update: 18/11/2019
  */
 
 window.themes = {};
@@ -340,6 +340,7 @@ $js(function () {
     ACTIVE_CARDS: '.ppl_vert .active',
     DATA_TAB_KEY: '[data-remark="nav-tabs"]',
     LI: 'li',
+    LOADIMAGE: '.loadingsection',
     PEOPLE_CARDS: '.ppl_vert .thumbOuter',
     ROW_CONTROLS: '.rowControls',
     TEXTINPUT: 'input[type="text"]'
@@ -360,7 +361,7 @@ $js(function () {
     COLLAPSIBLE: '.remark-collapsible',
     FIRST_COLLAPSIBLE: '.remark-collapsible .sortable-item:first-child .collapse',
     REMARK: '.remark-tabs',
-    REMARK_PANEL: '.remark-tabs .sortable-list',
+    REMARK_PANEL: '.remark-tabs > .sortable-list',
     ROW: '.row',
     ROWCLASSICON: '.rowColClassico',
     ROW_BUTTONS: '.rowControls .icon-highq-columns + .dropdown-menu a',
@@ -424,16 +425,19 @@ $js(function () {
         var _this = $js(this);
         var parentRow = _this.closest(Selector.ROW).attr(Attribute.ID);
         var panelColumn = $js(this).closest(Selector.REMARK).attr(Attribute.ID);
-
+      
         _this.attr(Attribute.ID, Attribute.PANEL + parentRow + panelColumn + index);
         _this.attr(Attribute.ROLE, Attribute.TAB).addClass(ClassName.FADE);
         firstChild.addClass(ClassName.SHOW);
+        
       });
        
        // Set all first tab-panes to active state.
       $js(Selector.REMARK).each(function () {
         $js(this).find(Selector.CONTAINER).children().first().addClass(ClassName.SHOW);
       });
+
+      $js(Element.LOADIMAGE).hide();
     }
   }
 
@@ -609,7 +613,7 @@ $js(function () {
     // Check to make sure '.remark-tabs' is in DOM before building tabs and tab panes.
     $js(Selector.REMARK_PANEL).addClass(ClassName.PANEL);
     $js(Selector.REMARK_PANEL).before(Template.NAV_TABS);
-    $js(Selector.REMARK_PANEL).append(Template.LOADING_IMG);
+    $js(Selector.REMARK).append(Template.LOADING_IMG);
 
     // Using $.ajax() to construct tabs and panels after ajax content is done loading.
     $js.ajax({
