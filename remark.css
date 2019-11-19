@@ -160,7 +160,7 @@
   margin: 0.75em 0.5em 1em;
 }
 
-.Remark .SubRowContainer [id^="componentRender"] {
+.Remark .remark-tabs .SubRowContainer [id^="componentRender"] {
   margin-left: 0;
   margin-right: 0;
 }
