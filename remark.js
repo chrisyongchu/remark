@@ -2,8 +2,8 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.3.5
- * Last Update: 18/11/2019
+ * Theme Version: 2.3.6
+ * Last Update: 19/11/2019
  */
 
 window.themes = {};
@@ -350,6 +350,7 @@ $js(function () {
     KEYUP: 'keyup'
   };
   var Selector = {
+    COMPONENT: '[id^="component"]',
     CONTAINER: '.tab-content',
     DROPDOWN_MENU: '.dropdown-menu',
     FORMGROUP: '.form-group',
@@ -376,6 +377,7 @@ $js(function () {
     COLLAPSIBLE_CONTAINER: '.collapsible-container',
     MAINTITLE: '.MainTitle',
     TITLE: '.Titletxt',
+    TITLEHIDDEN: '.MainTitle.Titlehide',
     TOGGLER: '.toggle-tabbable, .toggle-timeline, .toggle-collapsible',
   };
   var State = {
@@ -613,19 +615,16 @@ $js(function () {
     // Check to make sure '.remark-tabs' is in DOM before building tabs and tab panes.
     $js(Selector.REMARK_PANEL).addClass(ClassName.PANEL);
     $js(Selector.REMARK_PANEL).before(Template.NAV_TABS);
-    $js(Selector.REMARK).append(Template.LOADING_IMG);
+    $js(Selector.REMARK_PANEL).before(Template.LOADING_IMG);
 
-    // Using $.ajax() to construct tabs and panels after ajax content is done loading.
-    $js.ajax({
-      context: document.body
-    }).done(function () {
+    // Using $.ajaxStop() to construct tabs and panels after all ajax content is done loading.
+    $js(document).ajaxStop(function () {
       var _element = $js(Selector.REMARK);
 
       $js(Selector.REMARK_PANEL).find(Selector.TITLE).each(function (index) {
         var _this = $js(this);
         var column = _this.closest(Selector.REMARK);
         var row = _this.closest(Selector.ROW);
-
         createTabs(this, index, column, row);
       });
       var columnID = $js(Selector.REMARK).each(function () {
@@ -633,7 +632,6 @@ $js(function () {
       });
       
       createPanels(_element, columnID);
-
     });
   }
 
@@ -681,6 +679,20 @@ $js(function () {
     // Hide the "Load more" button when the last card is shown.
     if ($js(Element.PEOPLE_CARDS).eq(-1).is(State.ACTIVE)) {
       $js(Selector.LOAD_BUTTON).addClass(ClassName.HIDE);
+    }
+  });
+
+  $js.ajax({
+    context: document.body,
+    complete: function () {
+      var titlehide = $js(Selector.TITLEHIDDEN);
+      if (titlehide.length) {
+        titlehide.each(function () {
+          $js(this).closest(Selector.COMPONENT).removeClass(function (index, className) {
+            return (className.match(/(^|\s)fa-\S+/g) || []).join('');
+          });
+        });
+      }
     }
   });
 

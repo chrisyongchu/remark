@@ -1,8 +1,8 @@
 /*!
- * Remark Theme v2.3.5
+ * Remark Theme v2.3.6
  * Copyright 2019 HighQ Solutions, Ltd.
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Last Update: 18/11/2019
+ * Last Update: 19/11/2019
  */
 
  :root {
@@ -47,13 +47,6 @@
 *:before {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-}
-
-.radio input[type="radio"], 
-.radio-inline input[type="radio"], 
-.checkbox input[type="checkbox"], 
-.checkbox-inline input[type="checkbox"] {
-  left: 20px;
 }
 
 .Remark .pageWrapper .row {
@@ -199,6 +192,7 @@
   position: relative;
 }
 
+.remark-pretty-panels .MainTitle.Titlehide ~ div,
 .remark-timeline [class*="bg-"] .MainTitle ~ div:last-child,
 .remark-pretty-panels .MainTitle.Titlehide,
 .remark-pretty-panels.remark-ribbons .MainTitle.Titlehide,
@@ -243,6 +237,18 @@
   border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
+.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div,
+.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div:last-child {
+  background: transparent;
+}
+
+.remark-pretty-panels [class*="bg-"] .MainTitle.Titlehide + .nav,
+.remark-pretty-panels .remark-tabs .SubRowContainer [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div,
+.remark-pretty-panels .remark-tabs .SubRowContainer [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div:last-child {
+  background-color: var(--white);
+  border-color: transparent;
+}
+
 .remark-pretty-panels .MainTitle + .nav,
 .remark-pretty-panels.remark-ribbons .MainTitle + .nav,
 .remark-ribbons .MainTitle + .nav {
@@ -271,7 +277,6 @@
 
 .remark-pretty-panels .MainTitle.Titlehide + .nav,
 .remark-pretty-panels .MainTitle.Titlehide + .nav:last-child,
-.remark-pretty-panels .MainTitle.Titlehide ~ div:last-child,
 .remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
 .remark-pretty-panels.remark-ribbons .MainTitle.Titlehide ~ div:last-child,
 .remark-ribbons .MainTitle.Titlehide + .nav:last-child,
@@ -370,7 +375,8 @@
 .toggle-tabbable,
 .toggle-timeline,
 .toggle-collapsible,
-.remark-pretty-panels .masonry_comp .MainTitle {
+.remark-pretty-panels .masonry_comp .MainTitle,
+.remark-pretty-panels [class*="bg-"] .masonry_comp .MainTitle {
   background: transparent;
   border: 0;
 }
@@ -418,7 +424,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.remark-pretty-panels [class*="bg-"] .MainTitle.Titlehide ~ div:last-child {
+.remark-pretty-panels [class*="bg-"] .textimage_comp .MainTitle.Titlehide ~ div:last-child {
   border: 1px solid rgba(0,0,0,.125);
 }
 
@@ -429,11 +435,8 @@
   position: absolute;
 }
 
-.remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .peoplePanelUser .thumbDes > *,
-.remark-pretty-panels .sortable-item [class*="bg-"] .Titlehide + .compWrapper > *,
+.remark-pretty-panels .sortable-item [class*="bg-"] .textimage_comp .Titlehide + .compWrapper > *,
 .remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
-.remark-tabs .tab-pane [class*="bg-"] .compWrapper > *,
-.remark-pretty-panels [class*="bg-"] .rss_content_comp .MainTitle.Titlehide .dateTime,
 .remark-pretty-panels [class*="bg-"] .MainTitle .icon-rss-boxed,
 .remark-pretty-panels .sortable-item [class*="bg-"][class*="fa-"]:before {
   color: var(--white);
@@ -500,6 +503,8 @@
   padding-bottom: 1em;
 }
 
+.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div,
+.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div:last-child,
 .remark-timeline .sortable-item [class*="fa-"] .MainTitle {
   border: 0;
 }
@@ -513,6 +518,7 @@
   border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
+.Remark .remark-pretty-panels .MainTitle ~ div[id^="contentFilter_"],
 .Remark .remark-pretty-panels .MainTitle.Titlehide ~ div:nth-last-child(2) {
   border-bottom: 0;
 }
@@ -526,7 +532,8 @@
 }
 
 .Remark .MainTitle + .row, 
-.remark-timeline .sortable-item [class*="bg-"] {
+.remark-timeline .sortable-item [class*="bg-"],
+.remark-pretty-panels [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div {
   background-color: var(--white);
 }
 
@@ -674,7 +681,8 @@
 }
 
 .remark-tabs .tab-content,
-.remark-tabs .nav-item.active .nav-link {
+.remark-tabs .nav-item.active .nav-link,
+.remark-tabs .tab-pane.active [class*="bg-"] {
   background-color: var(--white);
 }
 
@@ -727,7 +735,8 @@
 }
 
 .remark-tabs .loadingsection {
-  background: #fff;
+  background: transparent;
+  border: 0;
   box-shadow: none;
 }
 
@@ -765,7 +774,7 @@
   transition: box-shadow .35s ease-out;
 }
 
-.remark-pretty-panels [class*="bg-"] .Titlehide + .compWrapper:hover {
+.remark-pretty-panels [class*="bg-"] .textimage_comp .Titlehide + .compWrapper:hover {
   box-shadow: 0 10px 30px 5px rgba(0,0,0,.15);
 }
 
@@ -889,19 +898,6 @@
   .Remark .contlist_masonry .item .icon_content + p {
     display: none;
   }
-}
-
-.remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes > *,
-.remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes .moduleName,
-.remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes .moduleName a,
-.remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes .icon_content .icon,
-.remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes .icon_content .dateTime,
-.remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes .icon-screen-full:before, 
-.remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes .icon-screen-normal:before, 
-.remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes .icon-share-menu:before, 
-.remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes .icon-favourite-empty:before, 
-.remark-pretty-panels .sortable-list [class*="bg-"] .Titlehide + [class*="slider"] .owl-item .thumbDes .icon-share-this:before {
-  color: var(--white);
 }
 
 @media (min-width: 1600px) {
@@ -1097,7 +1093,6 @@
 
 .Remark .tiles .compWrapper a {
   display: block;
-  padding: .75em .5em 0;
 }
 
 .Remark .modal {
@@ -1119,9 +1114,6 @@
   background-color: var(--cyan);
 }
 
-.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .compWrapper a:active,
-.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .compWrapper a:focus,
-.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .compWrapper a:hover,
 .Remark .modal .MainTitle .Titletxt {
   color: var(--white);
 }
@@ -1150,20 +1142,6 @@
 .Remark .modal .hq-form-control:focus ~ label,
 .Remark .modal .has-content.hq-form-control ~ label {
   left: 0;
-}
-
-.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .moduleName a, 
-.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .authorName a, 
-.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .orgName span,
-.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .dateTime,
-.Remark .remark-tabs [class*="bg-"] .itemList a,
-.Remark .remark-tabs [class*="bg-"] .MainTitle.Titlehide + div > .compWrapper a,
-.Remark .remark-tabs [class*="bg-"] .itemList .icon-screen-full:before, 
-.Remark .remark-tabs [class*="bg-"] .itemList .icon-screen-normal:before, 
-.Remark .remark-tabs [class*="bg-"] .itemList .icon-share-menu:before, 
-.Remark .remark-tabs [class*="bg-"] .itemList .icon-favourite-empty:before, 
-.Remark .remark-tabs [class*="bg-"] .itemList .icon-share-this:before {
-  color: var(--lighter);
 }
 
 .Remark [class*="bg-"] .event_title .Titlehide + .compWrapper > *,
