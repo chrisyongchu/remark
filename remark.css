@@ -49,25 +49,26 @@
   text-rendering: optimizeLegibility;
 }
 
-.Remark .pageWrapper .row {
+.pageWrapper .row {
   padding: 1.5em 0 2.5em;
 }
 
-.Remark .pageWrapper .wrapperSpace .row {
+.pageWrapper .wrapperSpace .row {
   margin: 0;
   padding: 0;
 }
 
-.Remark .pageWrapper .wrapperSpace .pubMiddleBar {
+.pageWrapper .wrapperSpace .pubMiddleBar {
   margin-bottom: 2em;
 }
 
-.Remark .pageWrapper .wrapperSpace .adminContent .row {
+.pageWrapper .wrapperSpace .adminContent .row {
   padding: 10px 0 5px;
 }
 
-.Remark #gridContainer .row,
-.Remark .pageWrapper .row.remark-timeline {
+#gridContainer .row,
+.pageWrapper .row.fullwidth,
+.pageWrapper .row.remark-timeline {
   padding: 0;
 }
 
@@ -78,10 +79,6 @@
 #loadMoreBtn {
   display: block;
   margin: 0 auto;
-}
-
-.remark-tabs .tab-content #loadMoreBtn {
-  margin-bottom: 30px;
 }
 
 .remark-layout-boxed {
@@ -137,7 +134,6 @@
   width: 33.5%;
 }
 
-
 @media (max-width: 639px) {
   .GridCol2.col_ls > .column, 
   .GridCol2.col_ls.swipeCol .cell2,
@@ -149,72 +145,190 @@
   }
 }
 
-.Remark [id^="componentRender"] {
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+[id^="componentRender"] {
   margin: 0.75em 0.5em 1em;
 }
 
-.Remark .remark-tabs .SubRowContainer [id^="componentRender"] {
+.remark-tabs .SubRowContainer [id^="componentRender"] {
   margin-left: 0;
   margin-right: 0;
 }
 
-.Remark .pageWrapper .row.fullwidth {
-  padding: 0;
-}
-
-.Remark .container .row.fullwidth .grid {
+.container .row.fullwidth .grid {
   max-width: 100%;
 }
 
-.Remark .row.fullwidth [id^="componentRender"] {
+.row.fullwidth [id^="componentRender"] {
   margin: 0;
 }
 
-.remark-pretty-panels .row.fullwidth .MainTitle.Titlehide ~ div:last-child {
+.masonry_comp .item {
+  background-color: var(--white);
+}
+
+.ppldir-thumbContainer.one .ppldir-thumbOuter,
+.ppldir-thumbContainer.two .ppldir-thumbOuter,
+.ppldir-thumbContainer.three .ppldir-thumbOuter,
+.ppldir-thumbContainer.four .ppldir-thumbOuter,
+.ppldir-thumbContainer.five .ppldir-thumbOuter {
+  background-color: var(--white);
+}
+
+.toggle-tabbable,
+.toggle-timeline,
+.toggle-collapsible {
+  background: transparent;
+}
+
+.tabbable-container,
+.timeline-container {
+  display: block;
+}
+
+.toggle-tabbable, 
+.toggle-timeline, 
+.toggle-collapsible {
   padding: 0;
 }
 
-.remark-pretty-panels .MainTitle,
-.remark-pretty-panels.remark-ribbons .MainTitle,
-.remark-ribbons .MainTitle {
-  background-color: rgba(0,0,0,.03);
-  border: 1px solid rgba(0,0,0,.125);
-  border-radius: 0;
-  margin: 0;
+.toggle-tabbable,
+.toggle-timeline,
+.toggle-collapsible {
+  border: 0;
 }
 
-.remark-pretty-panels.remark-ribbons .MainTitle,
-.remark-ribbons .MainTitle {
-  background-color: transparent;
-  border-bottom: 0;
-  height: 50px;
-  padding: 10px 5px;
-  position: relative;
+.toggle-tabbable .fa-toggle-off,
+.toggle-timeline .fa-toggle-off,
+.toggle-collapsible .fa-toggle-off {
+  color: var(--muted);
 }
 
-.remark-pretty-panels .MainTitle.Titlehide ~ div,
-.remark-timeline [class*="bg-"] .MainTitle ~ div:last-child,
-.remark-pretty-panels .MainTitle.Titlehide,
+.toggle-tabbable .fa-toggle-on,
+.toggle-timeline .fa-toggle-on,
+.toggle-collapsible .fa-toggle-on {
+  color: var(--green);
+}
+
+.owl-controls,
+[class*="bg-"] .owl-controls {
+  background: transparent;
+}
+
+/* Panels */
+
+.remark-pretty-panels [class*="bg-"] .Titlehide + .compWrapper > *,
+.remark-pretty-panels [class*="bg-"] .rss_content_comp .dateTime,
+.remark-pretty-panels [class*="bg-"] .MainTitle .icon-rss-boxed,
+.remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
+.remark-pretty-panels .rss_content_comp .media-body > *,
+.remark-pretty-panels [class*="cont_"] .itemList,
+.remark-pretty-panels .peoplePanelUser .thumbDes,
+.remark-pretty-panels .fa .MainTitle ~ .compWrapper,
+.remark-pretty-panels .fa .btn,
+.remark-pretty-panels [class*="fa-"] .Titletxt {
+  font-family: sans-serif;
+  line-height: 1.4;
+}
+
+.remark-pretty-panels .fa {
+  font: normal normal normal 14px/1 "FontAwesome";
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.MainTitle + .row,
+.remark-pretty-panels [class*="bg-"] .MainTitle ~ div,
+.remark-pretty-panels.remark-ribbons .MainTitle ~ div,
+.remark-pretty-panels .remark-tabs .MainTitle ~ div,
+.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle ~ div,
+.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle ~ div:last-child,
+.remark-pretty-panels [class*="bg-"] .MainTitle.Titlehide + .nav,
+.remark-pretty-panels .MainTitle + .nav,
+.remark-pretty-panels .MainTitle ~ div,
+.remark-pretty-panels.remark-ribbons .MainTitle + .nav,
+.remark-pretty-panels.remark-ribbons .Titletxt:before,
+.remark-pretty-panels.remark-ribbons .MainTitle,
+.remark-pretty-panels [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div {
+  background-color: var(--white);
+}
+
+.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div,
+.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div:last-child,
+.remark-pretty-panels .MainTitle.Titlehide + .nav,
+.remark-pretty-panels .MainTitle.Titlehide + .nav:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide ~ div:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav,
+.remark-pretty-panels .masonry_comp .MainTitle ~ div:last-child,
+.remark-pretty-panels .masonry_comp .MainTitle,
+.remark-pretty-panels [class*="bg-"] .masonry_comp .MainTitle,
+.remark-pretty-panels .columns .thumbnail .titleOverlap .titleTransbg,
+.remark-pretty-panels .MainTitle.Titlehide + div,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + div,
+.remark-ribbons .MainTitle.Titlehide + div,
 .remark-pretty-panels.remark-ribbons .MainTitle.Titlehide,
 .remark-ribbons .MainTitle.Titlehide {
+  background: transparent;
+}
+
+.remark-pretty-panels .MainTitle,
+.remark-pretty-panels.remark-ribbons .MainTitle {
+  background-color: rgba(0,0,0,.03);
+}
+
+.remark-pretty-panels .masonry_comp .MainTitle,
+.remark-pretty-panels [class*="bg-"] .masonry_comp .MainTitle,
+.remark-pretty-panels .MainTitle.Titlehide + div,
+.remark-pretty-panels .MainTitle.Titlehide ~ div,
+.remark-pretty-panels .MainTitle.Titlehide,
+.remark-pretty-panels .Titlehide ~ [class*="slider"],
+.remark-pretty-panels .remark-tabs .MainTitle + .nav,
+.remark-pretty-panels .MainTitle.Titlehide + .nav,
+.remark-pretty-panels .MainTitle.Titlehide + .nav:last-child,
+.remark-pretty-panels .masonry_comp .MainTitle ~ div:last-child {
   border: 0;
+}
+
+.remark-pretty-panels .sortable-item [class*="bg-"] .textimage_comp .Titlehide + .compWrapper > *,
+.remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
+.remark-pretty-panels [class*="bg-"] .MainTitle .icon-rss-boxed,
+.remark-pretty-panels .sortable-item [class*="bg-"][class*="fa-"]:before {
+  color: var(--white);
+}
+
+.remark-pretty-panels .remark-timeline [class*="bg-"] .Titletxt,
+.remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child > *,
+.remark-pretty-panels .sortable-item .dark-icon[class*="fa-"]:before,
+.remark-pretty-panels .sortable-item [class*="fa-"]:before,
+.remark-pretty-panels .text-dark .itemList a,
+.remark-pretty-panels [class*="bg-"] .rss_content_comp .MainTitle .dateTime,
+.remark-pretty-panels .text-dark .MainTitle .Titletxt,
+.remark-pretty-panels .columns .thumbnail .titleOverlap {
+  color: var(--dark);
 }
 
 .remark-pretty-panels .MainTitle ~ div,
 .remark-pretty-panels.remark-ribbons .MainTitle ~ div,
 .remark-ribbons .MainTitle ~ div {
-  background-color: var(--white);
-  border-left: 1px solid rgba(0,0,0,.125);
-  border-right: 1px solid rgba(0,0,0,.125);
-  border-bottom: 1px solid rgba(0,0,0,.125);
-  border-bottom-left-radius: .25rem;
-  border-bottom-right-radius: .25rem;
-  padding: 15px;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0;
+  margin: 0;
 }
 
-.remark-pretty-panels .Titlehide ~ [class*="slider"],
-.remark-pretty-panels.remark-ribbons .Titlehide ~ [class*="slider"] {
-  border: 0;
+.remark-pretty-panels .MainTitle ~ div,
+.remark-pretty-panels.remark-ribbons .MainTitle ~ div {
+  border-top: 0;
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+
+.remark-pretty-panels .Titlehide ~ [class*="slider"] {
   padding-top: 30px;
 }
 
@@ -223,40 +337,141 @@
   padding: 25px 15px 15px;
 }
 
-.remark-pretty-panels .remark-tabs .MainTitle ~ div {
-  background-color: var(--white);
-  border: 0;
-  padding: 15px;
-}
-
-.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle ~ div,
-.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle ~ div:last-child {
-  background-color: var(--white);
-  border-left: 1px solid rgba(0,0,0,.125);
-  border-right: 1px solid rgba(0,0,0,.125);
-  border-bottom: 1px solid rgba(0,0,0,.125);
-}
-
-.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div,
-.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div:last-child {
-  background: transparent;
-}
-
-.remark-pretty-panels [class*="bg-"] .MainTitle.Titlehide + .nav,
-.remark-pretty-panels .remark-tabs .SubRowContainer [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div,
-.remark-pretty-panels .remark-tabs .SubRowContainer [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div:last-child {
-  background-color: var(--white);
+.remark-pretty-panels [class*="bg-"] .MainTitle.Titlehide + .nav {
   border-color: transparent;
 }
 
-.remark-pretty-panels .MainTitle + .nav,
-.remark-pretty-panels.remark-ribbons .MainTitle + .nav,
-.remark-ribbons .MainTitle + .nav {
-  background-color: var(--white);
+.remark-pretty-panels .MainTitle + .nav {
   border-left: 1px solid rgba(0,0,0,.125);
   border-right: 1px solid rgba(0,0,0,.125);
   margin: 0;
+}
+
+.remark-pretty-panels .remark-tabs .MainTitle + .nav {
+  margin: 0;
+  padding: 15px 15px 0;
+}
+
+.remark-pretty-panels .row.fullwidth .MainTitle.Titlehide ~ div:last-child {
+  padding: 0;
+}
+
+.remark-pretty-panels .MainTitle + .nav,
+.remark-pretty-panels .MainTitle.Titlehide + .nav,
+.remark-pretty-panels .MainTitle.Titlehide + .nav:last-child,
+.remark-pretty-panels .MainTitle + .nav:last-child,
+.remark-pretty-panels .masonry_comp .MainTitle ~ div:last-child,
+.remark-pretty-panels .MainTitle ~ div,
+.remark-pretty-panels.remark-ribbons .MainTitle ~ div {
   padding: 15px;
+}
+
+.remark-pretty-panels .MainTitle + .nav:last-child {
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+
+.remark-pretty-panels .Titletxt {
+  border-bottom-color: transparent;
+  margin: 0 0.15em;
+}
+
+.remark-pretty-panels .columns .thumbnail .titleOverlap {
+  bottom: auto;
+  top: 0;
+}
+
+.remark-pretty-panels .columns .thumbnail .titleOverlap {
+  font-size: .975em;
+  transition: color .35s ease-out;
+}
+
+.remark-pretty-panels .sortable-list .fa {
+  display: block;
+  margin-top: 0.75em;
+  position: relative;
+}
+
+.remark-pretty-panels .MainTitle,
+.remark-pretty-panels [class*="bg-"] .textimage_comp .MainTitle.Titlehide ~ div:last-child {
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+.remark-pretty-panels .sortable-item [class*="fa-"]:before,
+.remark-pretty-panels .sortable-item [class*="bg-"][class*="fa-"]:before {
+  font-size: 1.25em;
+  padding: 0.85em 0.65em;
+  position: absolute;
+}
+
+.remark-pretty-panels .MainTitle {
+  margin: 0;
+  padding: 0.5em 0 0.5em 0.9em;
+}
+
+.remark-pretty-panels .sortable-item [class*="fa-"] .MainTitle {
+  padding: 0.5em 0 0.5em 2.25em;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.remark-pretty-panels .MainTitle ~ div:not(:last-child) {
+  border-top: 0;
+}
+
+.remark-pretty-panels .MainTitle ~ div:nth-last-child(2) {
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.remark-pretty-panels .MainTitle ~ div[id^="contentFilter_"],
+.remark-pretty-panels .MainTitle ~ div:not(:last-child),
+.remark-pretty-panels .MainTitle.Titlehide ~ div:nth-last-child(2) {
+  border-bottom: 0;
+}
+
+.remark-pretty-panels [class*="rss_content_"] .media-list .media:last-child + hr,
+.remark-pretty-panels .lazyload.ppl_vert .thumbOuter:nth-child(n+20),
+.remark-pretty-panels .lazyload.ppl_vert .thumbOuter {
+  display: none;
+}
+
+.remark-pretty-panels .peoplePanelUser .thumbDes .email {
+  visibility: hidden;
+}
+
+.remark-pretty-panels .peoplePanelUser .thumbDes .email:before {
+  content: "\e048";
+  font-family: "highq50";
+  visibility: visible;
+}
+
+.remark-pretty-panels [class*="bg-"] .Titlehide + .compWrapper {
+  transition: box-shadow .35s ease-out;
+}
+
+.remark-pretty-panels [class*="bg-"] .textimage_comp .Titlehide + .compWrapper:hover {
+  box-shadow: 0 10px 30px 5px rgba(0,0,0,.15);
+}
+
+.remark-pretty-panels [class*="bg-"] .itemList + hr {
+  border-color: transparent;
+  margin: .5em 0;
+}
+
+.remark-pretty-panels .masonry_comp {
+  position: relative;
+}
+
+.remark-pretty-panels .MainTitle + .tabmenu,
+.remark-pretty-panels [class*="bg-"] .MainTitle + .tabmenu {
+  border-left: 1px solid var(--default-rgb);
+  border-right: 1px solid var(--default-rgb);
+}
+
+/* Ribbons */
+
+.remark-pretty-panels.remark-ribbons .Titlehide ~ [class*="slider"] {
+  border: 0;
+  padding-top: 30px;
 }
 
 .remark-pretty-panels.remark-ribbons .MainTitle + .nav,
@@ -264,37 +479,14 @@
   padding: 25px 15px 15px;
 }
 
-.remark-pretty-panels .remark-tabs .MainTitle + .nav {
-  border: 0;
+.remark-pretty-panels.remark-ribbons .MainTitle + .nav,
+.remark-ribbons .MainTitle + .nav {
+  border-left: 1px solid rgba(0,0,0,.125);
+  border-right: 1px solid rgba(0,0,0,.125);
   margin: 0;
-  padding: 15px 15px 0;
-}
-
-.remark-tabs .tab-pane .peoplePanelUser,
-.remark-tabs .tab-pane .MainTitle ~ div:last-child {
-  padding-top: 10px;
-}
-
-.remark-pretty-panels .MainTitle.Titlehide + .nav,
-.remark-pretty-panels .MainTitle.Titlehide + .nav:last-child,
-.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
-.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide ~ div:last-child,
-.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
-.remark-ribbons .MainTitle.Titlehide ~ div:last-child,
-.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav,
-.remark-ribbons .MainTitle.Titlehide + .nav,
-.remark-pretty-panels .masonry_comp .MainTitle ~ div:last-child {
-  background: transparent;
-  border: 0;
   padding: 15px;
 }
- 
-.remark-pretty-panels .remark-tabs .MainTitle + .nav:last-child,
-.remark-pretty-panels .remark-tabs .MainTitle ~ div:last-child {
-  border-bottom-color: transparent;
-}
 
-.remark-pretty-panels .MainTitle + .nav:last-child,
 .remark-pretty-panels.remark-ribbons .MainTitle + .nav:last-child,
 .remark-ribbons .MainTitle + .nav:last-child {
   border-bottom-left-radius: .25rem;
@@ -302,16 +494,6 @@
   padding: 15px;
 }
 
-.remark-pretty-panels .MainTitle.Titlehide + div,
-.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + div,
-.remark-ribbons .MainTitle.Titlehide + div,
-.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide,
-.remark-ribbons .MainTitle.Titlehide {
-  background-color: transparent;
-  border: 0;
-}
-
-.remark-pretty-panels .Titletxt,
 .remark-pretty-panels.remark-ribbons .Titletxt,
 .remark-ribbons .Titletxt {
   border-bottom-color: transparent;
@@ -342,7 +524,6 @@
 
 .remark-pretty-panels.remark-ribbons .Titletxt:before,
 .remark-ribbons .Titletxt:before  {
-  background-color: var(--white);
   border-right-color: transparent;
 }
 
@@ -361,166 +542,233 @@
   margin-top: 0;
 }
 
-.tabbable-container,
-.timeline-container {
-  display: block;
-}
-
-.toggle-tabbable, 
-.toggle-timeline, 
-.toggle-collapsible {
-  padding: 0;
-}
-
-.toggle-tabbable,
-.toggle-timeline,
-.toggle-collapsible,
-.remark-pretty-panels .masonry_comp .MainTitle,
-.remark-pretty-panels [class*="bg-"] .masonry_comp .MainTitle {
-  background: transparent;
-  border: 0;
-}
-
-.toggle-tabbable .fa-toggle-off,
-.toggle-timeline .fa-toggle-off,
-.toggle-collapsible .fa-toggle-off {
-  color: var(--muted);
-}
-
-.toggle-tabbable .fa-toggle-on,
-.toggle-timeline .fa-toggle-on,
-.toggle-collapsible .fa-toggle-on {
-  color: var(--green);
-}
-
-.remark-pretty-panels .columns .thumbnail .titleOverlap {
-  bottom: auto;
-  top: 0;
-}
-
-.remark-pretty-panels .remark-timeline .MainTitle,
-.remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child,
-.remark-pretty-panels .remark-timeline [class*="bg-"] .MainTitle,
-.remark-pretty-panels .columns .thumbnail .titleOverlap .titleTransbg {
-  background: transparent;
-}
-
-.remark-pretty-panels .columns .thumbnail .titleOverlap {
-  color: var(--dark);
-  font-size: .975em;
-  transition: color .35s ease-out;
-}
-
-.remark-pretty-panels .sortable-list .fa {
-  display: block;
-  margin-top: 0.75em;
+.remark-pretty-panels.remark-ribbons .MainTitle,
+.remark-ribbons .MainTitle {
+  border-bottom: 0;
+  height: 50px;
+  padding: 10px 5px;
   position: relative;
 }
 
-.remark-pretty-panels .fa {
-  font: normal normal normal 14px/1 "FontAwesome";
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
+.remark-ribbons .MainTitle ~ div,
+.remark-ribbons .MainTitle + .nav,
+.remark-ribbons .Titletxt:before,
+.remark-ribbons .MainTitle {
+  background-color: var(--white);
 }
 
-.remark-pretty-panels [class*="bg-"] .textimage_comp .MainTitle.Titlehide ~ div:last-child {
-  border: 1px solid rgba(0,0,0,.125);
+.remark-ribbons .MainTitle {
+  background-color: rgba(0,0,0,.03);
 }
 
-.remark-pretty-panels .sortable-item [class*="fa-"]:before,
-.remark-pretty-panels .sortable-item [class*="bg-"][class*="fa-"]:before {
-  font-size: 1.25em;
-  padding: 0.9em 0.65em;
-  position: absolute;
+.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
+.remark-ribbons .MainTitle.Titlehide ~ div:last-child,
+.remark-ribbons .MainTitle.Titlehide + .nav {
+  background: transparent;
 }
 
-.remark-pretty-panels .sortable-item [class*="bg-"] .textimage_comp .Titlehide + .compWrapper > *,
-.remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
-.remark-pretty-panels [class*="bg-"] .MainTitle .icon-rss-boxed,
-.remark-pretty-panels .sortable-item [class*="bg-"][class*="fa-"]:before {
-  color: var(--white);
+.remark-ribbons .MainTitle ~ div {
+  border-top: 0;
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  padding: 15px;
 }
 
-.remark-pretty-panels [class*="bg-"] .Titlehide + .compWrapper > *,
-.remark-pretty-panels [class*="bg-"] .rss_content_comp .dateTime,
-.remark-pretty-panels [class*="bg-"] .MainTitle .icon-rss-boxed,
-.remark-pretty-panels .sortable-item [class*="bg-"] .Titletxt,
-.remark-pretty-panels .rss_content_comp .media-body > *,
-.remark-pretty-panels [class*="cont_"] .itemList,
-.remark-pretty-panels .peoplePanelUser .thumbDes,
-.remark-pretty-panels .fa .MainTitle ~ .compWrapper,
-.remark-pretty-panels .fa .btn,
-.remark-pretty-panels [class*="fa-"] .Titletxt,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide ~ div:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav,
+.remark-ribbons .MainTitle.Titlehide + .nav,
+.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
+.remark-ribbons .MainTitle.Titlehide ~ div:last-child {
+  padding: 15px
+}
+
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide ~ div:last-child,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + .nav,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide,
+.remark-pretty-panels.remark-ribbons .MainTitle.Titlehide + div,
+.remark-ribbons .MainTitle.Titlehide + .nav,
+.remark-ribbons .MainTitle.Titlehide + .nav:last-child,
+.remark-ribbons .MainTitle.Titlehide ~ div:last-child,
+.remark-ribbons .MainTitle.Titlehide + div,
+.remark-ribbons .MainTitle.Titlehide {
+  border: 0;
+}
+
+/* Tabbable */
+
+.remark-tabs .tab-content,
+.remark-tabs .nav-item.active .nav-link,
+.remark-tabs .tab-pane.active [class*="bg-"],
+.remark-tabs .SubRowContainer [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div,
+.remark-tabs .SubRowContainer [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div:last-child {
+  background-color: var(--white);
+}
+
+.remark-tabs .tab-pane div[class^="cont_"] {
+  background: var(--lighter);
+}
+
+.remark-tabs .nav-item.active .nav-link:before {
+  background-color: var(--default-rgb);
+}
+
+.remark-tabs .nav-item .nav-link {
+  background-color: rgba(0,0,0,.03);
+}
+
+.remark-tabs .loadingsection {
+  background: transparent;
+  box-shadow: none;
+}
+
+.remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div,
+.remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div:last-child,
+.remark-tabs .MainTitle ~ div,
+.remark-tabs .nav-tabs,
+.remark-tabs .loadingsection,
+.remark-tabs .tab-pane div[class^="cont_"] {
+  border: 0;
+}
+
+.remark-tabs .tab-pane {
+  border: 1px solid var(--light);
+}
+
+.remark-pretty-panels.remark-ribbons .MainTitle,
+.remark-ribbons .MainTitle {
+  border-bottom-color: var(--white);
+}
+
+.remark-tabs .SubRowContainer .MainTitle ~ div,
+.remark-tabs .SubRowContainer .MainTitle ~ div:last-child {
+  border-left: 1px solid rgba(0,0,0,.125);
+  border-right: 1px solid rgba(0,0,0,.125);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.remark-tabs .SubRowContainer [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div,
+.remark-tabs .SubRowContainer [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div:last-child {
+  border-color: transparent;
+}
+
+.remark-tabs .MainTitle + .nav:last-child,
+.remark-tabs .MainTitle ~ div:last-child {
+  border-bottom-color: transparent;
+}
+
+.remark-tabs [class*="bg-"] .itemList .dropdown a {
+  color: var(--dark);
+}
+
+.remark-tabs .tab-pane [class*="fa-"]:before,
+.remark-tabs .tab-content .sortable-item.tab-pane.fade,
+.remark-tabs .tab-content .sortable-item,
+.remark-tabs .tab-pane .MainTitle,
+#loadMorebtn.hide {
+  display: none;
+}
+
+.remark-tabs .tab-content .sortable-item.tab-pane.fade.active,
+.remark-tabs .tab-content .sortable-item.tab-pane.fade.in,
+.remark-tabs .tab-content .sortable-item.tab-pane.fade.active.in,
+.remark-tabs .tab-content .sortable-item.tab-pane,
+.lazyload.ppl_vert .thumbOuter.active {
+  display: block;
+}
+
 .remark-tabs [class*="fa-"] .pagination > .active > a,
 .remark-tabs [class*="fa-"] .pagination > li > a,
 .remark-tabs [class*="fa-"] .pagination > li > a:hover,
 .remark-tabs [class*="fa-"] .pagination > li > span,
-.remark-tabs .tab-pane [class*="bg-"] .compWrapper > *,
-.Remark .fa [class*="event_"] .thumbDes,
-.Remark .fa .owl-item .WordWrap > *,
-.Remark .fa .filterVerList .dropContent, 
-.Remark .fa .Subrow .filterVerList .dropContent,
-.Remark .fa .itemList a,
-.Remark .fa .itemList > *,
-.Remark .fa .tabmenu a,
-.Remark .fa .list-group,
-.Remark .fa .panel-body,
-.Remark .fa .recentActivityTab,
-.Remark .fa .modal {
+.remark-tabs .tab-pane [class*="bg-"] .compWrapper > * {
   font-family: sans-serif;
   line-height: 1.4;
 }
 
-.remark-pretty-panels .remark-timeline [class*="bg-"] .Titletxt,
-.remark-pretty-panels .remark-timeline .MainTitle ~ div:last-child > *,
-.remark-pretty-panels .sortable-item .dark-icon[class*="fa-"]:before,
-.remark-pretty-panels .sortable-item [class*="fa-"]:before,
-.remark-pretty-panels .text-dark .itemList a,
-.remark-pretty-panels [class*="bg-"] .rss_content_comp .MainTitle .dateTime,
-.remark-pretty-panels .text-dark .MainTitle .Titletxt {
-  color: var(--dark);
+.remark-tabs .nav-item .nav-link {
+  border-radius: 0;
+  border-top-color: transparent;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  position: relative;
 }
 
-.remark-pretty-panels .MainTitle {
-  padding: 0.5em 0 0.5em 0.9em;
+.remark-tabs .nav-item .nav-link:before {
+  content: '';
+  position: absolute;
+  height: 2px;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  transition: background-color .15s ease-in-out;
 }
 
-.remark-pretty-panels .sortable-item [class*="fa-"] .MainTitle {
-  padding: 0.5em 0 0.5em 2.25em;
-  border-bottom: 1px solid rgba(0,0,0,.125);
+.remark-tabs {
+  margin: 0.75em 0;
+}
+
+.remark-tabs.column {
+  padding: 0 0.5em;
+}
+
+.remark-tabs .nav-tabs {
+  margin-bottom: 10px;
+}
+
+.remark-tabs .tab-pane {
+  padding-top: 0;
+  margin-top: -0.7em;
+}
+
+.remark-tabs .tab-pane [class*="bg-"] {
+  margin: 0.7em 0 0;
+  padding: 15px;
+}
+
+.remark-tabs .MainTitle ~ div {
+  padding: 15px;
+}
+
+.remark-tabs .tab-content #loadMoreBtn {
+  margin-bottom: 30px;
+}
+
+.remark-tabs .tab-pane .peoplePanelUser,
+.remark-tabs .tab-pane .MainTitle ~ div:last-child {
+  padding-top: 10px;
+}
+
+.remark-tabs .tab-pane [class*="bg-"] .MainTitle ~ div:last-child {
+  padding-top: 0;
+}
+
+/* Timeline */
+
+.remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div,
+.remark-timeline .sortable-list > .sortable-item:nth-child(even) > div,
+.remark-timeline .sortable-item [class*="bg-"] {
+  background-color: var(--white);
+}
+
+.remark-timeline .MainTitle,
+.remark-timeline .MainTitle ~ div:last-child,
+.remark-timeline [class*="bg-"] .MainTitle {
+  background: transparent;
+}
+
+.remark-timeline .MainTitle,
+.remark-timeline .MainTitle ~ div:last-child,
+.remark-timeline .sortable-item [class*="fa-"] .MainTitle,
+.remark-timeline [class*="bg-"] .MainTitle ~ div:last-child {
+  border: 0;
 }
 
 .remark-timeline .sortable-item [class*="fa-"]:before,
 .remark-timeline .sortable-item [class*="bg-"][class*="fa-"]:before,
-.remark-timeline .sortable-item [class*="fa-"] .MainTitle,
-.Remark .ContTaxMap .row, 
-.Remark .pageWrapper .row.gridCommonSec {
-  padding: 0;
-}
-
-.Remark .pageWrapper .row.gridCommonSec {
-  padding-bottom: 1em;
-}
-
-.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div,
-.remark-pretty-panels .remark-tabs .SubRowContainer .MainTitle.Titlehide ~ div:last-child,
 .remark-timeline .sortable-item [class*="fa-"] .MainTitle {
-  border: 0;
-}
-
-.Remark .remark-pretty-panels .MainTitle ~ div:not(:last-child) {
-  border-top: 0;
-  border-bottom: 0;
-}
-
-.Remark .remark-pretty-panels .MainTitle ~ div:nth-last-child(2) {
-  border-bottom: 1px solid rgba(0,0,0,.125);
-}
-
-.Remark .remark-pretty-panels .MainTitle ~ div[id^="contentFilter_"],
-.Remark .remark-pretty-panels .MainTitle.Titlehide ~ div:nth-last-child(2) {
-  border-bottom: 0;
+  padding: 0;
 }
 
 .remark-timeline .sortable-list {
@@ -529,12 +777,6 @@
   margin: 0 auto;
   padding: 20px 0 20px;
   position: relative;
-}
-
-.Remark .MainTitle + .row, 
-.remark-timeline .sortable-item [class*="bg-"],
-.remark-pretty-panels [class*="bg-"] div:not(.textimage_comp) .MainTitle.Titlehide ~ div {
-  background-color: var(--white);
 }
 
 .remark-timeline .sortable-list:before {
@@ -551,6 +793,19 @@
 .remark-timeline .sortable-list > .sortable-item {
   position: relative;
   margin-bottom: 20px;
+}
+
+.remark-timeline .MainTitle {
+  margin: 0;
+}
+
+.remark-timeline .sortable-list > .sortable-item:nth-child(even) > div .Titletxt,
+.remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div .Titletxt {
+  padding: 0 0 0.5em;
+}
+
+.remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div .Titletxt {
+  text-align: right;
 }
 
 .remark-timeline .sortable-list > .sortable-item:before,
@@ -636,123 +891,36 @@
   left: -7px;
 }
 
-.remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(even) > div .Titletxt,
-.remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div .Titletxt {
-  padding: 0 0 0.5em;
+.Remark .fa [class*="event_"] .thumbDes,
+.Remark .fa .owl-item .WordWrap > *,
+.Remark .fa .filterVerList .dropContent, 
+.Remark .fa .Subrow .filterVerList .dropContent,
+.Remark .fa .itemList a,
+.Remark .fa .itemList > *,
+.Remark .fa .tabmenu a,
+.Remark .fa .list-group,
+.Remark .fa .panel-body,
+.Remark .fa .recentActivityTab,
+.Remark .fa .modal {
+  font-family: sans-serif;
+  line-height: 1.4;
 }
 
-.remark-pretty-panels .remark-timeline .sortable-list > .sortable-item:nth-child(odd) > div .Titletxt {
-  text-align: right;
+.Remark .fa .itemList:not(:first-child) {
+  margin-top: .5em;
 }
 
-.remark-timeline .MainTitle {
-  margin: 0 0 15px;
+.Remark .ContTaxMap .row, 
+.Remark .pageWrapper .row.gridCommonSec {
+  padding: 0;
 }
 
-.remark-pretty-panels .remark-timeline .MainTitle {
-  margin: 0;
-}
-
-.remark-tabs {
-  margin: 0.75em 0;
-}
-
-.remark-tabs.column {
-  padding: 0 0.5em;
-}
-
-.remark-tabs .nav-item .nav-link {
-  background-color: rgba(0,0,0,.03);
-  border-radius: 0;
-  border-top-color: transparent;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  position: relative;
-}
-
-.remark-tabs .nav-item .nav-link:before {
-  content: '';
-  position: absolute;
-  height: 2px;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  transition: background-color .15s ease-in-out;
-}
-
-.remark-tabs .tab-content,
-.remark-tabs .nav-item.active .nav-link,
-.remark-tabs .tab-pane.active [class*="bg-"] {
-  background-color: var(--white);
-}
-
-.remark-tabs .nav-item.active .nav-link:before {
-  background-color: var(--default-rgb);
-}
-
-.remark-tabs .nav-tabs {
-  border: 0;
-  margin-bottom: 10px;
-}
-
-.remark-tabs .tab-pane {
-  border: 1px solid var(--light);
-}
-
-.remark-tabs .tab-pane {
-  padding-top: 0;
-  margin-top: -0.7em;
-}
-
-.remark-tabs .tab-pane [class*="bg-"] {
-  margin: 0.7em 0 0;
-  padding: 15px;
-}
-
-.remark-pretty-panels [class*="rss_content_"] .media-list .media:last-child + hr,
-.remark-tabs .tab-pane [class*="fa-"]:before,
-.remark-pretty-panels .lazyload.ppl_vert .thumbOuter:nth-child(n+20),
-.remark-pretty-panels .lazyload.ppl_vert .thumbOuter,
-.remark-tabs .tab-content .sortable-item.tab-pane.fade,
-.remark-tabs .tab-content .sortable-item,
-.remark-tabs .tab-pane .MainTitle,
-#loadMorebtn.hide {
-  display: none;
-}
-
-.remark-pretty-panels.remark-ribbons .MainTitle,
-.remark-ribbons .MainTitle {
-  background-color: var(--white);
-  border-bottom-color: var(--white);
-}
-
-.remark-tabs .tab-content .sortable-item.tab-pane.fade.active,
-.remark-tabs .tab-content .sortable-item.tab-pane.fade.in,
-.remark-tabs .tab-content .sortable-item.tab-pane.fade.active.in,
-.remark-tabs .tab-content .sortable-item.tab-pane,
-.lazyload.ppl_vert .thumbOuter.active {
-  display: block;
-}
-
-.remark-tabs .loadingsection {
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-}
-
-.remark-pretty-panels .peoplePanelUser .thumbDes .email {
-  visibility: hidden;
-}
-
-.remark-pretty-panels .peoplePanelUser .thumbDes .email:before {
-  content: "\e048";
-  font-family: "highq50";
-  visibility: visible;
+.Remark .pageWrapper .row.gridCommonSec {
+  padding-bottom: 1em;
 }
 
 [class*="Publications_Module_"].remark-pretty-panels .MainTitle,
-[class*="Events_Module_"].remark-pretty-panels .MainTitle,
-.remark-tabs .tab-pane div[class^="cont_"] {
+[class*="Events_Module_"].remark-pretty-panels .MainTitle {
   background: var(--lighter);
   border: 0;
 }
@@ -761,7 +929,6 @@
   margin-top: 0 !important; /* override dumb !important definition in default Pub style sheet */
 }
 
-.remark-tabs .tab-pane [class*="bg-"] .MainTitle ~ div:last-child,
 [class*="Publications_Module_"] .ContactRightPanel .gridCommonSec {
   padding-top: 0;
 }
@@ -770,41 +937,10 @@
   padding-bottom: 0;
 }
 
-.remark-pretty-panels [class*="bg-"] .Titlehide + .compWrapper {
-  transition: box-shadow .35s ease-out;
-}
-
-.remark-pretty-panels [class*="bg-"] .textimage_comp .Titlehide + .compWrapper:hover {
-  box-shadow: 0 10px 30px 5px rgba(0,0,0,.15);
-}
-
-.remark-pretty-panels [class*="bg-"] .itemList + hr {
-  border-color: transparent;
-  margin: .5em 0;
-}
-
-.Remark .owl-controls,
-.Remark [class*="bg-"] .owl-controls {
-  background: transparent;
-}
-
-.remark-pretty-panels .masonry_comp {
-  position: relative;
-}
-
-.remark-pretty-panels .MainTitle + .tabmenu,
-.remark-pretty-panels [class*="bg-"] .MainTitle + .tabmenu {
-  border-left: 1px solid var(--default-rgb);
-  border-right: 1px solid var(--default-rgb);
-}
+/* Collapsible */
 
 .remark-collapsible .MainTitle {
   padding-left: 0.9em;
-}
-
-.remark-timeline .MainTitle,
-.remark-timeline .MainTitle ~ div:last-child {
-  border: 0;
 }
 
 .remark-collapsible [type="button"]:hover {
@@ -836,6 +972,8 @@
   content: "\f067";
 }
 
+/* Masonry */
+
 .Remark .contlist_masonry .columns .thumbnail img {
   border-radius: 0;
 }
@@ -855,7 +993,6 @@
 }
 
 .Remark .masonry_comp .item {
-  background-color: var(--white);
   transition: color .35s ease-out,border-color .35s ease-out,box-shadow .35s ease-out;
 }
 
@@ -962,6 +1099,8 @@
   }
 }
 
+/* People Directory */
+
 .Remark .ppldir-fullWidth .ppldir-thumbContainer {
   margin-left: .1em;
 }
@@ -997,7 +1136,6 @@
 .Remark .ppldir-thumbContainer.three .ppldir-thumbOuter,
 .Remark .ppldir-thumbContainer.four .ppldir-thumbOuter,
 .Remark .ppldir-thumbContainer.five .ppldir-thumbOuter {
-  background-color: var(--white);
   border: 1px solid var(--cyan);
   box-shadow: 0 1px 2px rgba(0,0,0,.05);
   margin: 0 .5em 1em;
@@ -1091,9 +1229,13 @@
   }
 }
 
+/* Tiles */
+
 .Remark .tiles .compWrapper a {
   display: block;
 }
+
+/* Modals */
 
 .Remark .modal {
   background: rgba(0,0,0,.25);
@@ -1144,13 +1286,8 @@
   left: 0;
 }
 
-.Remark [class*="bg-"] .event_title .Titlehide + .compWrapper > *,
-.Remark .remark-tabs [class*="bg-"] .itemList .dropdown a {
+.Remark [class*="bg-"] .event_title .Titlehide + .compWrapper > * {
   color: var(--dark);
-}
-
-.Remark .fa .itemList:not(:first-child) {
-  margin-top: .5em;
 }
 
 .Remark .adminQuicksearchAcc > li > a .icon {

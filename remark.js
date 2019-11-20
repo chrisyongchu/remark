@@ -617,22 +617,25 @@ $js(function () {
     $js(Selector.REMARK_PANEL).before(Template.NAV_TABS);
     $js(Selector.REMARK_PANEL).before(Template.LOADING_IMG);
 
-    // Using $.ajaxStop() to construct tabs and panels after all ajax content is done loading.
-    $js(document).ajaxStop(function () {
-      var _element = $js(Selector.REMARK);
-
-      $js(Selector.REMARK_PANEL).find(Selector.TITLE).each(function (index) {
-        var _this = $js(this);
-        var column = _this.closest(Selector.REMARK);
-        var row = _this.closest(Selector.ROW);
-        createTabs(this, index, column, row);
-      });
-      var columnID = $js(Selector.REMARK).each(function () {
-        $js(this).parent(Element.COLUMN).attr(Attribute.ID);
-      });
-      
-      createPanels(_element, columnID);
-    });
+    // Using $.ajax() to construct tabs and panels after all ajax content is done loading.
+    $js.ajax({
+      context: document.body,
+      complete: function () {
+        var _element = $js(Selector.REMARK);
+        
+        $js(Selector.REMARK_PANEL).find(Selector.TITLE).each(function (index) {
+          var _this = $js(this);
+          var column = _this.closest(Selector.REMARK);
+          var row = _this.closest(Selector.ROW);
+          createTabs(this, index, column, row);
+        });
+        var columnID = $js(Selector.REMARK).each(function () {
+          $js(this).parent(Element.COLUMN).attr(Attribute.ID);
+        });
+        
+        createPanels(_element, columnID);
+      }
+    })
   }
 
   if ($js(Selector.COLLAPSIBLE).length) {
