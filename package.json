@@ -1,8 +1,8 @@
 {
   "name": "remark",
   "description": "A beautifully-designed front-end framework extension for HighQ Publisher 5.x.",
-  "version": "2.1.0",
-  "version_short": "2.1",
+  "version": "2.3.7",
+  "version_short": "2.3",
   "keywords": [
     "css",
     "javascript",
@@ -21,9 +21,6 @@
   },
   "bugs": {
     "url": "https://github.com/chrisyongchu/remark/issues"
-  },
-  "devDependencies": {
-    "@FontAwesome/FontAwesome": "5.8.1"
   },
   "files": [
     "dist/{css,js}/*.{css,js}",

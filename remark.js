@@ -2,8 +2,7 @@
  * ----------------------------------------------------------------------------
  * Name: Remark Theme for HighQ Publisher 5.x
  * Author: Christopher Yongchu, christopher.yongchu@highq.com
- * Theme Version: 2.3.6
- * Last Update: 19/11/2019
+ * Theme Version: 2.3.7
  */
 
 window.themes = {};
@@ -333,6 +332,7 @@ $js(function () {
     PANEL_OPEN: 'panel-collapse collapse in',
     SHOW: 'active in',
     TABBABLE: 'toggle-tabbable',
+    TABPANE: 'tab-pane',
     COLLAPSIBLE: 'toggle-collapsible',
     TOGGLE_ON: 'fa-toggle-on'
   };
@@ -368,6 +368,7 @@ $js(function () {
     ROW_BUTTONS: '.rowControls .icon-highq-columns + .dropdown-menu a',
     SEARCHABLE: '.searchable',
     SETROWCLASS: '.setRowColClass',
+    SORTABLE_ITEM: '.remark-tabs .sortable-item',
     TABMENU: '.tabmenu',
     TABBABLE_ICON: '.toggle-tabbable i',
     TABBABLE_CONTAINER: '.tabbable-container',
@@ -620,18 +621,21 @@ $js(function () {
     // Using $.ajaxStop() to construct tabs and panels after all ajax content is done loading.
     $js(document).ajaxStop(function () {
       var _element = $js(Selector.REMARK);
+      var _panels = $js(Selector.SORTABLE_ITEM);
 
-      $js(Selector.REMARK_PANEL).find(Selector.TITLE).each(function (index) {
-        var _this = $js(this);
-        var column = _this.closest(Selector.REMARK);
-        var row = _this.closest(Selector.ROW);
-        createTabs(this, index, column, row);
-      });
-      var columnID = $js(Selector.REMARK).each(function () {
-        $js(this).parent(Element.COLUMN).attr(Attribute.ID);
-      });
-      
-      createPanels(_element, columnID);
+      if (!_panels.hasClass(ClassName.TABPANE)) {
+        $js(Selector.REMARK_PANEL).find(Selector.TITLE).each(function (index) {
+          var _this = $js(this);
+          var column = _this.closest(Selector.REMARK);
+          var row = _this.closest(Selector.ROW);
+          createTabs(this, index, column, row);
+        });
+        var columnID = $js(Selector.REMARK).each(function () {
+          $js(this).parent(Element.COLUMN).attr(Attribute.ID);
+        });
+        
+        createPanels(_element, columnID);
+      }
     });
   }
 
