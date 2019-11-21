@@ -343,7 +343,6 @@
 .remark-pretty-panels .MainTitle.Titlehide + div,
 .remark-pretty-panels .MainTitle.Titlehide ~ div,
 .remark-pretty-panels .MainTitle.Titlehide + .nav,
-.remark-pretty-panels .remark-tabs .MainTitle + .nav,
 .remark-pretty-panels .Titlehide ~ [class*="slider"],
 .remark-pretty-panels .MainTitle.Titlehide + .nav:last-child,
 .remark-pretty-panels [class*="bg-"] .masonry_comp .MainTitle,
@@ -632,11 +631,16 @@
   border: 1px solid var(--light);
 }
 
+.remark-tabs .MainTitle + .nav,
 .remark-tabs .SubRowContainer .MainTitle ~ div,
 .remark-tabs .SubRowContainer .MainTitle ~ div:last-child {
-  border-left: 1px solid rgba(0,0,0,.125);
-  border-right: 1px solid rgba(0,0,0,.125);
-  border-bottom: 1px solid rgba(0,0,0,.125);
+  border-left: 1px solid var(--default-rgb);
+  border-right: 1px solid var(--default-rgb);
+}
+
+.remark-tabs .SubRowContainer .MainTitle ~ div,
+.remark-tabs .SubRowContainer .MainTitle ~ div:last-child {
+  border-bottom: 1px solid var(--default-rgb);
 }
 
 .remark-pretty-panels.remark-ribbons .MainTitle,
