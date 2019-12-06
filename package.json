@@ -5,15 +5,17 @@
   "version_short": "2.3",
   "keywords": [
     "css",
+    "sass",
     "javascript",
     "responsive",
     "front-end",
     "framework",
     "web"
   ],
-  "homepage": "https://yongchuc.gitbook.io/remark/",
+  "homepage": "http://remark.chrisyongchu.com",
   "author": "Chris Yongchu",
   "style": "dist/css/remark.css",
+  "sass": "dist/scss/remark.scss",
   "main": "dist/js/remark.js",
   "repository": {
     "type": "git",
@@ -25,5 +27,15 @@
   "files": [
     "dist/{css,js}/*.{css,js}",
     "js/{src,dist}/**/*.{js}"
-  ]
+  ],
+  "dependencies": {
+    "node-sass": "^4.13.0",
+    "FortAwesome/Font-Awesome": "*"
+  },
+  "scripts": {
+    "css": "npm-run-all css-compile css-prefix css-minify",
+    "scss": "node-sass --watch scss -o css",
+    "js": "npm-run-all js-compile js-minify",
+    "watch": "npm-run-all --parallell watch-*"
+  }
 }
